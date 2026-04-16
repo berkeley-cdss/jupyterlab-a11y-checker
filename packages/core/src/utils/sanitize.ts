@@ -87,6 +87,43 @@ export function stripHtmlComments(html: string): string {
 }
 
 /**
+ * Masks `$$...$$` LaTeX display-math blocks with spaces, preserving total
+ * length and newline positions. Only matched pairs are masked; an unclosed
+ * `$$` is left untouched.
+ *
+ * Use before passing markdown to a parser that doesn't understand LaTeX,
+ * to prevent stray `=` or `-` lines inside math from being interpreted as
+ * setext heading underlines.
+ */
+export function maskMathBlocks(source: string): string {
+  let result = "";
+  let searchFrom = 0;
+  while (searchFrom < source.length) {
+    const openIdx = source.indexOf("$$", searchFrom);
+    if (openIdx === -1) {
+      result += source.slice(searchFrom);
+      break;
+    }
+    const closeIdx = source.indexOf("$$", openIdx + 2);
+    if (closeIdx === -1) {
+      // Unclosed `$$` — leave the rest as-is (conservative behavior)
+      result += source.slice(searchFrom);
+      break;
+    }
+    const blockEnd = closeIdx + 2;
+    // Untouched prefix before the math block
+    result += source.slice(searchFrom, openIdx);
+    // Mask the block: replace each char with a space, keep newlines intact
+    const block = source.slice(openIdx, blockEnd);
+    for (let i = 0; i < block.length; i++) {
+      result += block[i] === "\n" ? "\n" : " ";
+    }
+    searchFrom = blockEnd;
+  }
+  return result;
+}
+
+/**
  * Finds all `<tagName>...</tagName>` blocks using indexOf-based linear scanning.
  * No regex backtracking — safe against ReDoS on malformed input.
  */

@@ -102,4 +102,22 @@ describe("analyzeHeadingHierarchy", () => {
     const issues = await analyzeHeadingHierarchy(cells("# A", "## B", "### C"));
     expect(issues).toHaveLength(0);
   });
+
+  // Regression for issue #48: multi-line LaTeX with a standalone `=` line
+  // was being parsed as a setext H1 by marked, producing phantom heading
+  // violations.
+  it("does not flag multi-line LaTeX as a phantom H1", async () => {
+    const latex = [
+      "$$",
+      "\\hat{y}",
+      "=",
+      "\\theta_0 +",
+      "\\theta_1 \\cdot \\textbf{FG} +",
+      "\\theta_2 \\cdot \\textbf{AST} +",
+      "\\theta_3 \\cdot \\textbf{3PA}",
+      "$$",
+    ].join("\n");
+    const issues = await analyzeHeadingHierarchy(cells("# Real Title", latex));
+    expect(issues).toHaveLength(0);
+  });
 });

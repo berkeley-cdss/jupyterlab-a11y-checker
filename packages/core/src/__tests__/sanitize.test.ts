@@ -4,6 +4,7 @@ import {
   escapeHtmlAttr,
   findAllHtmlTags,
   stripHtmlComments,
+  maskMathBlocks,
 } from "../utils/sanitize.js";
 
 describe("stripHtmlTags", () => {
@@ -41,6 +42,38 @@ describe("stripHtmlComments", () => {
 
   it("returns input unchanged when no comments", () => {
     expect(stripHtmlComments("<b>bold</b>")).toBe("<b>bold</b>");
+  });
+});
+
+describe("maskMathBlocks", () => {
+  it("masks a single-line $$...$$ block with spaces", () => {
+    expect(maskMathBlocks("$$ x = y $$")).toBe("           ");
+  });
+
+  it("preserves length and newlines for multi-line math", () => {
+    const input = "$$\n\\hat{y}\n=\n\\theta_0\n$$";
+    const masked = maskMathBlocks(input);
+    expect(masked).toHaveLength(input.length);
+    expect(masked).toBe("  \n       \n \n        \n  ");
+  });
+
+  it("leaves text outside math blocks untouched", () => {
+    expect(maskMathBlocks("foo $$x$$ bar")).toBe("foo       bar");
+  });
+
+  it("leaves an unclosed $$ untouched (conservative)", () => {
+    const input = "before\n$$\n\\hat{y}\n=\nrest";
+    expect(maskMathBlocks(input)).toBe(input);
+  });
+
+  it("masks multiple math blocks independently", () => {
+    expect(maskMathBlocks("$$a$$ middle $$b$$")).toBe("      middle      ");
+  });
+
+  it("returns input unchanged when there are no $$ delimiters", () => {
+    expect(maskMathBlocks("# Heading\n\nplain text")).toBe(
+      "# Heading\n\nplain text",
+    );
   });
 });
 

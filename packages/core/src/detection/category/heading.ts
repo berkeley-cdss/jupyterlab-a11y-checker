@@ -1,6 +1,6 @@
 import { marked } from "marked";
 import { IGeneralCell, ICellIssue } from "../../types.js";
-import { stripHtmlTags } from "../../utils/sanitize.js";
+import { stripHtmlTags, maskMathBlocks } from "../../utils/sanitize.js";
 
 interface HeadingEntry {
   cellIndex: number;
@@ -25,7 +25,7 @@ export async function detectHeadingOneIssue(
   const firstCell = cells[0];
   let firstCellStartsWithH1 = false;
   if (firstCell.type === "markdown") {
-    const content = firstCell.source;
+    const content = maskMathBlocks(firstCell.source);
     const tokens: any[] = marked.lexer(content) as any[];
     const firstToken: any = tokens.find(
       (t: any) => t && t.type !== "space" && (t.raw || "").trim().length > 0,
@@ -70,12 +70,14 @@ export async function analyzeHeadingHierarchy(
         continue;
       }
 
-      const content = cell.source;
+      const content = maskMathBlocks(cell.source);
       if (!content.trim()) {
         continue;
       }
 
-      // Tokenize markdown and map tokens to source offsets for headings
+      // Tokenize markdown and map tokens to source offsets for headings.
+      // `content` has math blocks masked with spaces (length preserved), so
+      // heading offsets still align with the original cell.source.
       const tokens: any[] = marked.lexer(content) as any[];
       let searchStart = 0;
       for (const token of tokens) {
