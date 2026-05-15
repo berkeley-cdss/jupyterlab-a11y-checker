@@ -1,0 +1,100 @@
+name: Publish Extension
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+concurrency:
+  group: publish-extension-${{ github.event.release.tag_name || github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.event.release.tag_name, 'v') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name || github.ref }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install Python build tools
+        run: python -m pip install --upgrade pip build twine "jupyterlab>=4.0.0,<5"
+
+      - name: Install dependencies and build extension assets
+        env:
+          YARN_ENABLE_IMMUTABLE_INSTALLS: 'false'
+          YARN_CHECKSUM_BEHAVIOR: update
+        run: |
+          set -eux
+          jlpm install
+          npm run build -w packages/core
+          npm run build:prod -w packages/extension
+
+      - name: Check npm version status
+        id: npm_version
+        run: |
+          set -euo pipefail
+          LOCAL_VERSION=$(node -p "require('./packages/extension/package.json').version")
+          PUBLISHED_VERSION=$(npm view jupyterlab-a11y-checker version 2>/dev/null || true)
+
+          echo "local_version=$LOCAL_VERSION" >> "$GITHUB_OUTPUT"
+          echo "published_version=$PUBLISHED_VERSION" >> "$GITHUB_OUTPUT"
+
+          if [ "$LOCAL_VERSION" = "$PUBLISHED_VERSION" ]; then
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            echo "Version $LOCAL_VERSION is already on npm; npm publish will be skipped."
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+            echo "Will publish npm package version $LOCAL_VERSION."
+          fi
+
+      - name: Build Python package
+        working-directory: packages/extension
+        run: python -m build
+
+      - name: Publish to PyPI
+        if: ${{ secrets.PYPI_API_TOKEN != '' }}
+        working-directory: packages/extension
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload --skip-existing dist/*
+
+      - name: Skip PyPI publish (missing token)
+        if: ${{ secrets.PYPI_API_TOKEN == '' }}
+        run: echo "PYPI_API_TOKEN is not configured. Skipping PyPI publish."
+
+      - name: Publish to npm
+        if: ${{ steps.npm_version.outputs.publish == 'true' && secrets.NPM_TOKEN != '' }}
+        working-directory: packages/extension
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public
+
+      - name: Skip npm publish (already released or missing token)
+        if: ${{ steps.npm_version.outputs.publish != 'true' || secrets.NPM_TOKEN == '' }}
+        run: |
+          echo "Skipping npm publish."
+          echo "Local version: ${{ steps.npm_version.outputs.local_version }}"
+          echo "Published version: ${{ steps.npm_version.outputs.published_version }}"
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "NPM_TOKEN is not configured."
+          fi

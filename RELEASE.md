@@ -2,6 +2,41 @@
 
 The extension can be published to `PyPI` and `npm` manually or using the [Jupyter Releaser](https://github.com/jupyter-server/jupyter_releaser).
 
+## Automated publish on merge
+
+This repository includes an automated, safer OSS release flow:
+
+- `.github/workflows/release-please.yml` runs on every push to `main` and manages a release PR.
+- When the release PR is merged, Release Please creates a Git tag (`vX.Y.Z`) and a GitHub Release.
+- `.github/workflows/publish-extension.yml` runs on `release.published` and publishes artifacts.
+
+This means normal feature merges do not immediately publish packages, but they do automatically advance release automation.
+
+Workflow files:
+
+- `.github/workflows/release-please.yml`
+- `.github/workflows/publish-extension.yml`
+- `.github/release-please-config.json`
+- `.github/.release-please-manifest.json`
+
+Publish targets:
+
+- PyPI package from `packages/extension`
+- npm package `jupyterlab-a11y-checker` from `packages/extension`
+
+Required repository secrets:
+
+- `PYPI_API_TOKEN`: PyPI token with publish permission.
+- `NPM_TOKEN`: npm automation token with publish permission for `jupyterlab-a11y-checker`.
+
+Notes:
+
+- Release tags follow the format `vX.Y.Z`.
+- The release PR is updated automatically as changes are merged into `main`.
+- npm publish is skipped when the local extension version is already published.
+- PyPI upload uses `--skip-existing`, so reruns are safe for already-published versions.
+- Publishing happens automatically after a release PR merge creates a tag/release.
+
 ## Manual release
 
 ### Python package
