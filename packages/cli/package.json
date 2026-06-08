@@ -1,6 +1,6 @@
 {
     "name": "@jupyterlab-a11y-checker/cli",
-    "version": "0.1.5",
+    "version": "0.2.0",
     "description": "CLI for JupyterLab A11y Checker",
     "author": "Research, Teaching, and Learning at UC Berkeley",
     "bin": {
