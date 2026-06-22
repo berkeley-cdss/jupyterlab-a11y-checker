@@ -14,7 +14,7 @@ runs:
         cd ${{ github.action_path }}
         corepack enable
         corepack prepare yarn@3.5.0 --activate
-        yarn install
+        yarn install --no-immutable
         npm run build -w packages/core
         npm run build -w packages/cli
       shell: bash
