@@ -9,6 +9,15 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Build CLI
+      run: |
+        cd ${{ github.action_path }}
+        corepack enable
+        corepack prepare yarn@3.5.0 --activate
+        yarn install
+        npm run build -w packages/core
+        npm run build -w packages/cli
+      shell: bash
     - name: Run A11y Checker CLI
       run: |
         shopt -s globstar nullglob
