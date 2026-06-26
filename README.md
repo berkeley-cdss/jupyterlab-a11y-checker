@@ -6,7 +6,7 @@ jupyterLab-a11y-checker is an accessibility engine for Jupyter Notebooks, assist
 
 Users can use this tool in three ways:
 
-1. As a **JupyterLab extension**. It provides accessibility scan results in real-time with actionable suggestions to fix them. You can try the extension directly in your browser without any installation via our [JupyterLite demo](https://berkeley-dsep-infra.github.io/jupyterlab-a11y-checker/lab/index.html).
+1. As a **JupyterLab extension**. It provides accessibility scan results in real-time with actionable suggestions to fix them. You can try the extension directly in your browser without any installation via our [JupyterLite demo](https://berkeley-cdss.github.io/jupyterlab-a11y-checker/lab/index.html).
 2. As a **CLI tool**. It can be run independently of JupyterLab, for instance in GitHub Actions, to maintain accessible notebooks.
 3. As a **web app ([JupyCheck](https://jupycheck.vercel.app))**. Scan an entire GitHub repository or uploaded notebooks for accessibility issues directly in the browser — no installation required.
 
