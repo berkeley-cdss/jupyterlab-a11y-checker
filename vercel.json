@@ -1,6 +1,6 @@
 {
   "buildCommand": "cd experimental/jupycheck && npm run build",
-  "installCommand": "cd packages/core && npm install && npm run build && cd ../experimental/jupycheck && npm install",
+  "installCommand": "npm install --prefix packages/core && npm run build --prefix packages/core && npm install --prefix experimental/jupycheck",
   "outputDirectory": "experimental/jupycheck/dist",
   "framework": "vite",
   "ignoreCommand": "git diff --quiet HEAD^ HEAD -- experimental/jupycheck packages/core",
