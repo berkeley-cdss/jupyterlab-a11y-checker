@@ -1,0 +1,13 @@
+{
+  "buildCommand": "cd experimental/jupycheck && npm run build",
+  "installCommand": "cd packages/core && npm install && npm run build && cd ../experimental/jupycheck && npm install",
+  "outputDirectory": "experimental/jupycheck/dist",
+  "framework": "vite",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- experimental/jupycheck packages/core",
+  "rewrites": [
+    {
+      "source": "/api/marketplace-badge",
+      "destination": "https://marketplace.orbrx.io/api/badge/jupyterlab-a11y-checker?metric=downloads"
+    }
+  ]
+}
