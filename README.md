@@ -20,7 +20,7 @@ Our detection engine relies on custom detection logic. In addition, we integrate
 
 Here's a snapshot of the extension:
 
-![On JupyterLab, this extension is detecting accessibility issues. On the left panel, there is a sample Jupyter Notebook, while on the right side, this extension is displaying image and heading related issues.](doc/README_IMG.png)
+![On JupyterLab, this extension is detecting accessibility issues. On the left panel, there is a sample Jupyter Notebook, while on the right side, this extension is displaying image and heading related issues.](docs/README_IMG.png)
 
 ### Issue Resolution
 
