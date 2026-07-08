@@ -259,8 +259,8 @@ When issues are found, agents should:
 
 ## Resources
 
-- **Rule Descriptions**: https://github.com/berkeley-dsep-infra/jupyterlab-a11y-checker/blob/main/doc/rules.md
-- **GitHub Repository**: https://github.com/berkeley-dsep-infra/jupyterlab-a11y-checker
+- **Rule Descriptions**: https://github.com/berkeley-cdss/jupyterlab-a11y-checker/blob/main/docs/components/rules.md
+- **GitHub Repository**: https://github.com/berkeley-cdss/jupyterlab-a11y-checker
 - **PyPI Package**: https://pypi.org/project/jupyterlab-a11y-checker/
 - **NPM Package**: https://www.npmjs.com/package/@jupyterlab-a11y-checker/cli
 
