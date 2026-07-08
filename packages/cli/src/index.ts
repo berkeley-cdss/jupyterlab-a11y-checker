@@ -155,7 +155,7 @@ program
         );
         console.log(
           chalk.blue(
-            "\nLearn more about the issues? Check out issue descriptions at https://github.com/berkeley-dsep-infra/jupyterlab-a11y-checker/blob/main/doc/rules.md",
+            "\nLearn more about the issues? Check out issue descriptions at https://github.com/berkeley-cdss/jupyterlab-a11y-checker/blob/main/docs/components/rules.md",
           ),
         );
         console.log(
