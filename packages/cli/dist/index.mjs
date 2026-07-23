@@ -12,11 +12,20 @@ var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require
   if (typeof require !== "undefined") return require.apply(this, arguments);
   throw Error('Dynamic require of "' + x + '" is not supported');
 });
-var __esm = (fn, res) => function __init() {
-  return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+var __esm = (fn, res, err) => function __init() {
+  if (err) throw err[0];
+  try {
+    return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+  } catch (e) {
+    throw err = [e], e;
+  }
 };
 var __commonJS = (cb, mod) => function __require2() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  try {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  } catch (e) {
+    throw mod = 0, e;
+  }
 };
 var __export = (target, all) => {
   for (var name in all)
@@ -4372,7 +4381,7 @@ var require_axe = __commonJS({
         }, _typeof(o);
       }
       var axe2 = axe2 || {};
-      axe2.version = "4.11.1";
+      axe2.version = "4.12.1";
       if (typeof define === "function" && define.amd) {
         define("axe-core", [], function() {
           return axe2;
@@ -4387,7 +4396,137 @@ var require_axe = __commonJS({
       }
       var commons;
       "use strict";
-      var _excluded = ["precision", "format", "inGamut"], _excluded2 = ["space"], _excluded3 = ["algorithm"], _excluded4 = ["method"], _excluded5 = ["maxDeltaE", "deltaEMethod", "steps", "maxSteps"], _excluded6 = ["variant"], _excluded7 = ["matches"], _excluded8 = ["chromium"], _excluded9 = ["noImplicit"], _excluded0 = ["noPresentational"], _excluded1 = ["node"], _excluded10 = ["relatedNodes"], _excluded11 = ["node"], _excluded12 = ["node"], _excluded13 = ["environmentData"], _excluded14 = ["environmentData"], _excluded15 = ["environmentData"], _excluded16 = ["environmentData"], _excluded17 = ["environmentData"];
+      var _excluded = ["precision", "format", "inGamut"], _excluded2 = ["space"], _excluded3 = ["algorithm"], _excluded4 = ["method"], _excluded5 = ["maxDeltaE", "deltaEMethod", "steps", "maxSteps"], _excluded6 = ["node"], _excluded7 = ["relatedNodes"], _excluded8 = ["node"], _excluded9 = ["variant"], _excluded0 = ["matches"], _excluded1 = ["chromium"], _excluded10 = ["noImplicit"], _excluded11 = ["noPresentational"], _excluded12 = ["node"], _excluded13 = ["environmentData"], _excluded14 = ["environmentData"], _excluded15 = ["environmentData"], _excluded16 = ["environmentData"], _excluded17 = ["environmentData"];
+      function _regenerator() {
+        var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag";
+        function i(r2, n2, o2, i2) {
+          var c2 = n2 && n2.prototype instanceof Generator ? n2 : Generator, u2 = Object.create(c2.prototype);
+          return _regeneratorDefine2(u2, "_invoke", (function(r3, n3, o3) {
+            var i3, c3, u3, f2 = 0, p = o3 || [], y = false, G = {
+              p: 0,
+              n: 0,
+              v: e,
+              a: d,
+              f: d.bind(e, 4),
+              d: function d2(t2, r4) {
+                return i3 = t2, c3 = 0, u3 = e, G.n = r4, a;
+              }
+            };
+            function d(r4, n4) {
+              for (c3 = r4, u3 = n4, t = 0; !y && f2 && !o4 && t < p.length; t++) {
+                var o4, i4 = p[t], d2 = G.p, l = i4[2];
+                r4 > 3 ? (o4 = l === n4) && (u3 = i4[(c3 = i4[4]) ? 5 : (c3 = 3, 3)], i4[4] = i4[5] = e) : i4[0] <= d2 && ((o4 = r4 < 2 && d2 < i4[1]) ? (c3 = 0, G.v = n4, G.n = i4[1]) : d2 < l && (o4 = r4 < 3 || i4[0] > n4 || n4 > l) && (i4[4] = r4, i4[5] = n4, G.n = l, c3 = 0));
+              }
+              if (o4 || r4 > 1) {
+                return a;
+              }
+              throw y = true, n4;
+            }
+            return function(o4, p2, l) {
+              if (f2 > 1) {
+                throw TypeError("Generator is already running");
+              }
+              for (y && 1 === p2 && d(p2, l), c3 = p2, u3 = l; (t = c3 < 2 ? e : u3) || !y; ) {
+                i3 || (c3 ? c3 < 3 ? (c3 > 1 && (G.n = -1), d(c3, u3)) : G.n = u3 : G.v = u3);
+                try {
+                  if (f2 = 2, i3) {
+                    if (c3 || (o4 = "next"), t = i3[o4]) {
+                      if (!(t = t.call(i3, u3))) {
+                        throw TypeError("iterator result is not an object");
+                      }
+                      if (!t.done) {
+                        return t;
+                      }
+                      u3 = t.value, c3 < 2 && (c3 = 0);
+                    } else {
+                      1 === c3 && (t = i3["return"]) && t.call(i3), c3 < 2 && (u3 = TypeError("The iterator does not provide a '" + o4 + "' method"), c3 = 1);
+                    }
+                    i3 = e;
+                  } else if ((t = (y = G.n < 0) ? u3 : r3.call(n3, G)) !== a) {
+                    break;
+                  }
+                } catch (t2) {
+                  i3 = e, c3 = 1, u3 = t2;
+                } finally {
+                  f2 = 1;
+                }
+              }
+              return {
+                value: t,
+                done: y
+              };
+            };
+          })(r2, o2, i2), true), u2;
+        }
+        var a = {};
+        function Generator() {
+        }
+        function GeneratorFunction() {
+        }
+        function GeneratorFunctionPrototype() {
+        }
+        t = Object.getPrototypeOf;
+        var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function() {
+          return this;
+        }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c);
+        function f(e2) {
+          return Object.setPrototypeOf ? Object.setPrototypeOf(e2, GeneratorFunctionPrototype) : (e2.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e2, o, "GeneratorFunction")), e2.prototype = Object.create(u), e2;
+        }
+        return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function() {
+          return this;
+        }), _regeneratorDefine2(u, "toString", function() {
+          return "[object Generator]";
+        }), (_regenerator = function _regenerator2() {
+          return {
+            w: i,
+            m: f
+          };
+        })();
+      }
+      function _regeneratorDefine2(e, r, n, t) {
+        var i = Object.defineProperty;
+        try {
+          i({}, "", {});
+        } catch (e2) {
+          i = 0;
+        }
+        _regeneratorDefine2 = function _regeneratorDefine(e2, r2, n2, t2) {
+          function o(r3, n3) {
+            _regeneratorDefine2(e2, r3, function(e3) {
+              return this._invoke(r3, n3, e3);
+            });
+          }
+          r2 ? i ? i(e2, r2, {
+            value: n2,
+            enumerable: !t2,
+            configurable: !t2,
+            writable: !t2
+          }) : e2[r2] = n2 : (o("next", 0), o("throw", 1), o("return", 2));
+        }, _regeneratorDefine2(e, r, n, t);
+      }
+      function asyncGeneratorStep(n, t, e, r, o, a, c) {
+        try {
+          var i = n[a](c), u = i.value;
+        } catch (n2) {
+          return void e(n2);
+        }
+        i.done ? t(u) : Promise.resolve(u).then(r, o);
+      }
+      function _asyncToGenerator(n) {
+        return function() {
+          var t = this, e = arguments;
+          return new Promise(function(r, o) {
+            var a = n.apply(t, e);
+            function _next(n2) {
+              asyncGeneratorStep(a, r, o, _next, _throw, "next", n2);
+            }
+            function _throw(n2) {
+              asyncGeneratorStep(a, r, o, _next, _throw, "throw", n2);
+            }
+            _next(void 0);
+          });
+        };
+      }
       function _toArray(r) {
         return _arrayWithHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableRest();
       }
@@ -6290,10 +6429,10 @@ var require_axe = __commonJS({
           var SHARED = "__core-js_shared__";
           var store = module2.exports = globalThis2[SHARED] || defineGlobalProperty(SHARED, {});
           (store.versions || (store.versions = [])).push({
-            version: "3.44.0",
+            version: "3.48.0",
             mode: IS_PURE ? "pure" : "global",
-            copyright: "\xA9 2014-2025 Denis Pushkarev (zloirock.ru)",
-            license: "https://github.com/zloirock/core-js/blob/v3.44.0/LICENSE",
+            copyright: "\xA9 2013\u20132025 Denis Pushkarev (zloirock.ru), 2025\u20132026 CoreJS Company (core-js.io). All rights reserved.",
+            license: "https://github.com/zloirock/core-js/blob/v3.48.0/LICENSE",
             source: "https://github.com/zloirock/core-js"
           });
         });
@@ -7604,6 +7743,40 @@ var require_axe = __commonJS({
             }
           };
         });
+        var require_is_array = __commonJS2(function(exports2, module2) {
+          "use strict";
+          var classof = require_classof_raw();
+          module2.exports = Array.isArray || function isArray(argument) {
+            return classof(argument) === "Array";
+          };
+        });
+        var require_array_set_length = __commonJS2(function(exports2, module2) {
+          "use strict";
+          var DESCRIPTORS = require_descriptors();
+          var isArray = require_is_array();
+          var $TypeError = TypeError;
+          var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+          var SILENT_ON_NON_WRITABLE_LENGTH_SET = DESCRIPTORS && !(function() {
+            if (this !== void 0) {
+              return true;
+            }
+            try {
+              Object.defineProperty([], "length", {
+                writable: false
+              }).length = 1;
+            } catch (error) {
+              return error instanceof TypeError;
+            }
+          })();
+          module2.exports = SILENT_ON_NON_WRITABLE_LENGTH_SET ? function(O, length) {
+            if (isArray(O) && !getOwnPropertyDescriptor(O, "length").writable) {
+              throw new $TypeError("Cannot set read only .length");
+            }
+            return O.length = length;
+          } : function(O, length) {
+            return O.length = length;
+          };
+        });
         var require_get_iterator_method = __commonJS2(function(exports2, module2) {
           "use strict";
           var classof = require_classof();
@@ -7644,6 +7817,7 @@ var require_axe = __commonJS({
           var isConstructor = require_is_constructor();
           var lengthOfArrayLike = require_length_of_array_like();
           var createProperty = require_create_property();
+          var setArrayLength = require_array_set_length();
           var getIterator = require_get_iterator();
           var getIteratorMethod = require_get_iterator_method();
           var $Array = Array;
@@ -7675,7 +7849,7 @@ var require_axe = __commonJS({
                 createProperty(result, index, value);
               }
             }
-            result.length = index;
+            setArrayLength(result, index);
             return result;
           };
         });
@@ -11082,12 +11256,18 @@ var require_axe = __commonJS({
         Object.freeze(constants.resultGroupMap);
         Object.freeze(constants);
         var constants_default = constants;
+        var logger;
         function log() {
-          if ((typeof console === "undefined" ? "undefined" : _typeof(console)) === "object" && console.log) {
-            Function.prototype.apply.call(console.log, console, arguments);
+          if (logger) {
+            logger.apply(void 0, arguments);
+          } else if ((typeof console === "undefined" ? "undefined" : _typeof(console)) === "object" && console.log) {
+            var _console;
+            (_console = console).log.apply(_console, arguments);
           }
         }
-        var log_default = log;
+        function setLogger(fn) {
+          logger = fn;
+        }
         var whitespaceRegex = /[\t\r\n\f]/g;
         var AbstractVirtualNode = (function() {
           function AbstractVirtualNode2() {
@@ -11207,6 +11387,12 @@ var require_axe = __commonJS({
           getCheckOption: function getCheckOption2() {
             return get_check_option_default;
           },
+          getElementInternals: function getElementInternals() {
+            return _getElementInternals;
+          },
+          getElementSource: function getElementSource() {
+            return _getElementSource;
+          },
           getEnvironmentData: function getEnvironmentData() {
             return _getEnvironmentData;
           },
@@ -11276,8 +11462,8 @@ var require_axe = __commonJS({
           isHidden: function isHidden2() {
             return is_hidden_default;
           },
-          isHtmlElement: function isHtmlElement2() {
-            return is_html_element_default;
+          isHtmlElement: function isHtmlElement() {
+            return _isHtmlElement;
           },
           isLabelledFramesSelector: function isLabelledFramesSelector() {
             return _isLabelledFramesSelector;
@@ -11290,6 +11476,9 @@ var require_axe = __commonJS({
           },
           isShadowRoot: function isShadowRoot2() {
             return is_shadow_root_default;
+          },
+          isValidCustomElementName: function isValidCustomElementName() {
+            return _isValidCustomElementName;
           },
           isValidLang: function isValidLang2() {
             return valid_langs_default;
@@ -11323,6 +11512,9 @@ var require_axe = __commonJS({
           },
           nodeSorter: function nodeSorter2() {
             return node_sorter_default;
+          },
+          normalizeRunOptions: function normalizeRunOptions() {
+            return _normalizeRunOptions;
           },
           objectHasOwn: function objectHasOwn() {
             return _objectHasOwn;
@@ -12473,8 +12665,8 @@ var require_axe = __commonJS({
             format.type || (format.type = "function");
             format.name || (format.name = "color");
             format.coordGrammar = parseCoordGrammar(format.coords);
-            var coordFormats = Object.entries(this.coords).map(function(_ref149, i2) {
-              var _ref150 = _slicedToArray(_ref149, 2), id2 = _ref150[0], coordMeta = _ref150[1];
+            var coordFormats = Object.entries(this.coords).map(function(_ref154, i2) {
+              var _ref155 = _slicedToArray(_ref154, 2), id2 = _ref155[0], coordMeta = _ref155[1];
               var outputType = format.coordGrammar[i2][0];
               var fromRange = coordMeta.range || coordMeta.refRange;
               var toRange = outputType.range, suffix = "";
@@ -15314,7 +15506,7 @@ var require_axe = __commonJS({
           return Array.from(doc.querySelectorAll(selector));
         });
         function generateAncestry(node) {
-          var nodeName2 = node.nodeName.toLowerCase();
+          var nodeName2 = escape_selector_default(node.nodeName.toLowerCase());
           var parentElement = node.parentElement;
           var parentNode = node.parentNode;
           var nthChild = "";
@@ -15432,6 +15624,1261 @@ var require_axe = __commonJS({
           return cache_default.get("nodeMap") ? cache_default.get("nodeMap").get(el) : null;
         }
         var get_node_from_tree_default = getNodeFromTree;
+        function _getElementSource(node) {
+          var _ref24 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, _ref24$maxLength = _ref24.maxLength, maxLength = _ref24$maxLength === void 0 ? 300 : _ref24$maxLength, _ref24$attrLimit = _ref24.attrLimit, attrLimit = _ref24$attrLimit === void 0 ? 20 : _ref24$attrLimit;
+          if (!node) {
+            return "";
+          }
+          if (node.nodeType !== 1) {
+            var _node$nodeValue;
+            var value = (_node$nodeValue = node.nodeValue) !== null && _node$nodeValue !== void 0 ? _node$nodeValue : "";
+            return truncate(value, maxLength);
+          }
+          var deepStr = getOuterHtml(node);
+          if (deepStr.length > maxLength) {
+            return getTruncatedElementSource(node, {
+              maxLength,
+              attrLimit
+            });
+          }
+          return deepStr;
+        }
+        function getOuterHtml(element) {
+          var source = element.outerHTML;
+          if (!source && typeof window2.XMLSerializer === "function") {
+            source = new window2.XMLSerializer().serializeToString(element);
+          }
+          return source || "";
+        }
+        function getTruncatedElementSource(elm, _ref25) {
+          var maxLength = _ref25.maxLength, attrLimit = _ref25.attrLimit;
+          var nodeName2 = is_xhtml_default(elm.ownerDocument || document2) ? elm.nodeName : elm.nodeName.toLowerCase();
+          var nodeAttrs = Array.from(get_node_attributes_default(elm)).map(function(_ref26) {
+            var name = _ref26.name, value = _ref26.value;
+            return {
+              name,
+              value
+            };
+          });
+          var attrsLength = nodeAttrs.reduce(function(acc, _ref27) {
+            var name = _ref27.name, value = _ref27.value;
+            return acc + name.length + value.length + 4;
+          }, 0);
+          if (2 + nodeName2.length + attrsLength > maxLength) {
+            nodeAttrs.forEach(function(attr2) {
+              attr2.name = truncate(attr2.name, attrLimit);
+              attr2.value = truncate(attr2.value, attrLimit);
+            });
+          }
+          var source = "<".concat(nodeName2);
+          var tagEnd = ">";
+          var truncateEnd = " ...>";
+          var _iterator7 = _createForOfIteratorHelper(nodeAttrs), _step7;
+          try {
+            for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
+              var attr = _step7.value;
+              var attrStr = " ".concat(attr.name, '="').concat(attr.value, '"');
+              if (source.length + attrStr.length > maxLength - truncateEnd.length) {
+                tagEnd = truncateEnd;
+                continue;
+              }
+              source += attrStr;
+            }
+          } catch (err2) {
+            _iterator7.e(err2);
+          } finally {
+            _iterator7.f();
+          }
+          return source + tagEnd;
+        }
+        function truncate(str2, attrLimit) {
+          return str2.length <= attrLimit ? str2 : str2.substring(0, attrLimit) + "...";
+        }
+        var CACHE_KEY = "DqElm.RunOptions";
+        var DqElement = memoize_default(function DqElement2(elm, options2, spec) {
+          var _this$spec$selector, _this$_virtualNode;
+          options2 !== null && options2 !== void 0 ? options2 : options2 = null;
+          spec !== null && spec !== void 0 ? spec : spec = {};
+          if (!options2) {
+            var _cache_default$get;
+            options2 = (_cache_default$get = cache_default.get(CACHE_KEY)) !== null && _cache_default$get !== void 0 ? _cache_default$get : {};
+          }
+          this.spec = spec;
+          if (elm instanceof abstract_virtual_node_default) {
+            this._virtualNode = elm;
+            this._element = elm.actualNode;
+          } else {
+            this._element = elm;
+            this._virtualNode = get_node_from_tree_default(elm);
+          }
+          this.fromFrame = ((_this$spec$selector = this.spec.selector) === null || _this$spec$selector === void 0 ? void 0 : _this$spec$selector.length) > 1;
+          this._includeElementInJson = options2.elementRef;
+          if (options2.absolutePaths) {
+            this._options = {
+              toRoot: true
+            };
+          }
+          this.nodeIndexes = [];
+          if (Array.isArray(this.spec.nodeIndexes)) {
+            this.nodeIndexes = this.spec.nodeIndexes;
+          } else if (typeof ((_this$_virtualNode = this._virtualNode) === null || _this$_virtualNode === void 0 ? void 0 : _this$_virtualNode.nodeIndex) === "number") {
+            this.nodeIndexes = [this._virtualNode.nodeIndex];
+          }
+          this.source = null;
+          if (!axe2._audit.noHtml) {
+            var _this$spec$source;
+            this.source = (_this$spec$source = this.spec.source) !== null && _this$spec$source !== void 0 ? _this$spec$source : _getElementSource(this._element);
+          }
+          return this;
+        });
+        DqElement.prototype = {
+          get selector() {
+            return this.spec.selector || [get_selector_default(this.element, this._options)];
+          },
+          get ancestry() {
+            return this.spec.ancestry || [_getAncestry(this.element)];
+          },
+          get xpath() {
+            return this.spec.xpath || [get_xpath_default(this.element)];
+          },
+          get element() {
+            return this._element;
+          },
+          toJSON: function toJSON() {
+            var spec = {
+              selector: this.selector,
+              source: this.source,
+              xpath: this.xpath,
+              ancestry: this.ancestry,
+              nodeIndexes: this.nodeIndexes,
+              fromFrame: this.fromFrame
+            };
+            if (this._includeElementInJson) {
+              spec.element = this._element;
+            }
+            return spec;
+          }
+        };
+        DqElement.fromFrame = function fromFrame(node, options2, frame) {
+          var spec = DqElement.mergeSpecs(node, frame);
+          return new DqElement(frame.element, options2, spec);
+        };
+        DqElement.mergeSpecs = function mergeSpecs(child, parentFrame) {
+          return _extends({}, child, {
+            selector: [].concat(_toConsumableArray(parentFrame.selector), _toConsumableArray(child.selector)),
+            ancestry: [].concat(_toConsumableArray(parentFrame.ancestry), _toConsumableArray(child.ancestry)),
+            xpath: [].concat(_toConsumableArray(parentFrame.xpath), _toConsumableArray(child.xpath)),
+            nodeIndexes: [].concat(_toConsumableArray(parentFrame.nodeIndexes), _toConsumableArray(child.nodeIndexes)),
+            fromFrame: true
+          });
+        };
+        DqElement.setRunOptions = function setRunOptions(_ref28) {
+          var elementRef = _ref28.elementRef, absolutePaths = _ref28.absolutePaths;
+          cache_default.set(CACHE_KEY, {
+            elementRef,
+            absolutePaths
+          });
+        };
+        var dq_element_default = DqElement;
+        function checkHelper(checkResult, options2, resolve, reject) {
+          return {
+            isAsync: false,
+            async: function async() {
+              this.isAsync = true;
+              return function(result) {
+                if (result instanceof Error === false) {
+                  checkResult.result = result;
+                  resolve(checkResult);
+                } else {
+                  reject(result);
+                }
+              };
+            },
+            data: function data(_data) {
+              checkResult.data = _data;
+            },
+            relatedNodes: function relatedNodes(nodes) {
+              if (!window2.Node) {
+                return;
+              }
+              if (nodes instanceof window2.Node || nodes instanceof abstract_virtual_node_default) {
+                nodes = [nodes];
+              } else {
+                nodes = to_array_default(nodes);
+              }
+              checkResult.relatedNodes = [];
+              nodes.forEach(function(node) {
+                if (node instanceof abstract_virtual_node_default) {
+                  node = node.actualNode;
+                }
+                if (node instanceof window2.Node) {
+                  var dqElm = new dq_element_default(node);
+                  checkResult.relatedNodes.push(dqElm);
+                }
+              });
+            }
+          };
+        }
+        var check_helper_default = checkHelper;
+        function clone22(obj) {
+          return cloneRecused(obj, /* @__PURE__ */ new Map());
+        }
+        function cloneRecused(obj, seen) {
+          var _window, _window2;
+          if (obj === null || _typeof(obj) !== "object") {
+            return obj;
+          }
+          if ((_window = window2) !== null && _window !== void 0 && _window.Node && obj instanceof window2.Node || (_window2 = window2) !== null && _window2 !== void 0 && _window2.HTMLCollection && obj instanceof window2.HTMLCollection || "nodeName" in obj && "nodeType" in obj && "ownerDocument" in obj) {
+            return obj;
+          }
+          if (seen.has(obj)) {
+            return seen.get(obj);
+          }
+          if (Array.isArray(obj)) {
+            var out2 = [];
+            seen.set(obj, out2);
+            obj.forEach(function(value) {
+              out2.push(cloneRecused(value, seen));
+            });
+            return out2;
+          }
+          var out = {};
+          seen.set(obj, out);
+          for (var _key6 in obj) {
+            out[_key6] = cloneRecused(obj[_key6], seen);
+          }
+          return out;
+        }
+        var parser2 = new import_css_selector_parser.CssSelectorParser();
+        parser2.registerSelectorPseudos("not");
+        parser2.registerSelectorPseudos("is");
+        parser2.registerNestingOperators(">");
+        parser2.registerAttrEqualityMods("^", "$", "*", "~");
+        var css_parser_default = parser2;
+        function _matches(vNode, selector) {
+          var expressions = _convertSelector(selector);
+          return expressions.some(function(expression) {
+            return _matchesExpression(vNode, expression);
+          });
+        }
+        function matchesTag(vNode, exp) {
+          return vNode.props.nodeType === 1 && (exp.tag === "*" || vNode.props.nodeName === exp.tag);
+        }
+        function matchesClasses(vNode, exp) {
+          return !exp.classes || exp.classes.every(function(cl) {
+            return vNode.hasClass(cl.value);
+          });
+        }
+        function matchesAttributes(vNode, exp) {
+          return !exp.attributes || exp.attributes.every(function(att) {
+            var nodeAtt = vNode.attr(att.key);
+            return nodeAtt !== null && att.test(nodeAtt);
+          });
+        }
+        function matchesId(vNode, exp) {
+          return !exp.id || vNode.props.id === exp.id;
+        }
+        function matchesPseudos(target, exp) {
+          if (!exp.pseudos || exp.pseudos.every(function(pseudo) {
+            if (pseudo.name === "not") {
+              return !pseudo.expressions.some(function(expression) {
+                return _matchesExpression(target, expression);
+              });
+            } else if (pseudo.name === "is") {
+              return pseudo.expressions.some(function(expression) {
+                return _matchesExpression(target, expression);
+              });
+            }
+            throw new Error("the pseudo selector " + pseudo.name + " has not yet been implemented");
+          })) {
+            return true;
+          }
+          return false;
+        }
+        function matchExpression(vNode, expression) {
+          return matchesTag(vNode, expression) && matchesClasses(vNode, expression) && matchesAttributes(vNode, expression) && matchesId(vNode, expression) && matchesPseudos(vNode, expression);
+        }
+        var escapeRegExp = /* @__PURE__ */ (function() {
+          var from = /(?=[\-\[\]{}()*+?.\\\^$|,#\s])/g;
+          var to2 = "\\";
+          return function(string) {
+            return string.replace(from, to2);
+          };
+        })();
+        var reUnescape = /\\/g;
+        function convertAttributes(atts) {
+          if (!atts) {
+            return;
+          }
+          return atts.map(function(att) {
+            var attributeKey = att.name.replace(reUnescape, "");
+            var attributeValue = (att.value || "").replace(reUnescape, "");
+            var test, regexp;
+            switch (att.operator) {
+              case "^=":
+                regexp = new RegExp("^" + escapeRegExp(attributeValue));
+                break;
+              case "$=":
+                regexp = new RegExp(escapeRegExp(attributeValue) + "$");
+                break;
+              case "~=":
+                regexp = new RegExp("(^|\\s)" + escapeRegExp(attributeValue) + "(\\s|$)");
+                break;
+              case "|=":
+                regexp = new RegExp("^" + escapeRegExp(attributeValue) + "(-|$)");
+                break;
+              case "=":
+                test = function test2(value) {
+                  return attributeValue === value;
+                };
+                break;
+              case "*=":
+                test = function test2(value) {
+                  return value && value.includes(attributeValue);
+                };
+                break;
+              case "!=":
+                test = function test2(value) {
+                  return attributeValue !== value;
+                };
+                break;
+              default:
+                test = function test2(value) {
+                  return value !== null;
+                };
+            }
+            if (attributeValue === "" && /^[*$^]=$/.test(att.operator)) {
+              test = function test2() {
+                return false;
+              };
+            }
+            if (!test) {
+              test = function test2(value) {
+                return value && regexp.test(value);
+              };
+            }
+            return {
+              key: attributeKey,
+              value: attributeValue,
+              type: typeof att.value === "undefined" ? "attrExist" : "attrValue",
+              test
+            };
+          });
+        }
+        function convertClasses(classes) {
+          if (!classes) {
+            return;
+          }
+          return classes.map(function(className) {
+            className = className.replace(reUnescape, "");
+            return {
+              value: className,
+              regexp: new RegExp("(^|\\s)" + escapeRegExp(className) + "(\\s|$)")
+            };
+          });
+        }
+        function convertPseudos(pseudos) {
+          if (!pseudos) {
+            return;
+          }
+          return pseudos.map(function(p2) {
+            var expressions;
+            if (["is", "not"].includes(p2.name)) {
+              expressions = p2.value;
+              expressions = expressions.selectors ? expressions.selectors : [expressions];
+              expressions = convertExpressions(expressions);
+            }
+            return {
+              name: p2.name,
+              expressions,
+              value: p2.value
+            };
+          });
+        }
+        function convertExpressions(expressions) {
+          return expressions.map(function(exp) {
+            var newExp = [];
+            var rule = exp.rule;
+            while (rule) {
+              newExp.push({
+                tag: rule.tagName ? rule.tagName.toLowerCase() : "*",
+                combinator: rule.nestingOperator ? rule.nestingOperator : " ",
+                id: rule.id,
+                attributes: convertAttributes(rule.attrs),
+                classes: convertClasses(rule.classNames),
+                pseudos: convertPseudos(rule.pseudos)
+              });
+              rule = rule.rule;
+            }
+            return newExp;
+          });
+        }
+        function _convertSelector(selector) {
+          var expressions = css_parser_default.parse(selector);
+          expressions = expressions.selectors ? expressions.selectors : [expressions];
+          return convertExpressions(expressions);
+        }
+        function optimizedMatchesExpression(vNode, expressions, index, matchAnyParent) {
+          if (!vNode) {
+            return false;
+          }
+          var isArray = Array.isArray(expressions);
+          var expression = isArray ? expressions[index] : expressions;
+          var machedExpression = matchExpression(vNode, expression);
+          while (!machedExpression && matchAnyParent && vNode.parent) {
+            vNode = vNode.parent;
+            machedExpression = matchExpression(vNode, expression);
+          }
+          if (index > 0) {
+            if ([" ", ">"].includes(expression.combinator) === false) {
+              throw new Error("axe.utils.matchesExpression does not support the combinator: " + expression.combinator);
+            }
+            machedExpression = machedExpression && optimizedMatchesExpression(vNode.parent, expressions, index - 1, expression.combinator === " ");
+          }
+          return machedExpression;
+        }
+        function _matchesExpression(vNode, expressions, matchAnyParent) {
+          return optimizedMatchesExpression(vNode, expressions, expressions.length - 1, matchAnyParent);
+        }
+        function closest(vNode, selector) {
+          while (vNode) {
+            if (_matches(vNode, selector)) {
+              return vNode;
+            }
+            if (typeof vNode.parent === "undefined") {
+              throw new TypeError("Cannot resolve parent for non-DOM nodes");
+            }
+            vNode = vNode.parent;
+          }
+          return null;
+        }
+        var closest_default = closest;
+        function noop() {
+        }
+        function funcGuard(f) {
+          if (typeof f !== "function") {
+            throw new TypeError("Queue methods require functions as arguments");
+          }
+        }
+        function queue() {
+          var tasks = [];
+          var started = 0;
+          var remaining = 0;
+          var completeQueue = noop;
+          var complete = false;
+          var err2;
+          var defaultFail = function defaultFail2(e) {
+            err2 = e;
+            setTimeout(function() {
+              if (err2 !== void 0 && err2 !== null) {
+                log("Uncaught error (of queue)", err2);
+              }
+            }, 1);
+          };
+          var failed = defaultFail;
+          function createResolve(i2) {
+            return function(r) {
+              tasks[i2] = r;
+              remaining -= 1;
+              if (!remaining && completeQueue !== noop) {
+                complete = true;
+                completeQueue(tasks);
+              }
+            };
+          }
+          function abort(msg) {
+            completeQueue = noop;
+            failed(msg);
+            return tasks;
+          }
+          function pop() {
+            var length = tasks.length;
+            for (; started < length; started++) {
+              var task = tasks[started];
+              try {
+                task.call(null, createResolve(started), abort);
+              } catch (e) {
+                abort(e);
+              }
+            }
+          }
+          var q = {
+            defer: function defer(fn) {
+              if (_typeof(fn) === "object" && fn.then && fn["catch"]) {
+                var defer2 = fn;
+                fn = function fn2(resolve, reject) {
+                  defer2.then(resolve)["catch"](reject);
+                };
+              }
+              funcGuard(fn);
+              if (err2 !== void 0) {
+                return;
+              } else if (complete) {
+                throw new Error("Queue already completed");
+              }
+              tasks.push(fn);
+              ++remaining;
+              pop();
+              return q;
+            },
+            then: function then(fn) {
+              funcGuard(fn);
+              if (completeQueue !== noop) {
+                throw new Error("queue `then` already set");
+              }
+              if (!err2) {
+                completeQueue = fn;
+                if (!remaining) {
+                  complete = true;
+                  completeQueue(tasks);
+                }
+              }
+              return q;
+            },
+            catch: function _catch(fn) {
+              funcGuard(fn);
+              if (failed !== defaultFail) {
+                throw new Error("queue `catch` already set");
+              }
+              if (!err2) {
+                failed = fn;
+              } else {
+                fn(err2);
+                err2 = null;
+              }
+              return q;
+            },
+            abort
+          };
+          return q;
+        }
+        var queue_default = queue;
+        var uuid;
+        var _rng;
+        var _crypto = window2.crypto || window2.msCrypto;
+        if (!_rng && _crypto && _crypto.getRandomValues) {
+          var _rnds8 = new Uint8Array(16);
+          _rng = function whatwgRNG() {
+            _crypto.getRandomValues(_rnds8);
+            return _rnds8;
+          };
+        }
+        if (!_rng) {
+          var _rnds = new Array(16);
+          _rng = function _rng2() {
+            for (var i2 = 0, r; i2 < 16; i2++) {
+              if ((i2 & 3) === 0) {
+                r = Math.random() * 4294967296;
+              }
+              _rnds[i2] = r >>> ((i2 & 3) << 3) & 255;
+            }
+            return _rnds;
+          };
+        }
+        var BufferClass = typeof window2.Buffer == "function" ? window2.Buffer : Array;
+        var _byteToHex = [];
+        var _hexToByte = {};
+        for (var i = 0; i < 256; i++) {
+          _byteToHex[i] = (i + 256).toString(16).substr(1);
+          _hexToByte[_byteToHex[i]] = i;
+        }
+        function parse2(s, buf, offset) {
+          var i2 = buf && offset || 0, ii = 0;
+          buf = buf || [];
+          s.toLowerCase().replace(/[0-9a-f]{2}/g, function(oct) {
+            if (ii < 16) {
+              buf[i2 + ii++] = _hexToByte[oct];
+            }
+          });
+          while (ii < 16) {
+            buf[i2 + ii++] = 0;
+          }
+          return buf;
+        }
+        function unparse(buf, offset) {
+          var i2 = offset || 0, bth = _byteToHex;
+          return bth[buf[i2++]] + bth[buf[i2++]] + bth[buf[i2++]] + bth[buf[i2++]] + "-" + bth[buf[i2++]] + bth[buf[i2++]] + "-" + bth[buf[i2++]] + bth[buf[i2++]] + "-" + bth[buf[i2++]] + bth[buf[i2++]] + "-" + bth[buf[i2++]] + bth[buf[i2++]] + bth[buf[i2++]] + bth[buf[i2++]] + bth[buf[i2++]] + bth[buf[i2++]];
+        }
+        var _seedBytes = _rng();
+        var _nodeId = [_seedBytes[0] | 1, _seedBytes[1], _seedBytes[2], _seedBytes[3], _seedBytes[4], _seedBytes[5]];
+        var _clockseq = (_seedBytes[6] << 8 | _seedBytes[7]) & 16383;
+        var _lastMSecs = 0;
+        var _lastNSecs = 0;
+        function v1(options2, buf, offset) {
+          var i2 = buf && offset || 0;
+          var b2 = buf || [];
+          options2 = options2 || {};
+          var clockseq = options2.clockseq != null ? options2.clockseq : _clockseq;
+          var msecs = options2.msecs != null ? options2.msecs : (/* @__PURE__ */ new Date()).getTime();
+          var nsecs = options2.nsecs != null ? options2.nsecs : _lastNSecs + 1;
+          var dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 1e4;
+          if (dt < 0 && options2.clockseq == null) {
+            clockseq = clockseq + 1 & 16383;
+          }
+          if ((dt < 0 || msecs > _lastMSecs) && options2.nsecs == null) {
+            nsecs = 0;
+          }
+          if (nsecs >= 1e4) {
+            throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
+          }
+          _lastMSecs = msecs;
+          _lastNSecs = nsecs;
+          _clockseq = clockseq;
+          msecs += 122192928e5;
+          var tl = ((msecs & 268435455) * 1e4 + nsecs) % 4294967296;
+          b2[i2++] = tl >>> 24 & 255;
+          b2[i2++] = tl >>> 16 & 255;
+          b2[i2++] = tl >>> 8 & 255;
+          b2[i2++] = tl & 255;
+          var tmh = msecs / 4294967296 * 1e4 & 268435455;
+          b2[i2++] = tmh >>> 8 & 255;
+          b2[i2++] = tmh & 255;
+          b2[i2++] = tmh >>> 24 & 15 | 16;
+          b2[i2++] = tmh >>> 16 & 255;
+          b2[i2++] = clockseq >>> 8 | 128;
+          b2[i2++] = clockseq & 255;
+          var node = options2.node || _nodeId;
+          for (var n2 = 0; n2 < 6; n2++) {
+            b2[i2 + n2] = node[n2];
+          }
+          return buf ? buf : unparse(b2);
+        }
+        function v4(options2, buf, offset) {
+          var i2 = buf && offset || 0;
+          if (typeof options2 == "string") {
+            buf = options2 == "binary" ? new BufferClass(16) : null;
+            options2 = null;
+          }
+          options2 = options2 || {};
+          var rnds = options2.random || (options2.rng || _rng)();
+          rnds[6] = rnds[6] & 15 | 64;
+          rnds[8] = rnds[8] & 63 | 128;
+          if (buf) {
+            for (var ii = 0; ii < 16; ii++) {
+              buf[i2 + ii] = rnds[ii];
+            }
+          }
+          return buf || unparse(rnds);
+        }
+        uuid = v4;
+        uuid.v1 = v1;
+        uuid.v4 = v4;
+        uuid.parse = parse2;
+        uuid.unparse = unparse;
+        uuid.BufferClass = BufferClass;
+        axe2._uuid = v1();
+        var uuid_default = v4;
+        var errorTypes = Object.freeze(["EvalError", "RangeError", "ReferenceError", "SyntaxError", "TypeError", "URIError"]);
+        function stringifyMessage(_ref29) {
+          var topic = _ref29.topic, channelId = _ref29.channelId, message = _ref29.message, messageId = _ref29.messageId, keepalive = _ref29.keepalive;
+          var data = {
+            channelId,
+            topic,
+            messageId,
+            keepalive: !!keepalive,
+            source: getSource()
+          };
+          if (message instanceof Error) {
+            data.error = {
+              name: message.name,
+              message: message.message,
+              stack: message.stack
+            };
+          } else {
+            data.payload = message;
+          }
+          return JSON.stringify(data);
+        }
+        function parseMessage(dataString) {
+          var data;
+          try {
+            data = JSON.parse(dataString);
+          } catch (_unused) {
+            return;
+          }
+          if (!isRespondableMessage(data)) {
+            return;
+          }
+          var _data2 = data, topic = _data2.topic, channelId = _data2.channelId, messageId = _data2.messageId, keepalive = _data2.keepalive;
+          var message = _typeof(data.error) === "object" ? buildErrorObject(data.error) : data.payload;
+          return {
+            topic,
+            message,
+            messageId,
+            channelId,
+            keepalive: !!keepalive
+          };
+        }
+        function isRespondableMessage(postedMessage) {
+          return postedMessage !== null && _typeof(postedMessage) === "object" && typeof postedMessage.channelId === "string" && postedMessage.source === getSource();
+        }
+        function buildErrorObject(error) {
+          var msg = error.message || "Unknown error occurred";
+          var errorName = errorTypes.includes(error.name) ? error.name : "Error";
+          var ErrConstructor = window2[errorName] || Error;
+          if (error.stack) {
+            msg += "\n" + error.stack.replace(error.message, "");
+          }
+          return new ErrConstructor(msg);
+        }
+        function getSource() {
+          var application = "axeAPI";
+          var version = "";
+          if (typeof axe2 !== "undefined" && axe2._audit && axe2._audit.application) {
+            application = axe2._audit.application;
+          }
+          if (typeof axe2 !== "undefined") {
+            version = axe2.version;
+          }
+          return application + "." + version;
+        }
+        function assertIsParentWindow(win) {
+          assetNotGlobalWindow(win);
+          assert_default(window2.parent === win, "Source of the response must be the parent window.");
+        }
+        function assertIsFrameWindow(win) {
+          assetNotGlobalWindow(win);
+          assert_default(win.parent === window2, "Respondable target must be a frame in the current window");
+        }
+        function assetNotGlobalWindow(win) {
+          assert_default(window2 !== win, "Messages can not be sent to the same window.");
+        }
+        var channels = {};
+        function storeReplyHandler(channelId, replyHandler) {
+          var sendToParent = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : true;
+          assert_default(!Object.prototype.hasOwnProperty.call(channels, channelId), "A replyHandler already exists for this message channel.");
+          channels[channelId] = {
+            replyHandler,
+            sendToParent
+          };
+        }
+        function getReplyHandler(channelId) {
+          return Object.prototype.hasOwnProperty.call(channels, channelId) ? channels[channelId] : void 0;
+        }
+        function deleteReplyHandler(channelId) {
+          delete channels[channelId];
+        }
+        var messageIds = [];
+        function createMessageId() {
+          var uuid2 = "".concat(v4(), ":").concat(v4());
+          if (messageIds.includes(uuid2)) {
+            return createMessageId();
+          }
+          messageIds.push(uuid2);
+          return uuid2;
+        }
+        function isNewMessage(uuid2) {
+          if (messageIds.includes(uuid2)) {
+            return false;
+          }
+          messageIds.push(uuid2);
+          return true;
+        }
+        function postMessage(win, data, sendToParent, replyHandler) {
+          sendToParent ? assertIsParentWindow(win) : assertIsFrameWindow(win);
+          if (data.message instanceof Error && !sendToParent) {
+            axe2.log(data.message);
+            return false;
+          }
+          var dataString = stringifyMessage(_extends({
+            messageId: createMessageId()
+          }, data));
+          var allowedOrigins = axe2._audit.allowedOrigins;
+          if (!allowedOrigins || !allowedOrigins.length) {
+            return false;
+          }
+          if (typeof replyHandler === "function") {
+            storeReplyHandler(data.channelId, replyHandler, sendToParent);
+          }
+          allowedOrigins.forEach(function(origin) {
+            try {
+              win.postMessage(dataString, origin);
+            } catch (err2) {
+              if (err2 instanceof win.DOMException) {
+                throw new Error('allowedOrigins value "'.concat(origin, '" is not a valid origin'));
+              }
+              throw err2;
+            }
+          });
+          return true;
+        }
+        function processError(win, error, channelId) {
+          if (!win.parent !== window2) {
+            return axe2.log(error);
+          }
+          try {
+            postMessage(win, {
+              topic: null,
+              channelId,
+              message: error,
+              messageId: createMessageId(),
+              keepalive: true
+            }, true);
+          } catch (err2) {
+            return axe2.log(err2);
+          }
+        }
+        function createResponder(win, channelId) {
+          var sendToParent = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : true;
+          return function respond(message, keepalive, replyHandler) {
+            var data = {
+              channelId,
+              message,
+              keepalive
+            };
+            postMessage(win, data, sendToParent, replyHandler);
+          };
+        }
+        function originIsAllowed(origin) {
+          var allowedOrigins = axe2._audit.allowedOrigins;
+          return allowedOrigins && allowedOrigins.includes("*") || allowedOrigins.includes(origin);
+        }
+        function messageHandler(_ref30, topicHandler) {
+          var origin = _ref30.origin, dataString = _ref30.data, win = _ref30.source;
+          try {
+            var data = parseMessage(dataString) || {};
+            var channelId = data.channelId, message = data.message, messageId = data.messageId;
+            if (!originIsAllowed(origin) || !isNewMessage(messageId)) {
+              return;
+            }
+            if (message instanceof Error && win.parent !== window2) {
+              axe2.log(message);
+              return false;
+            }
+            try {
+              if (data.topic) {
+                var responder = createResponder(win, channelId);
+                assertIsParentWindow(win);
+                topicHandler(data, responder);
+              } else {
+                callReplyHandler(win, data);
+              }
+            } catch (error) {
+              processError(win, error, channelId);
+            }
+          } catch (error) {
+            axe2.log(error);
+            return false;
+          }
+        }
+        function callReplyHandler(win, data) {
+          var channelId = data.channelId, message = data.message, keepalive = data.keepalive;
+          var _ref31 = getReplyHandler(channelId) || {}, replyHandler = _ref31.replyHandler, sendToParent = _ref31.sendToParent;
+          if (!replyHandler) {
+            return;
+          }
+          sendToParent ? assertIsParentWindow(win) : assertIsFrameWindow(win);
+          var responder = createResponder(win, channelId, sendToParent);
+          if (!keepalive && channelId) {
+            deleteReplyHandler(channelId);
+          }
+          try {
+            replyHandler(message, keepalive, responder);
+          } catch (error) {
+            axe2.log(error);
+            responder(error, keepalive);
+          }
+        }
+        var frameMessenger = {
+          open: function open(topicHandler) {
+            if (typeof window2.addEventListener !== "function") {
+              return;
+            }
+            var handler = function handler2(messageEvent) {
+              messageHandler(messageEvent, topicHandler);
+            };
+            window2.addEventListener("message", handler, false);
+            return function() {
+              window2.removeEventListener("message", handler, false);
+            };
+          },
+          post: function post(win, data, replyHandler) {
+            if (typeof window2.addEventListener !== "function") {
+              return false;
+            }
+            return postMessage(win, data, false, replyHandler);
+          }
+        };
+        function setDefaultFrameMessenger(respondable2) {
+          respondable2.updateMessenger(frameMessenger);
+        }
+        var closeHandler;
+        var postMessage2;
+        var topicHandlers = {};
+        function _respondable(win, topic, message, keepalive, replyHandler) {
+          var data = {
+            topic,
+            message,
+            channelId: "".concat(v4(), ":").concat(v4()),
+            keepalive
+          };
+          return postMessage2(win, data, replyHandler);
+        }
+        function messageListener(data, responder) {
+          var topic = data.topic, message = data.message, keepalive = data.keepalive;
+          var topicHandler = Object.prototype.hasOwnProperty.call(topicHandlers, topic) ? topicHandlers[topic] : void 0;
+          if (!topicHandler) {
+            return;
+          }
+          try {
+            topicHandler(message, keepalive, responder);
+          } catch (error) {
+            axe2.log(error);
+            responder(error, keepalive);
+          }
+        }
+        _respondable.updateMessenger = function updateMessenger(_ref32) {
+          var open = _ref32.open, post = _ref32.post;
+          assert_default(typeof open === "function", "open callback must be a function");
+          assert_default(typeof post === "function", "post callback must be a function");
+          if (closeHandler) {
+            closeHandler();
+          }
+          var close = open(messageListener);
+          if (close) {
+            assert_default(typeof close === "function", "open callback must return a cleanup function");
+            closeHandler = close;
+          } else {
+            closeHandler = null;
+          }
+          postMessage2 = post;
+        };
+        _respondable.subscribe = function subscribe(topic, topicHandler) {
+          assert_default(typeof topicHandler === "function", "Subscriber callback must be a function");
+          assert_default(!Object.prototype.hasOwnProperty.call(topicHandlers, topic), "Topic ".concat(topic, " is already registered to."));
+          topicHandlers[topic] = topicHandler;
+        };
+        _respondable.isInFrame = function isInFrame() {
+          var win = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : window2;
+          return !!win.frameElement;
+        };
+        setDefaultFrameMessenger(_respondable);
+        function _sendCommandToFrame(node, parameters, resolve, reject) {
+          var _parameters$options$p, _parameters$options;
+          var win = node.contentWindow;
+          var pingWaitTime = (_parameters$options$p = (_parameters$options = parameters.options) === null || _parameters$options === void 0 ? void 0 : _parameters$options.pingWaitTime) !== null && _parameters$options$p !== void 0 ? _parameters$options$p : 500;
+          if (!win) {
+            log("Frame does not have a content window", node);
+            resolve(null);
+            return;
+          }
+          if (pingWaitTime === 0) {
+            callAxeStart(node, parameters, resolve, reject);
+            return;
+          }
+          var timeout = setTimeout(function() {
+            timeout = setTimeout(function() {
+              if (!parameters.debug) {
+                resolve(null);
+              } else {
+                reject(err("No response from frame", node));
+              }
+            }, 0);
+          }, pingWaitTime);
+          _respondable(win, "axe.ping", null, void 0, function() {
+            clearTimeout(timeout);
+            callAxeStart(node, parameters, resolve, reject);
+          });
+        }
+        function callAxeStart(node, parameters, resolve, reject) {
+          var _parameters$options$f, _parameters$options2;
+          var frameWaitTime = (_parameters$options$f = (_parameters$options2 = parameters.options) === null || _parameters$options2 === void 0 ? void 0 : _parameters$options2.frameWaitTime) !== null && _parameters$options$f !== void 0 ? _parameters$options$f : 6e4;
+          var win = node.contentWindow;
+          var timeout = setTimeout(function collectResultFramesTimeout() {
+            reject(err("Axe in frame timed out", node));
+          }, frameWaitTime);
+          _respondable(win, "axe.start", parameters, void 0, function(data) {
+            clearTimeout(timeout);
+            if (data instanceof Error === false) {
+              resolve(data);
+            } else {
+              reject(data);
+            }
+          });
+        }
+        function err(message, node) {
+          var selector;
+          if (axe2._tree) {
+            selector = get_selector_default(node);
+          }
+          return new Error(message + ": " + (selector || node));
+        }
+        var customSerializer = null;
+        var nodeSerializer = {
+          update: function update(serializer) {
+            assert_default(_typeof(serializer) === "object", "serializer must be an object");
+            customSerializer = serializer;
+          },
+          toSpec: function toSpec(node) {
+            return nodeSerializer.dqElmToSpec(new dq_element_default(node));
+          },
+          dqElmToSpec: function dqElmToSpec(dqElm, runOptions) {
+            var _customSerializer;
+            if (dqElm instanceof dq_element_default === false) {
+              return dqElm;
+            }
+            if (runOptions) {
+              dqElm = cloneLimitedDqElement(dqElm, runOptions);
+            }
+            if (typeof ((_customSerializer = customSerializer) === null || _customSerializer === void 0 ? void 0 : _customSerializer.toSpec) === "function") {
+              return customSerializer.toSpec(dqElm);
+            }
+            return dqElm.toJSON();
+          },
+          mergeSpecs: function mergeSpecs(nodeSpec, parentFrameSpec) {
+            var _customSerializer2;
+            if (typeof ((_customSerializer2 = customSerializer) === null || _customSerializer2 === void 0 ? void 0 : _customSerializer2.mergeSpecs) === "function") {
+              return customSerializer.mergeSpecs(nodeSpec, parentFrameSpec);
+            }
+            return dq_element_default.mergeSpecs(nodeSpec, parentFrameSpec);
+          },
+          mapRawResults: function mapRawResults(rawResults) {
+            return rawResults.map(function(rawResult) {
+              return _extends({}, rawResult, {
+                nodes: nodeSerializer.mapRawNodeResults(rawResult.nodes)
+              });
+            });
+          },
+          mapRawNodeResults: function mapRawNodeResults(nodeResults) {
+            return nodeResults === null || nodeResults === void 0 ? void 0 : nodeResults.map(function(_ref33) {
+              var node = _ref33.node, nodeResult = _objectWithoutProperties(_ref33, _excluded6);
+              nodeResult.node = nodeSerializer.dqElmToSpec(node);
+              for (var _i6 = 0, _arr2 = ["any", "all", "none"]; _i6 < _arr2.length; _i6++) {
+                var type2 = _arr2[_i6];
+                nodeResult[type2] = nodeResult[type2].map(function(_ref34) {
+                  var relatedNodes = _ref34.relatedNodes, checkResult = _objectWithoutProperties(_ref34, _excluded7);
+                  checkResult.relatedNodes = relatedNodes.map(nodeSerializer.dqElmToSpec);
+                  return checkResult;
+                });
+              }
+              return nodeResult;
+            });
+          }
+        };
+        var node_serializer_default = nodeSerializer;
+        function cloneLimitedDqElement(dqElm, runOptions) {
+          var fromFrame2 = dqElm.fromFrame;
+          var hasAncestry = runOptions.ancestry, hasXpath = runOptions.xpath;
+          var hasSelectors = runOptions.selectors !== false || fromFrame2;
+          dqElm = new dq_element_default(dqElm.element, runOptions, {
+            source: dqElm.source,
+            nodeIndexes: dqElm.nodeIndexes,
+            selector: hasSelectors ? dqElm.selector : [":root"],
+            ancestry: hasAncestry ? dqElm.ancestry : [":root"],
+            xpath: hasXpath ? dqElm.xpath : "/"
+          });
+          dqElm.fromFrame = fromFrame2;
+          return dqElm;
+        }
+        function getAllChecks(object) {
+          var result = [];
+          return result.concat(object.any || []).concat(object.all || []).concat(object.none || []);
+        }
+        var get_all_checks_default = getAllChecks;
+        function findBy(array, key2, value) {
+          if (Array.isArray(array)) {
+            return array.find(function(obj) {
+              return obj !== null && _typeof(obj) === "object" && Object.hasOwn(obj, key2) && obj[key2] === value;
+            });
+          }
+        }
+        var find_by_default = findBy;
+        function pushFrame(resultSet, options2, frameSpec) {
+          resultSet.forEach(function(res) {
+            res.node = node_serializer_default.mergeSpecs(res.node, frameSpec);
+            var checks = get_all_checks_default(res);
+            checks.forEach(function(check) {
+              check.relatedNodes = check.relatedNodes.map(function(node) {
+                return node_serializer_default.mergeSpecs(node, frameSpec);
+              });
+            });
+          });
+        }
+        function spliceNodes(target, to2) {
+          var firstFromFrame = to2[0].node;
+          var node;
+          for (var _i7 = 0; _i7 < target.length; _i7++) {
+            node = target[_i7].node;
+            var resultSort = nodeIndexSort(node.nodeIndexes, firstFromFrame.nodeIndexes);
+            if (resultSort > 0 || resultSort === 0 && firstFromFrame.selector.length < node.selector.length) {
+              target.splice.apply(target, [_i7, 0].concat(_toConsumableArray(to2)));
+              return;
+            }
+          }
+          target.push.apply(target, _toConsumableArray(to2));
+        }
+        function normalizeResult(result) {
+          if (!result || !result.results) {
+            return null;
+          }
+          if (!Array.isArray(result.results)) {
+            return [result.results];
+          }
+          if (!result.results.length) {
+            return null;
+          }
+          return result.results;
+        }
+        function mergeResults(frameResults, options2) {
+          var mergedResult = [];
+          frameResults.forEach(function(frameResult) {
+            var results = normalizeResult(frameResult);
+            if (!results || !results.length) {
+              return;
+            }
+            var frameSpec = getFrameSpec(frameResult);
+            results.forEach(function(ruleResult) {
+              if (ruleResult.nodes && frameSpec) {
+                pushFrame(ruleResult.nodes, options2, frameSpec);
+              }
+              var res = find_by_default(mergedResult, "id", ruleResult.id);
+              if (!res) {
+                mergedResult.push(ruleResult);
+              } else {
+                if (ruleResult.nodes.length) {
+                  spliceNodes(res.nodes, ruleResult.nodes);
+                }
+                if (ruleResult.error) {
+                  var _res$error;
+                  (_res$error = res.error) !== null && _res$error !== void 0 ? _res$error : res.error = ruleResult.error;
+                }
+              }
+            });
+          });
+          mergedResult.forEach(function(result) {
+            if (result.nodes) {
+              result.nodes.sort(function(nodeA, nodeB) {
+                return nodeIndexSort(nodeA.node.nodeIndexes, nodeB.node.nodeIndexes);
+              });
+            }
+          });
+          return mergedResult;
+        }
+        function nodeIndexSort() {
+          var nodeIndexesA = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : [];
+          var nodeIndexesB = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : [];
+          var length = Math.max(nodeIndexesA === null || nodeIndexesA === void 0 ? void 0 : nodeIndexesA.length, nodeIndexesB === null || nodeIndexesB === void 0 ? void 0 : nodeIndexesB.length);
+          for (var _i8 = 0; _i8 < length; _i8++) {
+            var indexA = nodeIndexesA === null || nodeIndexesA === void 0 ? void 0 : nodeIndexesA[_i8];
+            var indexB = nodeIndexesB === null || nodeIndexesB === void 0 ? void 0 : nodeIndexesB[_i8];
+            if (typeof indexA !== "number" || isNaN(indexA)) {
+              return _i8 === 0 ? 1 : -1;
+            }
+            if (typeof indexB !== "number" || isNaN(indexB)) {
+              return _i8 === 0 ? -1 : 1;
+            }
+            if (indexA !== indexB) {
+              return indexA - indexB;
+            }
+          }
+          return 0;
+        }
+        var merge_results_default = mergeResults;
+        function getFrameSpec(frameResult) {
+          if (frameResult.frameElement) {
+            return node_serializer_default.toSpec(frameResult.frameElement);
+          } else if (frameResult.frameSpec) {
+            return frameResult.frameSpec;
+          }
+          return null;
+        }
+        function _collectResultsFromFrames(parentContent, options2, command, parameter, resolve, reject) {
+          options2 = _extends({}, options2, {
+            elementRef: false
+          });
+          var q = queue_default();
+          var frames = parentContent.frames;
+          frames.forEach(function(_ref35) {
+            var frameElement = _ref35.node, context = _objectWithoutProperties(_ref35, _excluded8);
+            q.defer(function(res, rej) {
+              var params = {
+                options: options2,
+                command,
+                parameter,
+                context
+              };
+              function callback(results) {
+                if (!results) {
+                  return res(null);
+                }
+                return res({
+                  results,
+                  frameElement
+                });
+              }
+              _sendCommandToFrame(frameElement, params, callback, rej);
+            });
+          });
+          q.then(function(data) {
+            resolve(merge_results_default(data, options2));
+          })["catch"](reject);
+        }
+        function _contains(vNode, otherVNode) {
+          if (!vNode.shadowId && !otherVNode.shadowId && vNode.actualNode && typeof vNode.actualNode.contains === "function") {
+            return vNode.actualNode.contains(otherVNode.actualNode);
+          }
+          do {
+            if (vNode === otherVNode) {
+              return true;
+            } else if (otherVNode.nodeIndex < vNode.nodeIndex) {
+              return false;
+            }
+            otherVNode = otherVNode.parent;
+          } while (otherVNode);
+          return false;
+        }
+        function deepMerge() {
+          var target = {};
+          for (var _len6 = arguments.length, sources = new Array(_len6), _key7 = 0; _key7 < _len6; _key7++) {
+            sources[_key7] = arguments[_key7];
+          }
+          sources.forEach(function(source) {
+            if (!source || _typeof(source) !== "object" || Array.isArray(source)) {
+              return;
+            }
+            for (var _i9 = 0, _Object$keys2 = Object.keys(source); _i9 < _Object$keys2.length; _i9++) {
+              var _key8 = _Object$keys2[_i9];
+              if (!target.hasOwnProperty(_key8) || _typeof(source[_key8]) !== "object" || Array.isArray(target[_key8])) {
+                target[_key8] = source[_key8];
+              } else {
+                target[_key8] = deepMerge(target[_key8], source[_key8]);
+              }
+            }
+          });
+          return target;
+        }
+        var deep_merge_default = deepMerge;
+        function extendMetaData(to2, from) {
+          Object.assign(to2, from);
+          Object.keys(from).filter(function(prop) {
+            return typeof from[prop] === "function";
+          }).forEach(function(prop) {
+            to2[prop] = null;
+            try {
+              to2[prop] = from[prop](to2);
+            } catch (_unused2) {
+            }
+          });
+        }
+        var extend_meta_data_default = extendMetaData;
+        var reservedNames = ["annotation-xml", "color-profile", "font-face", "font-face-src", "font-face-uri", "font-face-format", "font-face-name", "missing-glyph"];
+        var validLocalNameRegex = /^(?:[A-Za-z](?:[\x01-\x08\x0B\x0E-\x1F!-\.0-=\?-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])*|(?:[:_\x80-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF])(?:[\x2D\.0-:A-Z_a-z\x80-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF])*)$/;
+        var alphaLowerRegex = /[a-z]/;
+        var alphaUpperRegex = /[A-Z]/;
+        function _isValidCustomElementName(nodeName2) {
+          return !reservedNames.includes(nodeName2) && validLocalNameRegex.test(nodeName2) && alphaLowerRegex.test(nodeName2[0]) && !alphaUpperRegex.test(nodeName2) && nodeName2.includes("-");
+        }
+        var possibleShadowRoots = ["article", "aside", "blockquote", "body", "div", "footer", "h1", "h2", "h3", "h4", "h5", "h6", "header", "main", "nav", "p", "section", "span"];
+        function isShadowRoot(node) {
+          if (node.shadowRoot) {
+            var nodeName2 = node.nodeName.toLowerCase();
+            if (possibleShadowRoots.includes(nodeName2) || _isValidCustomElementName(nodeName2)) {
+              return true;
+            }
+          }
+          return false;
+        }
+        var is_shadow_root_default = isShadowRoot;
         var dom_exports = {};
         __export2(dom_exports, {
           createGrid: function createGrid() {
@@ -15515,6 +16962,9 @@ var require_axe = __commonJS({
           isCurrentPageLink: function isCurrentPageLink() {
             return _isCurrentPageLink;
           },
+          isFixedPosition: function isFixedPosition() {
+            return _isFixedPosition;
+          },
           isFocusable: function isFocusable() {
             return _isFocusable;
           },
@@ -15597,8 +17047,8 @@ var require_axe = __commonJS({
         }
         var get_root_node_default = getRootNode;
         var get_root_node_default2 = get_root_node_default;
-        function findElmsInContext(_ref24) {
-          var context = _ref24.context, value = _ref24.value, attr = _ref24.attr, _ref24$elm = _ref24.elm, elm = _ref24$elm === void 0 ? "" : _ref24$elm;
+        function findElmsInContext(_ref36) {
+          var context = _ref36.context, value = _ref36.value, attr = _ref36.attr, _ref36$elm = _ref36.elm, elm = _ref36$elm === void 0 ? "" : _ref36$elm;
           var root;
           var escapedValue = escape_selector_default(value);
           if (context.nodeType === 9 || context.nodeType === 11) {
@@ -15665,11 +17115,11 @@ var require_axe = __commonJS({
           return vNode.getComputedStylePropertyValue("display") === "none";
         }
         function visibilityHidden(vNode) {
-          var _ref25 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, isAncestor = _ref25.isAncestor;
+          var _ref37 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, isAncestor = _ref37.isAncestor;
           return !isAncestor && ["hidden", "collapse"].includes(vNode.getComputedStylePropertyValue("visibility"));
         }
         function contentVisibiltyHidden(vNode) {
-          var _ref26 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, isAncestor = _ref26.isAncestor;
+          var _ref38 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, isAncestor = _ref38.isAncestor;
           return !!isAncestor && vNode.getComputedStylePropertyValue("content-visibility") === "hidden";
         }
         function ariaHidden(vNode) {
@@ -15685,7 +17135,7 @@ var require_axe = __commonJS({
           return !!scroll && (elHeight === 0 || elWidth === 0);
         }
         function overflowHidden(vNode) {
-          var _ref27 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, isAncestor = _ref27.isAncestor;
+          var _ref39 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, isAncestor = _ref39.isAncestor;
           if (isAncestor) {
             return false;
           }
@@ -15779,7 +17229,7 @@ var require_axe = __commonJS({
         }
         var hiddenMethods = [displayHidden, visibilityHidden, contentVisibiltyHidden, detailsHidden];
         function _isHiddenForEveryone(vNode) {
-          var _ref28 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, skipAncestors = _ref28.skipAncestors, _ref28$isAncestor = _ref28.isAncestor, isAncestor = _ref28$isAncestor === void 0 ? false : _ref28$isAncestor;
+          var _ref40 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, skipAncestors = _ref40.skipAncestors, _ref40$isAncestor = _ref40.isAncestor, isAncestor = _ref40$isAncestor === void 0 ? false : _ref40$isAncestor;
           vNode = _nodeLookup(vNode).vNode;
           if (skipAncestors) {
             return isHiddenSelf(vNode, isAncestor);
@@ -15879,6 +17329,29 @@ var require_axe = __commonJS({
           };
         }
         var get_viewport_size_default = getViewportSize;
+        function _isFixedPosition(node) {
+          var _ref41 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, skipAncestors = _ref41.skipAncestors;
+          var _nodeLookup2 = _nodeLookup(node), vNode = _nodeLookup2.vNode;
+          if (!vNode) {
+            return false;
+          }
+          if (skipAncestors) {
+            return isFixedSelf(vNode);
+          }
+          return isFixedAncestors(vNode);
+        }
+        var isFixedSelf = memoize_default(function isFixedSelfMemoized(vNode) {
+          return vNode.getComputedStylePropertyValue("position") === "fixed";
+        });
+        var isFixedAncestors = memoize_default(function isFixedAncestorsMemoized(vNode) {
+          if (isFixedSelf(vNode)) {
+            return true;
+          }
+          if (!vNode.parent) {
+            return false;
+          }
+          return isFixedAncestors(vNode.parent);
+        });
         function noParentScrolled(element, offset) {
           element = get_composed_parent_default(element);
           while (element && element.nodeName.toLowerCase() !== "html") {
@@ -15893,34 +17366,38 @@ var require_axe = __commonJS({
           return true;
         }
         function isOffscreen(element) {
-          var _ref29 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, isAncestor = _ref29.isAncestor;
+          var _ref42 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, isAncestor = _ref42.isAncestor;
           if (isAncestor) {
             return false;
           }
-          var _nodeLookup2 = _nodeLookup(element), domNode = _nodeLookup2.domNode;
+          var _nodeLookup3 = _nodeLookup(element), domNode = _nodeLookup3.domNode;
           if (!domNode) {
             return void 0;
           }
-          var leftBoundary;
           var docElement = document2.documentElement;
           var styl = window2.getComputedStyle(domNode);
           var dir = window2.getComputedStyle(document2.body || docElement).getPropertyValue("direction");
-          var coords2 = get_element_coordinates_default(domNode);
-          if (coords2.bottom < 0 && (noParentScrolled(domNode, coords2.bottom) || styl.position === "absolute")) {
-            return true;
+          var isFixed = _isFixedPosition(domNode);
+          var coords2 = isFixed ? domNode.getBoundingClientRect() : get_element_coordinates_default(domNode);
+          if (coords2.top === 0 && coords2.bottom === 0) {
+            return false;
           }
           if (coords2.left === 0 && coords2.right === 0) {
             return false;
           }
-          if (dir === "ltr") {
-            if (coords2.right <= 0) {
-              return true;
-            }
-          } else {
-            leftBoundary = Math.max(docElement.scrollWidth, get_viewport_size_default(window2).width);
-            if (coords2.left >= leftBoundary) {
-              return true;
-            }
+          if (coords2.bottom <= 0 && (noParentScrolled(domNode, coords2.bottom) || styl.position === "absolute")) {
+            return true;
+          }
+          var viewportSize = get_viewport_size_default(window2);
+          if (isFixed && coords2.top >= viewportSize.height) {
+            return true;
+          }
+          var rightEdge = Math.max(docElement.scrollWidth, viewportSize.width);
+          if ((isFixed || dir === "rtl") && coords2.left >= rightEdge) {
+            return true;
+          }
+          if ((isFixed || dir === "ltr") && coords2.right <= 0) {
+            return true;
           }
           return false;
         }
@@ -15959,9 +17436,9 @@ var require_axe = __commonJS({
           var left = Math.min(rectA.left, rectB.left);
           return new window2.DOMRect(left, top, right - left, bottom - top);
         }
-        function _isPointInRect(_ref30, _ref31) {
-          var x = _ref30.x, y = _ref30.y;
-          var top = _ref31.top, right = _ref31.right, bottom = _ref31.bottom, left = _ref31.left;
+        function _isPointInRect(_ref43, _ref44) {
+          var x = _ref43.x, y = _ref43.y;
+          var top = _ref44.top, right = _ref44.right, bottom = _ref44.bottom, left = _ref44.left;
           return y >= top && x <= right && y <= bottom && x >= left;
         }
         var math_exports = {};
@@ -16004,13 +17481,13 @@ var require_axe = __commonJS({
           }
           return new window2.DOMRect(leftX, topY, rightX - leftX, bottomY - topY);
         }
-        function _getRectCenter(_ref32) {
-          var left = _ref32.left, top = _ref32.top, width = _ref32.width, height = _ref32.height;
+        function _getRectCenter(_ref45) {
+          var left = _ref45.left, top = _ref45.top, width = _ref45.width, height = _ref45.height;
           return new window2.DOMPoint(left + width / 2, top + height / 2);
         }
         var roundingMargin = 0.05;
-        function _rectHasMinimumSize(minSize, _ref33) {
-          var width = _ref33.width, height = _ref33.height;
+        function _rectHasMinimumSize(minSize, _ref46) {
+          var width = _ref46.width, height = _ref46.height;
           return width + roundingMargin >= minSize && height + roundingMargin >= minSize;
         }
         function _getOffset(vTarget, vNeighbor) {
@@ -16020,33 +17497,33 @@ var require_axe = __commonJS({
           if (!targetRects.length || !neighborRects.length) {
             return null;
           }
-          var targetBoundingBox = targetRects.reduce(_getBoundingRect);
-          var targetCenter = _getRectCenter(targetBoundingBox);
-          var minDistance = Infinity;
-          var _iterator7 = _createForOfIteratorHelper(neighborRects), _step7;
-          try {
-            for (_iterator7.s(); !(_step7 = _iterator7.n()).done; ) {
-              var rect = _step7.value;
-              if (_isPointInRect(targetCenter, rect)) {
-                return 0;
+          return targetRects.reduce(function(minDistance, targetRect) {
+            var targetCenter = _getRectCenter(targetRect);
+            var _iterator8 = _createForOfIteratorHelper(neighborRects), _step8;
+            try {
+              for (_iterator8.s(); !(_step8 = _iterator8.n()).done; ) {
+                var rect = _step8.value;
+                if (_isPointInRect(targetCenter, rect)) {
+                  return 0;
+                }
+                var closestPoint = getClosestPoint(targetCenter, rect);
+                var distance2 = pointDistance(targetCenter, closestPoint);
+                minDistance = Math.min(minDistance, distance2);
               }
-              var closestPoint = getClosestPoint(targetCenter, rect);
-              var distance2 = pointDistance(targetCenter, closestPoint);
-              minDistance = Math.min(minDistance, distance2);
+            } catch (err2) {
+              _iterator8.e(err2);
+            } finally {
+              _iterator8.f();
             }
-          } catch (err2) {
-            _iterator7.e(err2);
-          } finally {
-            _iterator7.f();
-          }
-          var neighborTargetSize = get_target_size_default(vNeighbor);
-          if (_rectHasMinimumSize(minRadiusNeighbour * 2, neighborTargetSize)) {
-            return minDistance;
-          }
-          var neighborBoundingBox = neighborRects.reduce(_getBoundingRect);
-          var neighborCenter = _getRectCenter(neighborBoundingBox);
-          var centerDistance = pointDistance(targetCenter, neighborCenter) - minRadiusNeighbour;
-          return Math.max(0, Math.min(minDistance, centerDistance));
+            var neighborTargetSize = get_target_size_default(vNeighbor);
+            if (_rectHasMinimumSize(minRadiusNeighbour * 2, neighborTargetSize)) {
+              return minDistance;
+            }
+            var neighborBoundingBox = neighborRects.reduce(_getBoundingRect);
+            var neighborCenter = _getRectCenter(neighborBoundingBox);
+            var centerDistance = pointDistance(targetCenter, neighborCenter) - minRadiusNeighbour;
+            return Math.max(0, Math.min(minDistance, centerDistance));
+          }, Infinity);
         }
         function getClosestPoint(point, rect) {
           var x;
@@ -16082,11 +17559,11 @@ var require_axe = __commonJS({
           return _visuallySort(vNodeA, vNodeB) > 0;
         }
         function _splitRects(outerRect, overlapRects) {
-          var uniqueRects = [outerRect];
-          var _iterator8 = _createForOfIteratorHelper(overlapRects), _step8;
+          var uniqueRects = Array.isArray(outerRect) ? outerRect : [outerRect];
+          var _iterator9 = _createForOfIteratorHelper(overlapRects), _step9;
           try {
             var _loop6 = function _loop62() {
-              var overlapRect = _step8.value;
+              var overlapRect = _step9.value;
               uniqueRects = uniqueRects.reduce(function(rects, inputRect) {
                 return rects.concat(splitRect(inputRect, overlapRect));
               }, []);
@@ -16094,13 +17571,13 @@ var require_axe = __commonJS({
                 throw new Error("splitRects: Too many rects");
               }
             };
-            for (_iterator8.s(); !(_step8 = _iterator8.n()).done; ) {
+            for (_iterator9.s(); !(_step9 = _iterator9.n()).done; ) {
               _loop6();
             }
           } catch (err2) {
-            _iterator8.e(err2);
+            _iterator9.e(err2);
           } finally {
-            _iterator8.f();
+            _iterator9.f();
           }
           return uniqueRects;
         }
@@ -16292,8 +17769,8 @@ var require_axe = __commonJS({
         function createStackingOrder(vNode, parentVNode, treeOrder) {
           var stackingOrder = parentVNode._stackingOrder.slice();
           if (isStackingContext(vNode, parentVNode)) {
-            var index = stackingOrder.findIndex(function(_ref34) {
-              var stackLevel2 = _ref34.stackLevel;
+            var index = stackingOrder.findIndex(function(_ref47) {
+              var stackLevel2 = _ref47.stackLevel;
               return [ROOT_LEVEL, FLOAT_LEVEL, POSITION_LEVEL].includes(stackLevel2);
             });
             if (index !== -1) {
@@ -16389,9 +17866,9 @@ var require_axe = __commonJS({
             }
           }, {
             key: "getCellFromPoint",
-            value: function getCellFromPoint(_ref35) {
+            value: function getCellFromPoint(_ref48) {
               var _this$cells, _row;
-              var x = _ref35.x, y = _ref35.y;
+              var x = _ref48.x, y = _ref48.y;
               assert_default(this.boundaries, "Grid does not have cells added");
               var rowIndex = this.toGridIndex(y);
               var colIndex = this.toGridIndex(x);
@@ -16421,8 +17898,8 @@ var require_axe = __commonJS({
             }
           }, {
             key: "getGridPositionOfRect",
-            value: function getGridPositionOfRect(_ref36) {
-              var top = _ref36.top, right = _ref36.right, bottom = _ref36.bottom, left = _ref36.left;
+            value: function getGridPositionOfRect(_ref49) {
+              var top = _ref49.top, right = _ref49.right, bottom = _ref49.bottom, left = _ref49.left;
               var margin = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0;
               top = this.toGridIndex(top - margin);
               right = this.toGridIndex(right + margin - 1);
@@ -16436,7 +17913,7 @@ var require_axe = __commonJS({
           var _matrix$_negativeInde;
           (_matrix$_negativeInde = matrix._negativeIndex) !== null && _matrix$_negativeInde !== void 0 ? _matrix$_negativeInde : matrix._negativeIndex = 0;
           if (start < matrix._negativeIndex) {
-            for (var i2 = 0; i2 < matrix._negativeIndex - start; i2++) {
+            for (var _i0 = 0; _i0 < matrix._negativeIndex - start; _i0++) {
               matrix.splice(0, 0, []);
             }
             matrix._negativeIndex = start;
@@ -16451,7 +17928,7 @@ var require_axe = __commonJS({
         }
         function _getNodeGrid(node) {
           _createGrid();
-          var _nodeLookup3 = _nodeLookup(node), vNode = _nodeLookup3.vNode;
+          var _nodeLookup4 = _nodeLookup(node), vNode = _nodeLookup4.vNode;
           return vNode._grid;
         }
         function _findNearbyElms(vNode) {
@@ -16462,35 +17939,26 @@ var require_axe = __commonJS({
             return [];
           }
           var rect = vNode.boundingClientRect;
-          var selfIsFixed = hasFixedPosition(vNode);
+          var selfIsFixed = _isFixedPosition(vNode);
           var gridPosition = grid.getGridPositionOfRect(rect, margin);
           var neighbors = [];
           grid.loopGridPosition(gridPosition, function(vNeighbors) {
-            var _iterator9 = _createForOfIteratorHelper(vNeighbors), _step9;
+            var _iterator0 = _createForOfIteratorHelper(vNeighbors), _step0;
             try {
-              for (_iterator9.s(); !(_step9 = _iterator9.n()).done; ) {
-                var vNeighbor = _step9.value;
-                if (vNeighbor && vNeighbor !== vNode && !neighbors.includes(vNeighbor) && selfIsFixed === hasFixedPosition(vNeighbor)) {
+              for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
+                var vNeighbor = _step0.value;
+                if (vNeighbor && vNeighbor !== vNode && !neighbors.includes(vNeighbor) && selfIsFixed === _isFixedPosition(vNeighbor)) {
                   neighbors.push(vNeighbor);
                 }
               }
             } catch (err2) {
-              _iterator9.e(err2);
+              _iterator0.e(err2);
             } finally {
-              _iterator9.f();
+              _iterator0.f();
             }
           });
           return neighbors;
         }
-        var hasFixedPosition = memoize_default(function(vNode) {
-          if (!vNode) {
-            return false;
-          }
-          if (vNode.getComputedStylePropertyValue("position") === "fixed") {
-            return true;
-          }
-          return hasFixedPosition(vNode.parent);
-        });
         var getModalDialog = memoize_default(function getModalDialogMemoized() {
           var _dialogs$find;
           if (!axe2._tree) {
@@ -16514,7 +17982,7 @@ var require_axe = __commonJS({
           }
           return (_dialogs$find = dialogs.find(function(dialog) {
             var _getNodeFromGrid;
-            var _ref37 = (_getNodeFromGrid = getNodeFromGrid(dialog)) !== null && _getNodeFromGrid !== void 0 ? _getNodeFromGrid : {}, vNode = _ref37.vNode, rect = _ref37.rect;
+            var _ref50 = (_getNodeFromGrid = getNodeFromGrid(dialog)) !== null && _getNodeFromGrid !== void 0 ? _getNodeFromGrid : {}, vNode = _ref50.vNode, rect = _ref50.rect;
             if (!vNode) {
               return false;
             }
@@ -16540,8 +18008,8 @@ var require_axe = __commonJS({
               if (!cells) {
                 continue;
               }
-              for (var i2 = 0; i2 < cells.length; i2++) {
-                var vNode = cells[i2];
+              for (var _i1 = 0; _i1 < cells.length; _i1++) {
+                var vNode = cells[_i1];
                 var rect = vNode.boundingClientRect;
                 var intersection = _getIntersectionRect(rect, viewRect);
                 if (vNode.props.nodeName !== "html" && vNode !== dialog && vNode.getComputedStylePropertyValue("pointer-events") !== "none" && intersection) {
@@ -16555,7 +18023,7 @@ var require_axe = __commonJS({
           }
         }
         function _isInert(vNode) {
-          var _ref38 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, skipAncestors = _ref38.skipAncestors, isAncestor = _ref38.isAncestor;
+          var _ref51 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, skipAncestors = _ref51.skipAncestors, isAncestor = _ref51.isAncestor;
           if (skipAncestors) {
             return isInertSelf(vNode, isAncestor);
           }
@@ -16587,7 +18055,7 @@ var require_axe = __commonJS({
           return allowedDisabledNodeNames.includes(nodeName2);
         }
         function focusDisabled(el) {
-          var _nodeLookup4 = _nodeLookup(el), vNode = _nodeLookup4.vNode;
+          var _nodeLookup5 = _nodeLookup(el), vNode = _nodeLookup5.vNode;
           if (isDisabledAttrAllowed(vNode.props.nodeName) && vNode.hasAttr("disabled") || _isInert(vNode)) {
             return true;
           }
@@ -16683,20 +18151,20 @@ var require_axe = __commonJS({
         function _visuallySort(a2, b2) {
           _createGrid();
           var length = Math.max(a2._stackingOrder.length, b2._stackingOrder.length);
-          for (var i2 = 0; i2 < length; i2++) {
-            if (typeof b2._stackingOrder[i2] === "undefined") {
+          for (var _i10 = 0; _i10 < length; _i10++) {
+            if (typeof b2._stackingOrder[_i10] === "undefined") {
               return -1;
-            } else if (typeof a2._stackingOrder[i2] === "undefined") {
+            } else if (typeof a2._stackingOrder[_i10] === "undefined") {
               return 1;
             }
-            if (b2._stackingOrder[i2].stackLevel > a2._stackingOrder[i2].stackLevel) {
+            if (b2._stackingOrder[_i10].stackLevel > a2._stackingOrder[_i10].stackLevel) {
               return 1;
             }
-            if (b2._stackingOrder[i2].stackLevel < a2._stackingOrder[i2].stackLevel) {
+            if (b2._stackingOrder[_i10].stackLevel < a2._stackingOrder[_i10].stackLevel) {
               return -1;
             }
-            if (b2._stackingOrder[i2].treeOrder !== a2._stackingOrder[i2].treeOrder) {
-              return b2._stackingOrder[i2].treeOrder - a2._stackingOrder[i2].treeOrder;
+            if (b2._stackingOrder[_i10].treeOrder !== a2._stackingOrder[_i10].treeOrder) {
+              return b2._stackingOrder[_i10].treeOrder - a2._stackingOrder[_i10].treeOrder;
             }
           }
           var aNode = a2.actualNode;
@@ -16804,7 +18272,7 @@ var require_axe = __commonJS({
         }
         var get_tabbable_elements_default = getTabbableElements;
         function isNativelyFocusable(el) {
-          var _nodeLookup5 = _nodeLookup(el), vNode = _nodeLookup5.vNode;
+          var _nodeLookup6 = _nodeLookup(el), vNode = _nodeLookup6.vNode;
           if (!vNode || focus_disabled_default(vNode)) {
             return false;
           }
@@ -16829,7 +18297,7 @@ var require_axe = __commonJS({
         }
         var is_natively_focusable_default = isNativelyFocusable;
         function _isFocusable(el) {
-          var _nodeLookup6 = _nodeLookup(el), vNode = _nodeLookup6.vNode;
+          var _nodeLookup7 = _nodeLookup(el), vNode = _nodeLookup7.vNode;
           if (vNode.props.nodeType !== 1) {
             return false;
           }
@@ -16842,7 +18310,7 @@ var require_axe = __commonJS({
           return tabindex !== null;
         }
         function _isInTabOrder(el) {
-          var _nodeLookup7 = _nodeLookup(el), vNode = _nodeLookup7.vNode;
+          var _nodeLookup8 = _nodeLookup(el), vNode = _nodeLookup8.vNode;
           if (vNode.props.nodeType !== 1) {
             return false;
           }
@@ -16854,18 +18322,19 @@ var require_axe = __commonJS({
         }
         var get_target_rects_default = memoize_default(getTargetRects);
         function getTargetRects(vNode) {
-          var nodeRect = vNode.boundingClientRect;
+          var display2 = vNode.getComputedStylePropertyValue("display");
+          var nodeRects = display2 === "inline" ? vNode.clientRects : [vNode.boundingClientRect];
           var overlappingVNodes = _findNearbyElms(vNode).filter(function(vNeighbor) {
             return _hasVisualOverlap(vNode, vNeighbor) && vNeighbor.getComputedStylePropertyValue("pointer-events") !== "none" && !isDescendantNotInTabOrder(vNode, vNeighbor);
           });
           if (!overlappingVNodes.length) {
-            return [nodeRect];
+            return nodeRects;
           }
-          var obscuringRects = overlappingVNodes.map(function(_ref39) {
-            var rect = _ref39.boundingClientRect;
-            return rect;
-          });
-          return _splitRects(nodeRect, obscuringRects);
+          var obscuringRects = overlappingVNodes.map(function(overlappingVNode) {
+            var overlappingDisplay = overlappingVNode.getComputedStylePropertyValue("display");
+            return overlappingDisplay === "inline" ? overlappingVNode.clientRects : overlappingVNode.boundingClientRect;
+          }).flat(Infinity);
+          return _splitRects(nodeRects, obscuringRects);
         }
         function isDescendantNotInTabOrder(vAncestor, vNode) {
           return _contains(vAncestor, vNode) && !_isInTabOrder(vNode);
@@ -16972,7 +18441,7 @@ var require_axe = __commonJS({
               }
             }
             return result;
-          } catch (_unused) {
+          } catch (_unused3) {
             throw new TypeError("Cannot resolve id references for non-DOM nodes");
           }
         }
@@ -16984,7 +18453,7 @@ var require_axe = __commonJS({
         var accessible_text_default = accessibleText;
         function arialabelledbyText(element) {
           var context = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-          var _nodeLookup8 = _nodeLookup(element), vNode = _nodeLookup8.vNode;
+          var _nodeLookup9 = _nodeLookup(element), vNode = _nodeLookup9.vNode;
           if ((vNode === null || vNode === void 0 ? void 0 : vNode.props.nodeType) !== 1) {
             return "";
           }
@@ -17008,7 +18477,7 @@ var require_axe = __commonJS({
         }
         var arialabelledby_text_default = arialabelledbyText;
         function _arialabelText(element) {
-          var _nodeLookup9 = _nodeLookup(element), vNode = _nodeLookup9.vNode;
+          var _nodeLookup0 = _nodeLookup(element), vNode = _nodeLookup0.vNode;
           if ((vNode === null || vNode === void 0 ? void 0 : vNode.props.nodeType) !== 1) {
             return "";
           }
@@ -18131,7 +19600,8 @@ var require_axe = __commonJS({
           br: {
             contentTypes: ["phrasing", "flow"],
             allowedRoles: ["presentation", "none"],
-            namingMethods: ["titleText", "singleSpace"]
+            namingMethods: ["titleText", "singleSpace"],
+            allowedAriaAttrs: ["aria-hidden"]
           },
           button: {
             contentTypes: ["interactive", "phrasing", "flow"],
@@ -18754,7 +20224,8 @@ var require_axe = __commonJS({
           },
           wbr: {
             contentTypes: ["phrasing", "flow"],
-            allowedRoles: ["presentation", "none"]
+            allowedRoles: ["presentation", "none"],
+            allowedAriaAttrs: ["aria-hidden"]
           }
         };
         var html_elms_default = htmlElms;
@@ -18935,7 +20406,7 @@ var require_axe = __commonJS({
         }
         var is_unsupported_role_default = isUnsupportedRole;
         function isValidRole(role) {
-          var _ref40 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, allowAbstract = _ref40.allowAbstract, _ref40$flagUnsupporte = _ref40.flagUnsupported, flagUnsupported = _ref40$flagUnsupporte === void 0 ? false : _ref40$flagUnsupporte;
+          var _ref52 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, allowAbstract = _ref52.allowAbstract, _ref52$flagUnsupporte = _ref52.flagUnsupported, flagUnsupported = _ref52$flagUnsupporte === void 0 ? false : _ref52$flagUnsupporte;
           var roleDefinition = standards_default.ariaRoles[role];
           var isRoleUnsupported = is_unsupported_role_default(role);
           if (!roleDefinition || flagUnsupported && isRoleUnsupported) {
@@ -18945,7 +20416,7 @@ var require_axe = __commonJS({
         }
         var is_valid_role_default = isValidRole;
         function getExplicitRole(vNode) {
-          var _ref41 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, fallback = _ref41.fallback, abstracts = _ref41.abstracts, dpub = _ref41.dpub;
+          var _ref53 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, fallback = _ref53.fallback, abstracts = _ref53.abstracts, dpub = _ref53.dpub;
           vNode = vNode instanceof abstract_virtual_node_default ? vNode : get_node_from_tree_default(vNode);
           if (vNode.props.nodeType !== 1) {
             return null;
@@ -18990,20 +20461,20 @@ var require_axe = __commonJS({
         function toGrid(node) {
           var table = [];
           var rows = node.rows;
-          for (var i2 = 0, rowLength = rows.length; i2 < rowLength; i2++) {
-            var cells = rows[i2].cells;
-            table[i2] = table[i2] || [];
+          for (var _i11 = 0, rowLength = rows.length; _i11 < rowLength; _i11++) {
+            var cells = rows[_i11].cells;
+            table[_i11] = table[_i11] || [];
             var columnIndex = 0;
             for (var j = 0, cellLength = cells.length; j < cellLength; j++) {
               for (var colSpan = 0; colSpan < cells[j].colSpan; colSpan++) {
                 var rowspanAttr = cells[j].getAttribute("rowspan");
                 var rowspanValue = parseInt(rowspanAttr) === 0 || cells[j].rowspan === 0 ? rows.length : cells[j].rowSpan;
                 for (var rowSpan = 0; rowSpan < rowspanValue; rowSpan++) {
-                  table[i2 + rowSpan] = table[i2 + rowSpan] || [];
-                  while (table[i2 + rowSpan][columnIndex]) {
+                  table[_i11 + rowSpan] = table[_i11 + rowSpan] || [];
+                  while (table[_i11 + rowSpan][columnIndex]) {
                     columnIndex++;
                   }
-                  table[i2 + rowSpan][columnIndex] = cells[j];
+                  table[_i11 + rowSpan][columnIndex] = cells[j];
                 }
                 columnIndex++;
               }
@@ -19031,7 +20502,7 @@ var require_axe = __commonJS({
         }
         var get_cell_position_default = memoize_default(getCellPosition);
         function _getScope(el) {
-          var _nodeLookup0 = _nodeLookup(el), vNode = _nodeLookup0.vNode, cell = _nodeLookup0.domNode;
+          var _nodeLookup1 = _nodeLookup(el), vNode = _nodeLookup1.vNode, cell = _nodeLookup1.domNode;
           var scope = vNode.attr("scope");
           var role = get_explicit_role_default(vNode);
           if (!["td", "th"].includes(vNode.props.nodeName)) {
@@ -19094,7 +20565,7 @@ var require_axe = __commonJS({
           });
         };
         function hasAccessibleName(vNode) {
-          var _ref42 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, _ref42$checkTitle = _ref42.checkTitle, checkTitle = _ref42$checkTitle === void 0 ? false : _ref42$checkTitle;
+          var _ref54 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, _ref54$checkTitle = _ref54.checkTitle, checkTitle = _ref54$checkTitle === void 0 ? false : _ref54$checkTitle;
           return !!(sanitize_default(arialabelledby_text_default(vNode)) || sanitize_default(_arialabelText(vNode)) || checkTitle && (vNode === null || vNode === void 0 ? void 0 : vNode.props.nodeType) === 1 && sanitize_default(vNode.attr("title")));
         }
         var implicitHtmlRoles = {
@@ -19338,7 +20809,7 @@ var require_axe = __commonJS({
         matches_default.semanticRole = semantic_role_default;
         var matches_default2 = matches_default;
         function getElementSpec(vNode) {
-          var _ref43 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, _ref43$noMatchAccessi = _ref43.noMatchAccessibleName, noMatchAccessibleName = _ref43$noMatchAccessi === void 0 ? false : _ref43$noMatchAccessi;
+          var _ref55 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, _ref55$noMatchAccessi = _ref55.noMatchAccessibleName, noMatchAccessibleName = _ref55$noMatchAccessi === void 0 ? false : _ref55$noMatchAccessi;
           var standard = standards_default.htmlElms[vNode.props.nodeName];
           if (!standard) {
             return {};
@@ -19346,15 +20817,15 @@ var require_axe = __commonJS({
           if (!standard.variant) {
             return standard;
           }
-          var variant = standard.variant, spec = _objectWithoutProperties(standard, _excluded6);
+          var variant = standard.variant, spec = _objectWithoutProperties(standard, _excluded9);
           for (var variantName in variant) {
             if (!variant.hasOwnProperty(variantName) || variantName === "default") {
               continue;
             }
-            var _variant$variantName = variant[variantName], matches4 = _variant$variantName.matches, props = _objectWithoutProperties(_variant$variantName, _excluded7);
+            var _variant$variantName = variant[variantName], matches4 = _variant$variantName.matches, props = _objectWithoutProperties(_variant$variantName, _excluded0);
             var matchProperties = Array.isArray(matches4) ? matches4 : [matches4];
-            for (var i2 = 0; i2 < matchProperties.length && noMatchAccessibleName; i2++) {
-              if (matchProperties[i2].hasOwnProperty("hasAccessibleName")) {
+            for (var _i12 = 0; _i12 < matchProperties.length && noMatchAccessibleName; _i12++) {
+              if (matchProperties[_i12].hasOwnProperty("hasAccessibleName")) {
                 return standard;
               }
             }
@@ -19375,11 +20846,14 @@ var require_axe = __commonJS({
         }
         var get_element_spec_default = getElementSpec;
         function implicitRole2(node) {
-          var _ref44 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, chromium = _ref44.chromium;
-          var vNode = node instanceof abstract_virtual_node_default ? node : get_node_from_tree_default(node);
-          node = vNode.actualNode;
+          var _vNode$elementInterna;
+          var _ref56 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, chromium = _ref56.chromium;
+          var _nodeLookup10 = _nodeLookup(node), vNode = _nodeLookup10.vNode;
           if (!vNode) {
             throw new ReferenceError("Cannot get implicit role of a node outside the current scope.");
+          }
+          if ((_vNode$elementInterna = vNode.elementInternals) !== null && _vNode$elementInterna !== void 0 && _vNode$elementInterna.role) {
+            return vNode.elementInternals.role;
           }
           var nodeName2 = vNode.props.nodeName;
           var role = implicit_html_roles_default[nodeName2];
@@ -19428,8 +20902,8 @@ var require_axe = __commonJS({
           }
           return getInheritedRole(vNode.parent, explicitRoleOptions);
         }
-        function resolveImplicitRole(vNode, _ref45) {
-          var chromium = _ref45.chromium, explicitRoleOptions = _objectWithoutProperties(_ref45, _excluded8);
+        function resolveImplicitRole(vNode, _ref57) {
+          var chromium = _ref57.chromium, explicitRoleOptions = _objectWithoutProperties(_ref57, _excluded1);
           var implicitRole3 = implicit_role_default(vNode, {
             chromium
           });
@@ -19449,9 +20923,9 @@ var require_axe = __commonJS({
           return hasGlobalAria || _isFocusable(vNode);
         }
         function resolveRole(node) {
-          var _ref46 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-          var noImplicit = _ref46.noImplicit, roleOptions = _objectWithoutProperties(_ref46, _excluded9);
-          var _nodeLookup1 = _nodeLookup(node), vNode = _nodeLookup1.vNode;
+          var _ref58 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+          var noImplicit = _ref58.noImplicit, roleOptions = _objectWithoutProperties(_ref58, _excluded10);
+          var _nodeLookup11 = _nodeLookup(node), vNode = _nodeLookup11.vNode;
           if (vNode.props.nodeType !== 1) {
             return null;
           }
@@ -19468,8 +20942,8 @@ var require_axe = __commonJS({
           return explicitRole2;
         }
         function getRole(node) {
-          var _ref47 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-          var noPresentational = _ref47.noPresentational, options2 = _objectWithoutProperties(_ref47, _excluded0);
+          var _ref59 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+          var noPresentational = _ref59.noPresentational, options2 = _objectWithoutProperties(_ref59, _excluded11);
           var role = resolveRole(node, options2);
           if (noPresentational && ["presentation", "none"].includes(role)) {
             return null;
@@ -19479,7 +20953,7 @@ var require_axe = __commonJS({
         var get_role_default = getRole;
         var alwaysTitleElements = ["iframe"];
         function titleText(node) {
-          var _nodeLookup10 = _nodeLookup(node), vNode = _nodeLookup10.vNode;
+          var _nodeLookup12 = _nodeLookup(node), vNode = _nodeLookup12.vNode;
           if (vNode.props.nodeType !== 1 || !node.hasAttr("title")) {
             return "";
           }
@@ -19490,7 +20964,7 @@ var require_axe = __commonJS({
         }
         var title_text_default = titleText;
         function namedFromContents(vNode) {
-          var _ref48 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, strict = _ref48.strict;
+          var _ref60 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, strict = _ref60.strict;
           vNode = vNode instanceof abstract_virtual_node_default ? vNode : get_node_from_tree_default(vNode);
           if (vNode.props.nodeType !== 1) {
             return false;
@@ -19517,7 +20991,13 @@ var require_axe = __commonJS({
             }).map(function(element) {
               return axe2.utils.getNodeFromTree(element);
             });
-            return [].concat(_toConsumableArray(children), _toConsumableArray(owns));
+            var uniqueOwns = owns.filter(function(own, index) {
+              return owns.indexOf(own) === index;
+            });
+            var nativeChildren = children.filter(function(child) {
+              return !uniqueOwns.includes(child);
+            });
+            return [].concat(_toConsumableArray(nativeChildren), _toConsumableArray(uniqueOwns));
           }
           return _toConsumableArray(children);
         }
@@ -19550,18 +21030,143 @@ var require_axe = __commonJS({
           }
           return isVisibleToScreenReadersVirtual(vNode.parent, true);
         });
+        function getUnicodeNonBmpRegExp() {
+          return /[\u1D00-\u1D7F\u1D80-\u1DBF\u1DC0-\u1DFF\u20A0-\u20CF\u20D0-\u20FF\u2100-\u214F\u2150-\u218F\u2190-\u21FF\u2200-\u22FF\u2300-\u23FF\u2400-\u243F\u2440-\u245F\u2460-\u24FF\u2500-\u257F\u2580-\u259F\u25A0-\u25FF\u2600-\u26FF\u2700-\u27BF\uE000-\uF8FF]/g;
+        }
+        function getPunctuationRegExp() {
+          return /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&\xa3\xa2\xa5\xa7\u20ac()*+,\-.\/:;<=>?@\[\]^_`{|}~\xb1]/g;
+        }
+        function getSupplementaryPrivateUseRegExp() {
+          return /[\uDB80-\uDBBF][\uDC00-\uDFFF]/g;
+        }
+        function getCategoryFormatRegExp() {
+          return /[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u206F\uFEFF\uFFF9-\uFFFB]|\uD804[\uDCBD\uDCCD]|\uD80D[\uDC30-\uDC38]|\uD82F[\uDCA0-\uDCA3]|\uD834[\uDD73-\uDD7A]|\uDB40[\uDC01\uDC20-\uDC7F]/g;
+        }
+        function hasUnicode(str2, options2) {
+          var emoji = options2.emoji, nonBmp = options2.nonBmp, punctuations = options2.punctuations;
+          var value = false;
+          if (emoji) {
+            value || (value = emoji_regex_default().test(str2));
+          }
+          if (nonBmp) {
+            value || (value = getUnicodeNonBmpRegExp().test(str2) || getSupplementaryPrivateUseRegExp().test(str2) || getCategoryFormatRegExp().test(str2));
+          }
+          if (punctuations) {
+            value || (value = getPunctuationRegExp().test(str2));
+          }
+          return value;
+        }
+        var has_unicode_default = hasUnicode;
+        function _isIconLigature(textVNode) {
+          var differenceThreshold = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0.15;
+          var occurrenceThreshold = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 3;
+          var nodeValue = textVNode.actualNode.nodeValue.trim();
+          if (!sanitize_default(nodeValue) || has_unicode_default(nodeValue, {
+            emoji: true,
+            nonBmp: true
+          })) {
+            return false;
+          }
+          var canvasContext = cache_default.get("canvasContext", function() {
+            return document2.createElement("canvas").getContext("2d", {
+              willReadFrequently: true
+            });
+          });
+          var canvas = canvasContext.canvas;
+          var fonts = cache_default.get("fonts", function() {
+            return {};
+          });
+          var style = window2.getComputedStyle(textVNode.parent.actualNode);
+          var fontFamily = style.getPropertyValue("font-family");
+          if (!fonts[fontFamily]) {
+            fonts[fontFamily] = {
+              occurrences: 0,
+              numLigatures: 0
+            };
+          }
+          var font = fonts[fontFamily];
+          if (font.occurrences >= occurrenceThreshold) {
+            if (font.numLigatures / font.occurrences === 1) {
+              return true;
+            } else if (font.numLigatures === 0) {
+              return false;
+            }
+          }
+          font.occurrences++;
+          var fontSize = 30;
+          var fontStyle = "".concat(fontSize, "px ").concat(fontFamily);
+          canvasContext.font = fontStyle;
+          var firstChar = nodeValue.charAt(0);
+          var width = canvasContext.measureText(firstChar).width;
+          if (width === 0) {
+            font.numLigatures++;
+            return true;
+          }
+          if (width < 30) {
+            var diff = 30 / width;
+            width *= diff;
+            fontSize *= diff;
+            fontStyle = "".concat(fontSize, "px ").concat(fontFamily);
+          }
+          canvas.width = width;
+          canvas.height = fontSize;
+          canvasContext.font = fontStyle;
+          canvasContext.textAlign = "left";
+          canvasContext.textBaseline = "top";
+          canvasContext.fillText(firstChar, 0, 0);
+          var compareData = new Uint32Array(canvasContext.getImageData(0, 0, width, fontSize).data.buffer);
+          if (!compareData.some(function(pixel) {
+            return pixel;
+          })) {
+            font.numLigatures++;
+            return true;
+          }
+          canvasContext.clearRect(0, 0, width, fontSize);
+          canvasContext.fillText(nodeValue, 0, 0);
+          var compareWith = new Uint32Array(canvasContext.getImageData(0, 0, width, fontSize).data.buffer);
+          var differences = compareData.reduce(function(diff2, pixel, i2) {
+            if (pixel === 0 && compareWith[i2] === 0) {
+              return diff2;
+            }
+            if (pixel !== 0 && compareWith[i2] !== 0) {
+              return diff2;
+            }
+            return ++diff2;
+          }, 0);
+          var expectedWidth = nodeValue.split("").reduce(function(totalWidth, _char2) {
+            return totalWidth + canvasContext.measureText(_char2).width;
+          }, 0);
+          var actualWidth = canvasContext.measureText(nodeValue).width;
+          var pixelDifference = differences / compareData.length;
+          var sizeDifference = 1 - actualWidth / expectedWidth;
+          if (pixelDifference >= differenceThreshold && sizeDifference >= differenceThreshold) {
+            font.numLigatures++;
+            return true;
+          }
+          return false;
+        }
         function visibleVirtual(element, screenReader, noRecursing) {
-          var _nodeLookup11 = _nodeLookup(element), vNode = _nodeLookup11.vNode;
+          var options2 = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : {};
+          var _nodeLookup13 = _nodeLookup(element), vNode = _nodeLookup13.vNode;
           var visibleMethod = screenReader ? _isVisibleToScreenReaders : _isVisibleOnScreen;
           var visible2 = !element.actualNode || element.actualNode && visibleMethod(element);
+          var ignoreIconLigature = options2.ignoreIconLigature, pixelThreshold = options2.pixelThreshold, occurrenceThreshold = options2.occurrenceThreshold;
           var result = vNode.children.map(function(child) {
-            var _child$props = child.props, nodeType = _child$props.nodeType, nodeValue = _child$props.nodeValue;
+            var _child$props = child.props, nodeType = _child$props.nodeType, nodeValue = _child$props.nodeValue, nodeName2 = _child$props.nodeName;
             if (nodeType === 3) {
-              if (nodeValue && visible2) {
-                return nodeValue;
+              if (!nodeValue || !visible2) {
+                return "";
               }
-            } else if (!noRecursing) {
-              return visibleVirtual(child, screenReader);
+              if (ignoreIconLigature && _isIconLigature(child, pixelThreshold, occurrenceThreshold)) {
+                return "";
+              }
+              return nodeValue;
+            }
+            if (nodeName2 === "br") {
+              return " ";
+            }
+            if (!noRecursing) {
+              return visibleVirtual(child, screenReader, false, options2);
             }
           }).join("");
           return sanitize_default(result);
@@ -19625,19 +21230,19 @@ var require_axe = __commonJS({
             return accName || step(virtualNode, context);
           }, "");
           if (context.debug) {
-            log_default(valueString || "{empty-value}", actualNode, context);
+            log(valueString || "{empty-value}", actualNode, context);
           }
           return valueString;
         }
         function nativeTextboxValue(node) {
-          var _nodeLookup12 = _nodeLookup(node), vNode = _nodeLookup12.vNode;
+          var _nodeLookup14 = _nodeLookup(node), vNode = _nodeLookup14.vNode;
           if (is_native_textbox_default(vNode)) {
             return vNode.props.value || "";
           }
           return "";
         }
         function nativeSelectValue(node) {
-          var _nodeLookup13 = _nodeLookup(node), vNode = _nodeLookup13.vNode;
+          var _nodeLookup15 = _nodeLookup(node), vNode = _nodeLookup15.vNode;
           if (!is_native_select_default(vNode)) {
             return "";
           }
@@ -19653,7 +21258,7 @@ var require_axe = __commonJS({
           }).join(" ") || "";
         }
         function ariaTextboxValue(node) {
-          var _nodeLookup14 = _nodeLookup(node), vNode = _nodeLookup14.vNode, domNode = _nodeLookup14.domNode;
+          var _nodeLookup16 = _nodeLookup(node), vNode = _nodeLookup16.vNode, domNode = _nodeLookup16.domNode;
           if (!is_aria_textbox_default(vNode)) {
             return "";
           }
@@ -19664,7 +21269,7 @@ var require_axe = __commonJS({
           }
         }
         function ariaListboxValue(node, context) {
-          var _nodeLookup15 = _nodeLookup(node), vNode = _nodeLookup15.vNode;
+          var _nodeLookup17 = _nodeLookup(node), vNode = _nodeLookup17.vNode;
           if (!is_aria_listbox_default(vNode)) {
             return "";
           }
@@ -19677,7 +21282,7 @@ var require_axe = __commonJS({
           return _accessibleTextVirtual(selected[0], context);
         }
         function ariaComboboxValue(node, context) {
-          var _nodeLookup16 = _nodeLookup(node), vNode = _nodeLookup16.vNode;
+          var _nodeLookup18 = _nodeLookup(node), vNode = _nodeLookup18.vNode;
           if (!is_aria_combobox_default(vNode)) {
             return "";
           }
@@ -19687,7 +21292,7 @@ var require_axe = __commonJS({
           return listbox ? ariaListboxValue(listbox, context) : "";
         }
         function ariaRangeValue(node) {
-          var _nodeLookup17 = _nodeLookup(node), vNode = _nodeLookup17.vNode;
+          var _nodeLookup19 = _nodeLookup(node), vNode = _nodeLookup19.vNode;
           if (!is_aria_range_default(vNode) || !vNode.hasAttr("aria-valuenow")) {
             return "";
           }
@@ -19812,8 +21417,8 @@ var require_axe = __commonJS({
         function attrText(attr, vNode) {
           return vNode.attr(attr) || "";
         }
-        function descendantText(nodeName2, _ref49, context) {
-          var actualNode = _ref49.actualNode;
+        function descendantText(nodeName2, _ref61, context) {
+          var actualNode = _ref61.actualNode;
           nodeName2 = nodeName2.toLowerCase();
           var nodeNames2 = [nodeName2, actualNode.nodeName.toLowerCase()].join(",");
           var candidate = actualNode.querySelector(nodeNames2);
@@ -19846,121 +21451,6 @@ var require_axe = __commonJS({
           return methods.map(function(methodName) {
             return native_text_methods_default[methodName];
           });
-        }
-        function getUnicodeNonBmpRegExp() {
-          return /[\u1D00-\u1D7F\u1D80-\u1DBF\u1DC0-\u1DFF\u20A0-\u20CF\u20D0-\u20FF\u2100-\u214F\u2150-\u218F\u2190-\u21FF\u2200-\u22FF\u2300-\u23FF\u2400-\u243F\u2440-\u245F\u2460-\u24FF\u2500-\u257F\u2580-\u259F\u25A0-\u25FF\u2600-\u26FF\u2700-\u27BF\uE000-\uF8FF]/g;
-        }
-        function getPunctuationRegExp() {
-          return /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&\xa3\xa2\xa5\xa7\u20ac()*+,\-.\/:;<=>?@\[\]^_`{|}~\xb1]/g;
-        }
-        function getSupplementaryPrivateUseRegExp() {
-          return /[\uDB80-\uDBBF][\uDC00-\uDFFF]/g;
-        }
-        function getCategoryFormatRegExp() {
-          return /[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u206F\uFEFF\uFFF9-\uFFFB]|\uD804[\uDCBD\uDCCD]|\uD80D[\uDC30-\uDC38]|\uD82F[\uDCA0-\uDCA3]|\uD834[\uDD73-\uDD7A]|\uDB40[\uDC01\uDC20-\uDC7F]/g;
-        }
-        function hasUnicode(str2, options2) {
-          var emoji = options2.emoji, nonBmp = options2.nonBmp, punctuations = options2.punctuations;
-          var value = false;
-          if (emoji) {
-            value || (value = emoji_regex_default().test(str2));
-          }
-          if (nonBmp) {
-            value || (value = getUnicodeNonBmpRegExp().test(str2) || getSupplementaryPrivateUseRegExp().test(str2) || getCategoryFormatRegExp().test(str2));
-          }
-          if (punctuations) {
-            value || (value = getPunctuationRegExp().test(str2));
-          }
-          return value;
-        }
-        var has_unicode_default = hasUnicode;
-        function _isIconLigature(textVNode) {
-          var differenceThreshold = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0.15;
-          var occurrenceThreshold = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 3;
-          var nodeValue = textVNode.actualNode.nodeValue.trim();
-          if (!sanitize_default(nodeValue) || has_unicode_default(nodeValue, {
-            emoji: true,
-            nonBmp: true
-          })) {
-            return false;
-          }
-          var canvasContext = cache_default.get("canvasContext", function() {
-            return document2.createElement("canvas").getContext("2d", {
-              willReadFrequently: true
-            });
-          });
-          var canvas = canvasContext.canvas;
-          var fonts = cache_default.get("fonts", function() {
-            return {};
-          });
-          var style = window2.getComputedStyle(textVNode.parent.actualNode);
-          var fontFamily = style.getPropertyValue("font-family");
-          if (!fonts[fontFamily]) {
-            fonts[fontFamily] = {
-              occurrences: 0,
-              numLigatures: 0
-            };
-          }
-          var font = fonts[fontFamily];
-          if (font.occurrences >= occurrenceThreshold) {
-            if (font.numLigatures / font.occurrences === 1) {
-              return true;
-            } else if (font.numLigatures === 0) {
-              return false;
-            }
-          }
-          font.occurrences++;
-          var fontSize = 30;
-          var fontStyle = "".concat(fontSize, "px ").concat(fontFamily);
-          canvasContext.font = fontStyle;
-          var firstChar = nodeValue.charAt(0);
-          var width = canvasContext.measureText(firstChar).width;
-          if (width === 0) {
-            font.numLigatures++;
-            return true;
-          }
-          if (width < 30) {
-            var diff = 30 / width;
-            width *= diff;
-            fontSize *= diff;
-            fontStyle = "".concat(fontSize, "px ").concat(fontFamily);
-          }
-          canvas.width = width;
-          canvas.height = fontSize;
-          canvasContext.font = fontStyle;
-          canvasContext.textAlign = "left";
-          canvasContext.textBaseline = "top";
-          canvasContext.fillText(firstChar, 0, 0);
-          var compareData = new Uint32Array(canvasContext.getImageData(0, 0, width, fontSize).data.buffer);
-          if (!compareData.some(function(pixel) {
-            return pixel;
-          })) {
-            font.numLigatures++;
-            return true;
-          }
-          canvasContext.clearRect(0, 0, width, fontSize);
-          canvasContext.fillText(nodeValue, 0, 0);
-          var compareWith = new Uint32Array(canvasContext.getImageData(0, 0, width, fontSize).data.buffer);
-          var differences = compareData.reduce(function(diff2, pixel, i2) {
-            if (pixel === 0 && compareWith[i2] === 0) {
-              return diff2;
-            }
-            if (pixel !== 0 && compareWith[i2] !== 0) {
-              return diff2;
-            }
-            return ++diff2;
-          }, 0);
-          var expectedWidth = nodeValue.split("").reduce(function(totalWidth, _char2) {
-            return totalWidth + canvasContext.measureText(_char2).width;
-          }, 0);
-          var actualWidth = canvasContext.measureText(nodeValue).width;
-          var pixelDifference = differences / compareData.length;
-          var sizeDifference = 1 - actualWidth / expectedWidth;
-          if (pixelDifference >= differenceThreshold && sizeDifference >= differenceThreshold) {
-            font.numLigatures++;
-            return true;
-          }
-          return false;
         }
         function _accessibleTextVirtual(virtualNode) {
           var context = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
@@ -19996,7 +21486,10 @@ var require_axe = __commonJS({
           if (!virtualNode) {
             return false;
           }
-          if (virtualNode.props.nodeType !== 1 || context.includeHidden) {
+          if (context.includeHidden && !nativelyHidden(virtualNode)) {
+            return false;
+          }
+          if (virtualNode.props.nodeType !== 1) {
             return false;
           }
           return !_isVisibleToScreenReaders(virtualNode);
@@ -20078,7 +21571,7 @@ var require_axe = __commonJS({
           locations: ["billing", "shipping"]
         };
         function isValidAutocomplete(autocompleteValue) {
-          var _ref50 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, _ref50$looseTyped = _ref50.looseTyped, looseTyped = _ref50$looseTyped === void 0 ? false : _ref50$looseTyped, _ref50$stateTerms = _ref50.stateTerms, stateTerms = _ref50$stateTerms === void 0 ? [] : _ref50$stateTerms, _ref50$locations = _ref50.locations, locations = _ref50$locations === void 0 ? [] : _ref50$locations, _ref50$qualifiers = _ref50.qualifiers, qualifiers = _ref50$qualifiers === void 0 ? [] : _ref50$qualifiers, _ref50$standaloneTerm = _ref50.standaloneTerms, standaloneTerms = _ref50$standaloneTerm === void 0 ? [] : _ref50$standaloneTerm, _ref50$qualifiedTerms = _ref50.qualifiedTerms, qualifiedTerms = _ref50$qualifiedTerms === void 0 ? [] : _ref50$qualifiedTerms, _ref50$ignoredValues = _ref50.ignoredValues, ignoredValues = _ref50$ignoredValues === void 0 ? [] : _ref50$ignoredValues;
+          var _ref62 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, _ref62$looseTyped = _ref62.looseTyped, looseTyped = _ref62$looseTyped === void 0 ? false : _ref62$looseTyped, _ref62$stateTerms = _ref62.stateTerms, stateTerms = _ref62$stateTerms === void 0 ? [] : _ref62$stateTerms, _ref62$locations = _ref62.locations, locations = _ref62$locations === void 0 ? [] : _ref62$locations, _ref62$qualifiers = _ref62.qualifiers, qualifiers = _ref62$qualifiers === void 0 ? [] : _ref62$qualifiers, _ref62$standaloneTerm = _ref62.standaloneTerms, standaloneTerms = _ref62$standaloneTerm === void 0 ? [] : _ref62$standaloneTerm, _ref62$qualifiedTerms = _ref62.qualifiedTerms, qualifiedTerms = _ref62$qualifiedTerms === void 0 ? [] : _ref62$qualifiedTerms, _ref62$ignoredValues = _ref62.ignoredValues, ignoredValues = _ref62$ignoredValues === void 0 ? [] : _ref62$ignoredValues;
           autocompleteValue = autocompleteValue.toLowerCase().trim();
           stateTerms = stateTerms.concat(_autocomplete.stateTerms);
           if (stateTerms.includes(autocompleteValue) || autocompleteValue === "") {
@@ -20309,7 +21802,7 @@ var require_axe = __commonJS({
         var get_text_element_stack_default = getTextElementStack;
         var visualRoles = ["checkbox", "img", "meter", "progressbar", "scrollbar", "radio", "slider", "spinbutton", "textbox"];
         function isVisualContent(el) {
-          var _nodeLookup18 = _nodeLookup(el), vNode = _nodeLookup18.vNode;
+          var _nodeLookup20 = _nodeLookup(el), vNode = _nodeLookup20.vNode;
           var role = axe2.commons.aria.getExplicitRole(vNode);
           if (role) {
             return visualRoles.indexOf(role) !== -1;
@@ -20342,8 +21835,8 @@ var require_axe = __commonJS({
           if (hiddenTextElms.includes(elm.props.nodeName)) {
             return false;
           }
-          return elm.children.some(function(_ref51) {
-            var props = _ref51.props;
+          return elm.children.some(function(_ref63) {
+            var props = _ref63.props;
             return props.nodeType === 3 && props.nodeValue.trim();
           });
         }
@@ -20375,7 +21868,7 @@ var require_axe = __commonJS({
         }
         var inserted_into_focus_order_default = insertedIntoFocusOrder;
         function isHiddenWithCSS(el, descendentVisibilityValue) {
-          var _nodeLookup19 = _nodeLookup(el), vNode = _nodeLookup19.vNode, domNode = _nodeLookup19.domNode;
+          var _nodeLookup21 = _nodeLookup(el), vNode = _nodeLookup21.vNode, domNode = _nodeLookup21.domNode;
           if (!vNode) {
             return _isHiddenWithCSS(domNode, descendentVisibilityValue);
           }
@@ -20426,42 +21919,30 @@ var require_axe = __commonJS({
         }
         var is_html5_default = isHTML5;
         function getRoleType(role) {
-          var _window;
-          if (role instanceof abstract_virtual_node_default || (_window = window2) !== null && _window !== void 0 && _window.Node && role instanceof window2.Node) {
+          var _window3;
+          if (role instanceof abstract_virtual_node_default || (_window3 = window2) !== null && _window3 !== void 0 && _window3.Node && role instanceof window2.Node) {
             role = axe2.commons.aria.getRole(role);
           }
           var roleDef = standards_default.ariaRoles[role];
           return (roleDef === null || roleDef === void 0 ? void 0 : roleDef.type) || null;
         }
         var get_role_type_default = getRoleType;
-        function walkDomNode(node, functor) {
-          if (functor(node.actualNode) !== false) {
-            node.children.forEach(function(child) {
-              return walkDomNode(child, functor);
-            });
-          }
-        }
-        var blockLike = ["block", "list-item", "table", "flex", "grid", "inline-block"];
-        function isBlock(elm) {
-          var display2 = window2.getComputedStyle(elm).getPropertyValue("display");
-          return blockLike.includes(display2) || display2.substr(0, 6) === "table-";
-        }
-        function getBlockParent(node) {
-          var parentBlock = get_composed_parent_default(node);
-          while (parentBlock && !isBlock(parentBlock)) {
-            parentBlock = get_composed_parent_default(parentBlock);
-          }
-          return get_node_from_tree_default(parentBlock);
-        }
-        function isInTextBlock(node, options2) {
-          if (isBlock(node)) {
+        var blockLike = ["block", "list-item", "table", "flex", "grid"];
+        var inlineBlockLike = ["inline-block", "inline-flex", "inline-grid"];
+        function isInTextBlock(node) {
+          var _ref64 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, noLengthCompare = _ref64.noLengthCompare, _ref64$includeInlineB = _ref64.includeInlineBlock, includeInlineBlock = _ref64$includeInlineB === void 0 ? false : _ref64$includeInlineB;
+          var _nodeLookup22 = _nodeLookup(node), vNode = _nodeLookup22.vNode, domNode = _nodeLookup22.domNode;
+          if (isBlock(domNode) || !includeInlineBlock && isInlineBlockLike(vNode)) {
             return false;
           }
-          var virtualParent = getBlockParent(node);
+          var virtualParent = getBlockParent(domNode);
           var parentText = "";
           var widgetText = "";
           var inBrBlock = 0;
           walkDomNode(virtualParent, function(currNode) {
+            if (currNode === virtualParent.actualNode) {
+              return true;
+            }
             if (inBrBlock === 2) {
               return false;
             }
@@ -20472,17 +21953,19 @@ var require_axe = __commonJS({
               return;
             }
             var nodeName2 = (currNode.nodeName || "").toUpperCase();
-            if (currNode === node) {
+            if (currNode === domNode) {
               inBrBlock = 1;
             }
-            if (["BR", "HR"].includes(nodeName2)) {
+            var nodeIsBlock = isBlock(currNode);
+            if (nodeIsBlock || ["BR", "HR"].includes(nodeName2)) {
               if (inBrBlock === 0) {
                 parentText = "";
                 widgetText = "";
               } else {
                 inBrBlock = 2;
               }
-            } else if (currNode.style.display === "none" || currNode.style.overflow === "hidden" || !["", null, "none"].includes(currNode.style["float"]) || !["", null, "relative"].includes(currNode.style.position)) {
+            }
+            if (nodeIsBlock || currNode.style.display === "none" || currNode.style.overflow === "hidden" || !["", null, "none"].includes(currNode.style["float"]) || !["", null, "relative"].includes(currNode.style.position)) {
               return false;
             } else if (get_role_type_default(currNode) === "widget") {
               widgetText += currNode.textContent;
@@ -20490,13 +21973,36 @@ var require_axe = __commonJS({
             }
           });
           parentText = sanitize_default(parentText);
-          if (options2 !== null && options2 !== void 0 && options2.noLengthCompare) {
+          if (noLengthCompare) {
             return parentText.length !== 0;
           }
           widgetText = sanitize_default(widgetText);
           return parentText.length > widgetText.length;
         }
         var is_in_text_block_default = isInTextBlock;
+        function isBlock(node) {
+          var _nodeLookup23 = _nodeLookup(node), vNode = _nodeLookup23.vNode;
+          var display2 = vNode.getComputedStylePropertyValue("display");
+          return blockLike.includes(display2) || display2.substr(0, 6) === "table-";
+        }
+        function isInlineBlockLike(vNode) {
+          var display2 = vNode.getComputedStylePropertyValue("display");
+          return inlineBlockLike.includes(display2);
+        }
+        function walkDomNode(node, functor) {
+          if (functor(node.actualNode) !== false) {
+            node.children.forEach(function(child) {
+              return walkDomNode(child, functor);
+            });
+          }
+        }
+        function getBlockParent(node) {
+          var parentBlock = get_composed_parent_default(node);
+          while (parentBlock && !isBlock(parentBlock)) {
+            parentBlock = get_composed_parent_default(parentBlock);
+          }
+          return get_node_from_tree_default(parentBlock);
+        }
         function isModalOpen(options2) {
           options2 = options2 || {};
           var modalPercent = options2.modalPercent || 0.75;
@@ -20533,7 +22039,7 @@ var require_axe = __commonJS({
             return Array.from(document2.elementsFromPoint(point.x, point.y));
           });
           var _loop7 = function _loop72() {
-            var modalElement = stacks[i2].find(function(elm) {
+            var modalElement = stacks[_i13].find(function(elm) {
               var style = window2.getComputedStyle(elm);
               return parseInt(style.width, 10) >= percentWidth && parseInt(style.height, 10) >= percentHeight && style.getPropertyValue("pointer-events") !== "none" && (style.position === "absolute" || style.position === "fixed");
             });
@@ -20546,7 +22052,7 @@ var require_axe = __commonJS({
               };
             }
           }, _ret3;
-          for (var i2 = 0; i2 < stacks.length; i2++) {
+          for (var _i13 = 0; _i13 < stacks.length; _i13++) {
             _ret3 = _loop7();
             if (_ret3) {
               return _ret3.v;
@@ -20563,10 +22069,10 @@ var require_axe = __commonJS({
           range2.setEnd(domNode, domNode.childNodes.length);
           var lastLineEnd = 0;
           var lineCount = 0;
-          var _iterator0 = _createForOfIteratorHelper(range2.getClientRects()), _step0;
+          var _iterator1 = _createForOfIteratorHelper(range2.getClientRects()), _step1;
           try {
-            for (_iterator0.s(); !(_step0 = _iterator0.n()).done; ) {
-              var rect = _step0.value;
+            for (_iterator1.s(); !(_step1 = _iterator1.n()).done; ) {
+              var rect = _step1.value;
               if (rect.height <= margin) {
                 continue;
               }
@@ -20580,9 +22086,9 @@ var require_axe = __commonJS({
               }
             }
           } catch (err2) {
-            _iterator0.e(err2);
+            _iterator1.e(err2);
           } finally {
-            _iterator0.f();
+            _iterator1.f();
           }
           return false;
         }
@@ -20759,7 +22265,7 @@ var require_axe = __commonJS({
                 this.g = _color2.g;
                 this.b = _color2.b;
                 this.alpha = +_color2.alpha;
-              } catch (_unused2) {
+              } catch (_unused4) {
                 incomplete_data_default.set("colorParse", colorString);
                 throw new Error('Unable to parse color "'.concat(colorString, '"'));
               }
@@ -20952,8 +22458,8 @@ var require_axe = __commonJS({
           if (!refs || !refs.length) {
             return false;
           }
-          return refs.some(function(_ref52) {
-            var actualNode = _ref52.actualNode;
+          return refs.some(function(_ref65) {
+            var actualNode = _ref65.actualNode;
             return isVisible(actualNode, screenReader, recursed);
           });
         }
@@ -20965,7 +22471,7 @@ var require_axe = __commonJS({
           var vNode = el instanceof abstract_virtual_node_default ? el : get_node_from_tree_default(el);
           el = vNode ? vNode.actualNode : el;
           var cacheName = "_isVisible" + (screenReader ? "ScreenReader" : "");
-          var _ref53 = (_window$Node2 = window2.Node) !== null && _window$Node2 !== void 0 ? _window$Node2 : {}, DOCUMENT_NODE = _ref53.DOCUMENT_NODE, DOCUMENT_FRAGMENT_NODE = _ref53.DOCUMENT_FRAGMENT_NODE;
+          var _ref66 = (_window$Node2 = window2.Node) !== null && _window$Node2 !== void 0 ? _window$Node2 : {}, DOCUMENT_NODE = _ref66.DOCUMENT_NODE, DOCUMENT_FRAGMENT_NODE = _ref66.DOCUMENT_FRAGMENT_NODE;
           var nodeType = vNode ? vNode.props.nodeType : el.nodeType;
           var nodeName2 = vNode ? vNode.props.nodeName : el.nodeName.toLowerCase();
           if (vNode && typeof vNode[cacheName] !== "undefined") {
@@ -21168,8 +22674,8 @@ var require_axe = __commonJS({
           }
           for (var index = 0; index < pairs.length; index++) {
             var pair = pairs[index];
-            var _pair$split = pair.split("="), _pair$split2 = _slicedToArray(_pair$split, 2), _key6 = _pair$split2[0], _pair$split2$ = _pair$split2[1], value = _pair$split2$ === void 0 ? "" : _pair$split2$;
-            query[decodeURIComponent(_key6)] = decodeURIComponent(value);
+            var _pair$split = pair.split("="), _pair$split2 = _slicedToArray(_pair$split, 2), _key9 = _pair$split2[0], _pair$split2$ = _pair$split2[1], value = _pair$split2$ === void 0 ? "" : _pair$split2$;
+            query[decodeURIComponent(_key9)] = decodeURIComponent(value);
           }
           return query;
         }
@@ -21340,1269 +22846,23 @@ var require_axe = __commonJS({
               }
               return this._cache.boundingClientRect;
             }
+          }, {
+            key: "elementInternals",
+            get: function get2() {
+              if (!axe2._enableElementInternals) {
+                return;
+              }
+              if (!this._cache.hasOwnProperty("elementInternals")) {
+                this._cache.elementInternals = _getElementInternals(this.actualNode);
+              }
+              return this._cache.elementInternals;
+            },
+            set: function set2(value) {
+              this._cache.elementInternals = value;
+            }
           }]);
         })(abstract_virtual_node_default);
         var virtual_node_default = VirtualNode;
-        var CACHE_KEY = "DqElm.RunOptions";
-        function getOuterHtml(element) {
-          var source = element.outerHTML;
-          if (!source && typeof window2.XMLSerializer === "function") {
-            source = new window2.XMLSerializer().serializeToString(element);
-          }
-          return source || "";
-        }
-        function truncateElement(element) {
-          var maxLen = 300;
-          var maxAttrNameOrValueLen = 20;
-          var deepStr = getOuterHtml(element);
-          var vNode = get_node_from_tree_default(element);
-          if (!vNode) {
-            vNode = new virtual_node_default(element);
-          }
-          var nodeName2 = vNode.props.nodeName;
-          if (deepStr.length < maxLen) {
-            return deepStr;
-          }
-          var attributeStrList = [];
-          var shallowNode = element.cloneNode(false);
-          var elementNodeMap = get_node_attributes_default(shallowNode);
-          var str2 = getOuterHtml(shallowNode);
-          if (str2.length < maxLen) {
-            var attrString = "";
-            var _iterator1 = _createForOfIteratorHelper(elementNodeMap), _step1;
-            try {
-              for (_iterator1.s(); !(_step1 = _iterator1.n()).done; ) {
-                var _step1$value = _step1.value, name = _step1$value.name, value = _step1$value.value;
-                var attr = {
-                  name,
-                  value
-                };
-                attrString += " ".concat(attr.name, '="').concat(attr.value, '"');
-              }
-            } catch (err2) {
-              _iterator1.e(err2);
-            } finally {
-              _iterator1.f();
-            }
-            str2 = "<".concat(nodeName2).concat(attrString, ">");
-            return str2;
-          }
-          var strLen = "<".concat(nodeName2, ">").length;
-          var _iterator10 = _createForOfIteratorHelper(elementNodeMap), _step10;
-          try {
-            for (_iterator10.s(); !(_step10 = _iterator10.n()).done; ) {
-              var _step10$value = _step10.value, _name = _step10$value.name, _value = _step10$value.value;
-              if (strLen > maxLen) {
-                break;
-              }
-              var _attr = {
-                name: _name,
-                value: _value
-              };
-              var attrName = _attr.name;
-              var attrValue = _attr.value;
-              attrName = attrName.length > maxAttrNameOrValueLen ? attrName.substring(0, maxAttrNameOrValueLen) + "..." : attrName;
-              attrValue = attrValue.length > maxAttrNameOrValueLen ? attrValue.substring(0, maxAttrNameOrValueLen) + "..." : attrValue;
-              var strAttr = "".concat(attrName, '="').concat(attrValue, '"');
-              strLen += (" " + strAttr).length;
-              attributeStrList.push(strAttr);
-            }
-          } catch (err2) {
-            _iterator10.e(err2);
-          } finally {
-            _iterator10.f();
-          }
-          str2 = "<".concat(nodeName2, " ").concat(attributeStrList.join(" "), ">");
-          if (str2.length > maxLen) {
-            str2 = str2.substring(0, maxLen) + " ...>";
-          } else if (attributeStrList.length < elementNodeMap.length) {
-            str2 = str2.substring(0, str2.length - 1) + " ...>";
-          }
-          return str2;
-        }
-        function getSource(element) {
-          if (!element) {
-            return "";
-          }
-          return truncateElement(element);
-        }
-        var DqElement = memoize_default(function DqElement2(elm, options2, spec) {
-          var _this$spec$selector, _this$_virtualNode;
-          options2 !== null && options2 !== void 0 ? options2 : options2 = null;
-          spec !== null && spec !== void 0 ? spec : spec = {};
-          if (!options2) {
-            var _cache_default$get;
-            options2 = (_cache_default$get = cache_default.get(CACHE_KEY)) !== null && _cache_default$get !== void 0 ? _cache_default$get : {};
-          }
-          this.spec = spec;
-          if (elm instanceof abstract_virtual_node_default) {
-            this._virtualNode = elm;
-            this._element = elm.actualNode;
-          } else {
-            this._element = elm;
-            this._virtualNode = get_node_from_tree_default(elm);
-          }
-          this.fromFrame = ((_this$spec$selector = this.spec.selector) === null || _this$spec$selector === void 0 ? void 0 : _this$spec$selector.length) > 1;
-          this._includeElementInJson = options2.elementRef;
-          if (options2.absolutePaths) {
-            this._options = {
-              toRoot: true
-            };
-          }
-          this.nodeIndexes = [];
-          if (Array.isArray(this.spec.nodeIndexes)) {
-            this.nodeIndexes = this.spec.nodeIndexes;
-          } else if (typeof ((_this$_virtualNode = this._virtualNode) === null || _this$_virtualNode === void 0 ? void 0 : _this$_virtualNode.nodeIndex) === "number") {
-            this.nodeIndexes = [this._virtualNode.nodeIndex];
-          }
-          this.source = null;
-          if (!axe2._audit.noHtml) {
-            var _this$spec$source;
-            this.source = (_this$spec$source = this.spec.source) !== null && _this$spec$source !== void 0 ? _this$spec$source : getSource(this._element);
-          }
-          return this;
-        });
-        DqElement.prototype = {
-          get selector() {
-            return this.spec.selector || [get_selector_default(this.element, this._options)];
-          },
-          get ancestry() {
-            return this.spec.ancestry || [_getAncestry(this.element)];
-          },
-          get xpath() {
-            return this.spec.xpath || [get_xpath_default(this.element)];
-          },
-          get element() {
-            return this._element;
-          },
-          toJSON: function toJSON() {
-            var spec = {
-              selector: this.selector,
-              source: this.source,
-              xpath: this.xpath,
-              ancestry: this.ancestry,
-              nodeIndexes: this.nodeIndexes,
-              fromFrame: this.fromFrame
-            };
-            if (this._includeElementInJson) {
-              spec.element = this._element;
-            }
-            return spec;
-          }
-        };
-        DqElement.fromFrame = function fromFrame(node, options2, frame) {
-          var spec = DqElement.mergeSpecs(node, frame);
-          return new DqElement(frame.element, options2, spec);
-        };
-        DqElement.mergeSpecs = function mergeSpecs(child, parentFrame) {
-          return _extends({}, child, {
-            selector: [].concat(_toConsumableArray(parentFrame.selector), _toConsumableArray(child.selector)),
-            ancestry: [].concat(_toConsumableArray(parentFrame.ancestry), _toConsumableArray(child.ancestry)),
-            xpath: [].concat(_toConsumableArray(parentFrame.xpath), _toConsumableArray(child.xpath)),
-            nodeIndexes: [].concat(_toConsumableArray(parentFrame.nodeIndexes), _toConsumableArray(child.nodeIndexes)),
-            fromFrame: true
-          });
-        };
-        DqElement.setRunOptions = function setRunOptions(_ref54) {
-          var elementRef = _ref54.elementRef, absolutePaths = _ref54.absolutePaths;
-          cache_default.set(CACHE_KEY, {
-            elementRef,
-            absolutePaths
-          });
-        };
-        var dq_element_default = DqElement;
-        function checkHelper(checkResult, options2, resolve, reject) {
-          return {
-            isAsync: false,
-            async: function async() {
-              this.isAsync = true;
-              return function(result) {
-                if (result instanceof Error === false) {
-                  checkResult.result = result;
-                  resolve(checkResult);
-                } else {
-                  reject(result);
-                }
-              };
-            },
-            data: function data(_data) {
-              checkResult.data = _data;
-            },
-            relatedNodes: function relatedNodes(nodes) {
-              if (!window2.Node) {
-                return;
-              }
-              if (nodes instanceof window2.Node || nodes instanceof abstract_virtual_node_default) {
-                nodes = [nodes];
-              } else {
-                nodes = to_array_default(nodes);
-              }
-              checkResult.relatedNodes = [];
-              nodes.forEach(function(node) {
-                if (node instanceof abstract_virtual_node_default) {
-                  node = node.actualNode;
-                }
-                if (node instanceof window2.Node) {
-                  var dqElm = new dq_element_default(node);
-                  checkResult.relatedNodes.push(dqElm);
-                }
-              });
-            }
-          };
-        }
-        var check_helper_default = checkHelper;
-        function clone22(obj) {
-          return cloneRecused(obj, /* @__PURE__ */ new Map());
-        }
-        function cloneRecused(obj, seen) {
-          var _window2, _window3;
-          if (obj === null || _typeof(obj) !== "object") {
-            return obj;
-          }
-          if ((_window2 = window2) !== null && _window2 !== void 0 && _window2.Node && obj instanceof window2.Node || (_window3 = window2) !== null && _window3 !== void 0 && _window3.HTMLCollection && obj instanceof window2.HTMLCollection || "nodeName" in obj && "nodeType" in obj && "ownerDocument" in obj) {
-            return obj;
-          }
-          if (seen.has(obj)) {
-            return seen.get(obj);
-          }
-          if (Array.isArray(obj)) {
-            var out2 = [];
-            seen.set(obj, out2);
-            obj.forEach(function(value) {
-              out2.push(cloneRecused(value, seen));
-            });
-            return out2;
-          }
-          var out = {};
-          seen.set(obj, out);
-          for (var _key7 in obj) {
-            out[_key7] = cloneRecused(obj[_key7], seen);
-          }
-          return out;
-        }
-        var parser2 = new import_css_selector_parser.CssSelectorParser();
-        parser2.registerSelectorPseudos("not");
-        parser2.registerSelectorPseudos("is");
-        parser2.registerNestingOperators(">");
-        parser2.registerAttrEqualityMods("^", "$", "*", "~");
-        var css_parser_default = parser2;
-        function _matches(vNode, selector) {
-          var expressions = _convertSelector(selector);
-          return expressions.some(function(expression) {
-            return _matchesExpression(vNode, expression);
-          });
-        }
-        function matchesTag(vNode, exp) {
-          return vNode.props.nodeType === 1 && (exp.tag === "*" || vNode.props.nodeName === exp.tag);
-        }
-        function matchesClasses(vNode, exp) {
-          return !exp.classes || exp.classes.every(function(cl) {
-            return vNode.hasClass(cl.value);
-          });
-        }
-        function matchesAttributes(vNode, exp) {
-          return !exp.attributes || exp.attributes.every(function(att) {
-            var nodeAtt = vNode.attr(att.key);
-            return nodeAtt !== null && att.test(nodeAtt);
-          });
-        }
-        function matchesId(vNode, exp) {
-          return !exp.id || vNode.props.id === exp.id;
-        }
-        function matchesPseudos(target, exp) {
-          if (!exp.pseudos || exp.pseudos.every(function(pseudo) {
-            if (pseudo.name === "not") {
-              return !pseudo.expressions.some(function(expression) {
-                return _matchesExpression(target, expression);
-              });
-            } else if (pseudo.name === "is") {
-              return pseudo.expressions.some(function(expression) {
-                return _matchesExpression(target, expression);
-              });
-            }
-            throw new Error("the pseudo selector " + pseudo.name + " has not yet been implemented");
-          })) {
-            return true;
-          }
-          return false;
-        }
-        function matchExpression(vNode, expression) {
-          return matchesTag(vNode, expression) && matchesClasses(vNode, expression) && matchesAttributes(vNode, expression) && matchesId(vNode, expression) && matchesPseudos(vNode, expression);
-        }
-        var escapeRegExp = /* @__PURE__ */ (function() {
-          var from = /(?=[\-\[\]{}()*+?.\\\^$|,#\s])/g;
-          var to2 = "\\";
-          return function(string) {
-            return string.replace(from, to2);
-          };
-        })();
-        var reUnescape = /\\/g;
-        function convertAttributes(atts) {
-          if (!atts) {
-            return;
-          }
-          return atts.map(function(att) {
-            var attributeKey = att.name.replace(reUnescape, "");
-            var attributeValue = (att.value || "").replace(reUnescape, "");
-            var test, regexp;
-            switch (att.operator) {
-              case "^=":
-                regexp = new RegExp("^" + escapeRegExp(attributeValue));
-                break;
-              case "$=":
-                regexp = new RegExp(escapeRegExp(attributeValue) + "$");
-                break;
-              case "~=":
-                regexp = new RegExp("(^|\\s)" + escapeRegExp(attributeValue) + "(\\s|$)");
-                break;
-              case "|=":
-                regexp = new RegExp("^" + escapeRegExp(attributeValue) + "(-|$)");
-                break;
-              case "=":
-                test = function test2(value) {
-                  return attributeValue === value;
-                };
-                break;
-              case "*=":
-                test = function test2(value) {
-                  return value && value.includes(attributeValue);
-                };
-                break;
-              case "!=":
-                test = function test2(value) {
-                  return attributeValue !== value;
-                };
-                break;
-              default:
-                test = function test2(value) {
-                  return value !== null;
-                };
-            }
-            if (attributeValue === "" && /^[*$^]=$/.test(att.operator)) {
-              test = function test2() {
-                return false;
-              };
-            }
-            if (!test) {
-              test = function test2(value) {
-                return value && regexp.test(value);
-              };
-            }
-            return {
-              key: attributeKey,
-              value: attributeValue,
-              type: typeof att.value === "undefined" ? "attrExist" : "attrValue",
-              test
-            };
-          });
-        }
-        function convertClasses(classes) {
-          if (!classes) {
-            return;
-          }
-          return classes.map(function(className) {
-            className = className.replace(reUnescape, "");
-            return {
-              value: className,
-              regexp: new RegExp("(^|\\s)" + escapeRegExp(className) + "(\\s|$)")
-            };
-          });
-        }
-        function convertPseudos(pseudos) {
-          if (!pseudos) {
-            return;
-          }
-          return pseudos.map(function(p2) {
-            var expressions;
-            if (["is", "not"].includes(p2.name)) {
-              expressions = p2.value;
-              expressions = expressions.selectors ? expressions.selectors : [expressions];
-              expressions = convertExpressions(expressions);
-            }
-            return {
-              name: p2.name,
-              expressions,
-              value: p2.value
-            };
-          });
-        }
-        function convertExpressions(expressions) {
-          return expressions.map(function(exp) {
-            var newExp = [];
-            var rule = exp.rule;
-            while (rule) {
-              newExp.push({
-                tag: rule.tagName ? rule.tagName.toLowerCase() : "*",
-                combinator: rule.nestingOperator ? rule.nestingOperator : " ",
-                id: rule.id,
-                attributes: convertAttributes(rule.attrs),
-                classes: convertClasses(rule.classNames),
-                pseudos: convertPseudos(rule.pseudos)
-              });
-              rule = rule.rule;
-            }
-            return newExp;
-          });
-        }
-        function _convertSelector(selector) {
-          var expressions = css_parser_default.parse(selector);
-          expressions = expressions.selectors ? expressions.selectors : [expressions];
-          return convertExpressions(expressions);
-        }
-        function optimizedMatchesExpression(vNode, expressions, index, matchAnyParent) {
-          if (!vNode) {
-            return false;
-          }
-          var isArray = Array.isArray(expressions);
-          var expression = isArray ? expressions[index] : expressions;
-          var machedExpression = matchExpression(vNode, expression);
-          while (!machedExpression && matchAnyParent && vNode.parent) {
-            vNode = vNode.parent;
-            machedExpression = matchExpression(vNode, expression);
-          }
-          if (index > 0) {
-            if ([" ", ">"].includes(expression.combinator) === false) {
-              throw new Error("axe.utils.matchesExpression does not support the combinator: " + expression.combinator);
-            }
-            machedExpression = machedExpression && optimizedMatchesExpression(vNode.parent, expressions, index - 1, expression.combinator === " ");
-          }
-          return machedExpression;
-        }
-        function _matchesExpression(vNode, expressions, matchAnyParent) {
-          return optimizedMatchesExpression(vNode, expressions, expressions.length - 1, matchAnyParent);
-        }
-        function closest(vNode, selector) {
-          while (vNode) {
-            if (_matches(vNode, selector)) {
-              return vNode;
-            }
-            if (typeof vNode.parent === "undefined") {
-              throw new TypeError("Cannot resolve parent for non-DOM nodes");
-            }
-            vNode = vNode.parent;
-          }
-          return null;
-        }
-        var closest_default = closest;
-        function noop() {
-        }
-        function funcGuard(f) {
-          if (typeof f !== "function") {
-            throw new TypeError("Queue methods require functions as arguments");
-          }
-        }
-        function queue() {
-          var tasks = [];
-          var started = 0;
-          var remaining = 0;
-          var completeQueue = noop;
-          var complete = false;
-          var err2;
-          var defaultFail = function defaultFail2(e) {
-            err2 = e;
-            setTimeout(function() {
-              if (err2 !== void 0 && err2 !== null) {
-                log_default("Uncaught error (of queue)", err2);
-              }
-            }, 1);
-          };
-          var failed = defaultFail;
-          function createResolve(i2) {
-            return function(r) {
-              tasks[i2] = r;
-              remaining -= 1;
-              if (!remaining && completeQueue !== noop) {
-                complete = true;
-                completeQueue(tasks);
-              }
-            };
-          }
-          function abort(msg) {
-            completeQueue = noop;
-            failed(msg);
-            return tasks;
-          }
-          function pop() {
-            var length = tasks.length;
-            for (; started < length; started++) {
-              var task = tasks[started];
-              try {
-                task.call(null, createResolve(started), abort);
-              } catch (e) {
-                abort(e);
-              }
-            }
-          }
-          var q = {
-            defer: function defer(fn) {
-              if (_typeof(fn) === "object" && fn.then && fn["catch"]) {
-                var defer2 = fn;
-                fn = function fn2(resolve, reject) {
-                  defer2.then(resolve)["catch"](reject);
-                };
-              }
-              funcGuard(fn);
-              if (err2 !== void 0) {
-                return;
-              } else if (complete) {
-                throw new Error("Queue already completed");
-              }
-              tasks.push(fn);
-              ++remaining;
-              pop();
-              return q;
-            },
-            then: function then(fn) {
-              funcGuard(fn);
-              if (completeQueue !== noop) {
-                throw new Error("queue `then` already set");
-              }
-              if (!err2) {
-                completeQueue = fn;
-                if (!remaining) {
-                  complete = true;
-                  completeQueue(tasks);
-                }
-              }
-              return q;
-            },
-            catch: function _catch(fn) {
-              funcGuard(fn);
-              if (failed !== defaultFail) {
-                throw new Error("queue `catch` already set");
-              }
-              if (!err2) {
-                failed = fn;
-              } else {
-                fn(err2);
-                err2 = null;
-              }
-              return q;
-            },
-            abort
-          };
-          return q;
-        }
-        var queue_default = queue;
-        var uuid;
-        var _rng;
-        var _crypto = window2.crypto || window2.msCrypto;
-        if (!_rng && _crypto && _crypto.getRandomValues) {
-          var _rnds8 = new Uint8Array(16);
-          _rng = function whatwgRNG() {
-            _crypto.getRandomValues(_rnds8);
-            return _rnds8;
-          };
-        }
-        if (!_rng) {
-          var _rnds = new Array(16);
-          _rng = function _rng2() {
-            for (var i2 = 0, r; i2 < 16; i2++) {
-              if ((i2 & 3) === 0) {
-                r = Math.random() * 4294967296;
-              }
-              _rnds[i2] = r >>> ((i2 & 3) << 3) & 255;
-            }
-            return _rnds;
-          };
-        }
-        var BufferClass = typeof window2.Buffer == "function" ? window2.Buffer : Array;
-        var _byteToHex = [];
-        var _hexToByte = {};
-        for (var i = 0; i < 256; i++) {
-          _byteToHex[i] = (i + 256).toString(16).substr(1);
-          _hexToByte[_byteToHex[i]] = i;
-        }
-        function parse2(s, buf, offset) {
-          var i2 = buf && offset || 0, ii = 0;
-          buf = buf || [];
-          s.toLowerCase().replace(/[0-9a-f]{2}/g, function(oct) {
-            if (ii < 16) {
-              buf[i2 + ii++] = _hexToByte[oct];
-            }
-          });
-          while (ii < 16) {
-            buf[i2 + ii++] = 0;
-          }
-          return buf;
-        }
-        function unparse(buf, offset) {
-          var i2 = offset || 0, bth = _byteToHex;
-          return bth[buf[i2++]] + bth[buf[i2++]] + bth[buf[i2++]] + bth[buf[i2++]] + "-" + bth[buf[i2++]] + bth[buf[i2++]] + "-" + bth[buf[i2++]] + bth[buf[i2++]] + "-" + bth[buf[i2++]] + bth[buf[i2++]] + "-" + bth[buf[i2++]] + bth[buf[i2++]] + bth[buf[i2++]] + bth[buf[i2++]] + bth[buf[i2++]] + bth[buf[i2++]];
-        }
-        var _seedBytes = _rng();
-        var _nodeId = [_seedBytes[0] | 1, _seedBytes[1], _seedBytes[2], _seedBytes[3], _seedBytes[4], _seedBytes[5]];
-        var _clockseq = (_seedBytes[6] << 8 | _seedBytes[7]) & 16383;
-        var _lastMSecs = 0;
-        var _lastNSecs = 0;
-        function v1(options2, buf, offset) {
-          var i2 = buf && offset || 0;
-          var b2 = buf || [];
-          options2 = options2 || {};
-          var clockseq = options2.clockseq != null ? options2.clockseq : _clockseq;
-          var msecs = options2.msecs != null ? options2.msecs : (/* @__PURE__ */ new Date()).getTime();
-          var nsecs = options2.nsecs != null ? options2.nsecs : _lastNSecs + 1;
-          var dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 1e4;
-          if (dt < 0 && options2.clockseq == null) {
-            clockseq = clockseq + 1 & 16383;
-          }
-          if ((dt < 0 || msecs > _lastMSecs) && options2.nsecs == null) {
-            nsecs = 0;
-          }
-          if (nsecs >= 1e4) {
-            throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
-          }
-          _lastMSecs = msecs;
-          _lastNSecs = nsecs;
-          _clockseq = clockseq;
-          msecs += 122192928e5;
-          var tl = ((msecs & 268435455) * 1e4 + nsecs) % 4294967296;
-          b2[i2++] = tl >>> 24 & 255;
-          b2[i2++] = tl >>> 16 & 255;
-          b2[i2++] = tl >>> 8 & 255;
-          b2[i2++] = tl & 255;
-          var tmh = msecs / 4294967296 * 1e4 & 268435455;
-          b2[i2++] = tmh >>> 8 & 255;
-          b2[i2++] = tmh & 255;
-          b2[i2++] = tmh >>> 24 & 15 | 16;
-          b2[i2++] = tmh >>> 16 & 255;
-          b2[i2++] = clockseq >>> 8 | 128;
-          b2[i2++] = clockseq & 255;
-          var node = options2.node || _nodeId;
-          for (var n2 = 0; n2 < 6; n2++) {
-            b2[i2 + n2] = node[n2];
-          }
-          return buf ? buf : unparse(b2);
-        }
-        function v4(options2, buf, offset) {
-          var i2 = buf && offset || 0;
-          if (typeof options2 == "string") {
-            buf = options2 == "binary" ? new BufferClass(16) : null;
-            options2 = null;
-          }
-          options2 = options2 || {};
-          var rnds = options2.random || (options2.rng || _rng)();
-          rnds[6] = rnds[6] & 15 | 64;
-          rnds[8] = rnds[8] & 63 | 128;
-          if (buf) {
-            for (var ii = 0; ii < 16; ii++) {
-              buf[i2 + ii] = rnds[ii];
-            }
-          }
-          return buf || unparse(rnds);
-        }
-        uuid = v4;
-        uuid.v1 = v1;
-        uuid.v4 = v4;
-        uuid.parse = parse2;
-        uuid.unparse = unparse;
-        uuid.BufferClass = BufferClass;
-        axe2._uuid = v1();
-        var uuid_default = v4;
-        var errorTypes = Object.freeze(["EvalError", "RangeError", "ReferenceError", "SyntaxError", "TypeError", "URIError"]);
-        function stringifyMessage(_ref55) {
-          var topic = _ref55.topic, channelId = _ref55.channelId, message = _ref55.message, messageId = _ref55.messageId, keepalive = _ref55.keepalive;
-          var data = {
-            channelId,
-            topic,
-            messageId,
-            keepalive: !!keepalive,
-            source: getSource2()
-          };
-          if (message instanceof Error) {
-            data.error = {
-              name: message.name,
-              message: message.message,
-              stack: message.stack
-            };
-          } else {
-            data.payload = message;
-          }
-          return JSON.stringify(data);
-        }
-        function parseMessage(dataString) {
-          var data;
-          try {
-            data = JSON.parse(dataString);
-          } catch (_unused3) {
-            return;
-          }
-          if (!isRespondableMessage(data)) {
-            return;
-          }
-          var _data2 = data, topic = _data2.topic, channelId = _data2.channelId, messageId = _data2.messageId, keepalive = _data2.keepalive;
-          var message = _typeof(data.error) === "object" ? buildErrorObject(data.error) : data.payload;
-          return {
-            topic,
-            message,
-            messageId,
-            channelId,
-            keepalive: !!keepalive
-          };
-        }
-        function isRespondableMessage(postedMessage) {
-          return postedMessage !== null && _typeof(postedMessage) === "object" && typeof postedMessage.channelId === "string" && postedMessage.source === getSource2();
-        }
-        function buildErrorObject(error) {
-          var msg = error.message || "Unknown error occurred";
-          var errorName = errorTypes.includes(error.name) ? error.name : "Error";
-          var ErrConstructor = window2[errorName] || Error;
-          if (error.stack) {
-            msg += "\n" + error.stack.replace(error.message, "");
-          }
-          return new ErrConstructor(msg);
-        }
-        function getSource2() {
-          var application = "axeAPI";
-          var version = "";
-          if (typeof axe2 !== "undefined" && axe2._audit && axe2._audit.application) {
-            application = axe2._audit.application;
-          }
-          if (typeof axe2 !== "undefined") {
-            version = axe2.version;
-          }
-          return application + "." + version;
-        }
-        function assertIsParentWindow(win) {
-          assetNotGlobalWindow(win);
-          assert_default(window2.parent === win, "Source of the response must be the parent window.");
-        }
-        function assertIsFrameWindow(win) {
-          assetNotGlobalWindow(win);
-          assert_default(win.parent === window2, "Respondable target must be a frame in the current window");
-        }
-        function assetNotGlobalWindow(win) {
-          assert_default(window2 !== win, "Messages can not be sent to the same window.");
-        }
-        var channels = {};
-        function storeReplyHandler(channelId, replyHandler) {
-          var sendToParent = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : true;
-          assert_default(!channels[channelId], "A replyHandler already exists for this message channel.");
-          channels[channelId] = {
-            replyHandler,
-            sendToParent
-          };
-        }
-        function getReplyHandler(channelId) {
-          return channels[channelId];
-        }
-        function deleteReplyHandler(channelId) {
-          delete channels[channelId];
-        }
-        var messageIds = [];
-        function createMessageId() {
-          var uuid2 = "".concat(v4(), ":").concat(v4());
-          if (messageIds.includes(uuid2)) {
-            return createMessageId();
-          }
-          messageIds.push(uuid2);
-          return uuid2;
-        }
-        function isNewMessage(uuid2) {
-          if (messageIds.includes(uuid2)) {
-            return false;
-          }
-          messageIds.push(uuid2);
-          return true;
-        }
-        function postMessage(win, data, sendToParent, replyHandler) {
-          sendToParent ? assertIsParentWindow(win) : assertIsFrameWindow(win);
-          if (data.message instanceof Error && !sendToParent) {
-            axe2.log(data.message);
-            return false;
-          }
-          var dataString = stringifyMessage(_extends({
-            messageId: createMessageId()
-          }, data));
-          var allowedOrigins = axe2._audit.allowedOrigins;
-          if (!allowedOrigins || !allowedOrigins.length) {
-            return false;
-          }
-          if (typeof replyHandler === "function") {
-            storeReplyHandler(data.channelId, replyHandler, sendToParent);
-          }
-          allowedOrigins.forEach(function(origin) {
-            try {
-              win.postMessage(dataString, origin);
-            } catch (err2) {
-              if (err2 instanceof win.DOMException) {
-                throw new Error('allowedOrigins value "'.concat(origin, '" is not a valid origin'));
-              }
-              throw err2;
-            }
-          });
-          return true;
-        }
-        function processError(win, error, channelId) {
-          if (!win.parent !== window2) {
-            return axe2.log(error);
-          }
-          try {
-            postMessage(win, {
-              topic: null,
-              channelId,
-              message: error,
-              messageId: createMessageId(),
-              keepalive: true
-            }, true);
-          } catch (err2) {
-            return axe2.log(err2);
-          }
-        }
-        function createResponder(win, channelId) {
-          var sendToParent = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : true;
-          return function respond(message, keepalive, replyHandler) {
-            var data = {
-              channelId,
-              message,
-              keepalive
-            };
-            postMessage(win, data, sendToParent, replyHandler);
-          };
-        }
-        function originIsAllowed(origin) {
-          var allowedOrigins = axe2._audit.allowedOrigins;
-          return allowedOrigins && allowedOrigins.includes("*") || allowedOrigins.includes(origin);
-        }
-        function messageHandler(_ref56, topicHandler) {
-          var origin = _ref56.origin, dataString = _ref56.data, win = _ref56.source;
-          try {
-            var data = parseMessage(dataString) || {};
-            var channelId = data.channelId, message = data.message, messageId = data.messageId;
-            if (!originIsAllowed(origin) || !isNewMessage(messageId)) {
-              return;
-            }
-            if (message instanceof Error && win.parent !== window2) {
-              axe2.log(message);
-              return false;
-            }
-            try {
-              if (data.topic) {
-                var responder = createResponder(win, channelId);
-                assertIsParentWindow(win);
-                topicHandler(data, responder);
-              } else {
-                callReplyHandler(win, data);
-              }
-            } catch (error) {
-              processError(win, error, channelId);
-            }
-          } catch (error) {
-            axe2.log(error);
-            return false;
-          }
-        }
-        function callReplyHandler(win, data) {
-          var channelId = data.channelId, message = data.message, keepalive = data.keepalive;
-          var _ref57 = getReplyHandler(channelId) || {}, replyHandler = _ref57.replyHandler, sendToParent = _ref57.sendToParent;
-          if (!replyHandler) {
-            return;
-          }
-          sendToParent ? assertIsParentWindow(win) : assertIsFrameWindow(win);
-          var responder = createResponder(win, channelId, sendToParent);
-          if (!keepalive && channelId) {
-            deleteReplyHandler(channelId);
-          }
-          try {
-            replyHandler(message, keepalive, responder);
-          } catch (error) {
-            axe2.log(error);
-            responder(error, keepalive);
-          }
-        }
-        var frameMessenger = {
-          open: function open(topicHandler) {
-            if (typeof window2.addEventListener !== "function") {
-              return;
-            }
-            var handler = function handler2(messageEvent) {
-              messageHandler(messageEvent, topicHandler);
-            };
-            window2.addEventListener("message", handler, false);
-            return function() {
-              window2.removeEventListener("message", handler, false);
-            };
-          },
-          post: function post(win, data, replyHandler) {
-            if (typeof window2.addEventListener !== "function") {
-              return false;
-            }
-            return postMessage(win, data, false, replyHandler);
-          }
-        };
-        function setDefaultFrameMessenger(respondable2) {
-          respondable2.updateMessenger(frameMessenger);
-        }
-        var closeHandler;
-        var postMessage2;
-        var topicHandlers = {};
-        function _respondable(win, topic, message, keepalive, replyHandler) {
-          var data = {
-            topic,
-            message,
-            channelId: "".concat(v4(), ":").concat(v4()),
-            keepalive
-          };
-          return postMessage2(win, data, replyHandler);
-        }
-        function messageListener(data, responder) {
-          var topic = data.topic, message = data.message, keepalive = data.keepalive;
-          var topicHandler = topicHandlers[topic];
-          if (!topicHandler) {
-            return;
-          }
-          try {
-            topicHandler(message, keepalive, responder);
-          } catch (error) {
-            axe2.log(error);
-            responder(error, keepalive);
-          }
-        }
-        _respondable.updateMessenger = function updateMessenger(_ref58) {
-          var open = _ref58.open, post = _ref58.post;
-          assert_default(typeof open === "function", "open callback must be a function");
-          assert_default(typeof post === "function", "post callback must be a function");
-          if (closeHandler) {
-            closeHandler();
-          }
-          var close = open(messageListener);
-          if (close) {
-            assert_default(typeof close === "function", "open callback must return a cleanup function");
-            closeHandler = close;
-          } else {
-            closeHandler = null;
-          }
-          postMessage2 = post;
-        };
-        _respondable.subscribe = function subscribe(topic, topicHandler) {
-          assert_default(typeof topicHandler === "function", "Subscriber callback must be a function");
-          assert_default(!topicHandlers[topic], "Topic ".concat(topic, " is already registered to."));
-          topicHandlers[topic] = topicHandler;
-        };
-        _respondable.isInFrame = function isInFrame() {
-          var win = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : window2;
-          return !!win.frameElement;
-        };
-        setDefaultFrameMessenger(_respondable);
-        function _sendCommandToFrame(node, parameters, resolve, reject) {
-          var _parameters$options$p, _parameters$options;
-          var win = node.contentWindow;
-          var pingWaitTime = (_parameters$options$p = (_parameters$options = parameters.options) === null || _parameters$options === void 0 ? void 0 : _parameters$options.pingWaitTime) !== null && _parameters$options$p !== void 0 ? _parameters$options$p : 500;
-          if (!win) {
-            log_default("Frame does not have a content window", node);
-            resolve(null);
-            return;
-          }
-          if (pingWaitTime === 0) {
-            callAxeStart(node, parameters, resolve, reject);
-            return;
-          }
-          var timeout = setTimeout(function() {
-            timeout = setTimeout(function() {
-              if (!parameters.debug) {
-                resolve(null);
-              } else {
-                reject(err("No response from frame", node));
-              }
-            }, 0);
-          }, pingWaitTime);
-          _respondable(win, "axe.ping", null, void 0, function() {
-            clearTimeout(timeout);
-            callAxeStart(node, parameters, resolve, reject);
-          });
-        }
-        function callAxeStart(node, parameters, resolve, reject) {
-          var _parameters$options$f, _parameters$options2;
-          var frameWaitTime = (_parameters$options$f = (_parameters$options2 = parameters.options) === null || _parameters$options2 === void 0 ? void 0 : _parameters$options2.frameWaitTime) !== null && _parameters$options$f !== void 0 ? _parameters$options$f : 6e4;
-          var win = node.contentWindow;
-          var timeout = setTimeout(function collectResultFramesTimeout() {
-            reject(err("Axe in frame timed out", node));
-          }, frameWaitTime);
-          _respondable(win, "axe.start", parameters, void 0, function(data) {
-            clearTimeout(timeout);
-            if (data instanceof Error === false) {
-              resolve(data);
-            } else {
-              reject(data);
-            }
-          });
-        }
-        function err(message, node) {
-          var selector;
-          if (axe2._tree) {
-            selector = get_selector_default(node);
-          }
-          return new Error(message + ": " + (selector || node));
-        }
-        var customSerializer = null;
-        var nodeSerializer = {
-          update: function update(serializer) {
-            assert_default(_typeof(serializer) === "object", "serializer must be an object");
-            customSerializer = serializer;
-          },
-          toSpec: function toSpec(node) {
-            return nodeSerializer.dqElmToSpec(new dq_element_default(node));
-          },
-          dqElmToSpec: function dqElmToSpec(dqElm, runOptions) {
-            var _customSerializer;
-            if (dqElm instanceof dq_element_default === false) {
-              return dqElm;
-            }
-            if (runOptions) {
-              dqElm = cloneLimitedDqElement(dqElm, runOptions);
-            }
-            if (typeof ((_customSerializer = customSerializer) === null || _customSerializer === void 0 ? void 0 : _customSerializer.toSpec) === "function") {
-              return customSerializer.toSpec(dqElm);
-            }
-            return dqElm.toJSON();
-          },
-          mergeSpecs: function mergeSpecs(nodeSpec, parentFrameSpec) {
-            var _customSerializer2;
-            if (typeof ((_customSerializer2 = customSerializer) === null || _customSerializer2 === void 0 ? void 0 : _customSerializer2.mergeSpecs) === "function") {
-              return customSerializer.mergeSpecs(nodeSpec, parentFrameSpec);
-            }
-            return dq_element_default.mergeSpecs(nodeSpec, parentFrameSpec);
-          },
-          mapRawResults: function mapRawResults(rawResults) {
-            return rawResults.map(function(rawResult) {
-              return _extends({}, rawResult, {
-                nodes: nodeSerializer.mapRawNodeResults(rawResult.nodes)
-              });
-            });
-          },
-          mapRawNodeResults: function mapRawNodeResults(nodeResults) {
-            return nodeResults === null || nodeResults === void 0 ? void 0 : nodeResults.map(function(_ref59) {
-              var node = _ref59.node, nodeResult = _objectWithoutProperties(_ref59, _excluded1);
-              nodeResult.node = nodeSerializer.dqElmToSpec(node);
-              for (var _i6 = 0, _arr2 = ["any", "all", "none"]; _i6 < _arr2.length; _i6++) {
-                var type2 = _arr2[_i6];
-                nodeResult[type2] = nodeResult[type2].map(function(_ref60) {
-                  var relatedNodes = _ref60.relatedNodes, checkResult = _objectWithoutProperties(_ref60, _excluded10);
-                  checkResult.relatedNodes = relatedNodes.map(nodeSerializer.dqElmToSpec);
-                  return checkResult;
-                });
-              }
-              return nodeResult;
-            });
-          }
-        };
-        var node_serializer_default = nodeSerializer;
-        function cloneLimitedDqElement(dqElm, runOptions) {
-          var fromFrame2 = dqElm.fromFrame;
-          var hasAncestry = runOptions.ancestry, hasXpath = runOptions.xpath;
-          var hasSelectors = runOptions.selectors !== false || fromFrame2;
-          dqElm = new dq_element_default(dqElm.element, runOptions, {
-            source: dqElm.source,
-            nodeIndexes: dqElm.nodeIndexes,
-            selector: hasSelectors ? dqElm.selector : [":root"],
-            ancestry: hasAncestry ? dqElm.ancestry : [":root"],
-            xpath: hasXpath ? dqElm.xpath : "/"
-          });
-          dqElm.fromFrame = fromFrame2;
-          return dqElm;
-        }
-        function getAllChecks(object) {
-          var result = [];
-          return result.concat(object.any || []).concat(object.all || []).concat(object.none || []);
-        }
-        var get_all_checks_default = getAllChecks;
-        function findBy(array, key2, value) {
-          if (Array.isArray(array)) {
-            return array.find(function(obj) {
-              return obj !== null && _typeof(obj) === "object" && Object.hasOwn(obj, key2) && obj[key2] === value;
-            });
-          }
-        }
-        var find_by_default = findBy;
-        function pushFrame(resultSet, options2, frameSpec) {
-          resultSet.forEach(function(res) {
-            res.node = node_serializer_default.mergeSpecs(res.node, frameSpec);
-            var checks = get_all_checks_default(res);
-            checks.forEach(function(check) {
-              check.relatedNodes = check.relatedNodes.map(function(node) {
-                return node_serializer_default.mergeSpecs(node, frameSpec);
-              });
-            });
-          });
-        }
-        function spliceNodes(target, to2) {
-          var firstFromFrame = to2[0].node;
-          var node;
-          for (var _i7 = 0; _i7 < target.length; _i7++) {
-            node = target[_i7].node;
-            var resultSort = nodeIndexSort(node.nodeIndexes, firstFromFrame.nodeIndexes);
-            if (resultSort > 0 || resultSort === 0 && firstFromFrame.selector.length < node.selector.length) {
-              target.splice.apply(target, [_i7, 0].concat(_toConsumableArray(to2)));
-              return;
-            }
-          }
-          target.push.apply(target, _toConsumableArray(to2));
-        }
-        function normalizeResult(result) {
-          if (!result || !result.results) {
-            return null;
-          }
-          if (!Array.isArray(result.results)) {
-            return [result.results];
-          }
-          if (!result.results.length) {
-            return null;
-          }
-          return result.results;
-        }
-        function mergeResults(frameResults, options2) {
-          var mergedResult = [];
-          frameResults.forEach(function(frameResult) {
-            var results = normalizeResult(frameResult);
-            if (!results || !results.length) {
-              return;
-            }
-            var frameSpec = getFrameSpec(frameResult);
-            results.forEach(function(ruleResult) {
-              if (ruleResult.nodes && frameSpec) {
-                pushFrame(ruleResult.nodes, options2, frameSpec);
-              }
-              var res = find_by_default(mergedResult, "id", ruleResult.id);
-              if (!res) {
-                mergedResult.push(ruleResult);
-              } else {
-                if (ruleResult.nodes.length) {
-                  spliceNodes(res.nodes, ruleResult.nodes);
-                }
-                if (ruleResult.error) {
-                  var _res$error;
-                  (_res$error = res.error) !== null && _res$error !== void 0 ? _res$error : res.error = ruleResult.error;
-                }
-              }
-            });
-          });
-          mergedResult.forEach(function(result) {
-            if (result.nodes) {
-              result.nodes.sort(function(nodeA, nodeB) {
-                return nodeIndexSort(nodeA.node.nodeIndexes, nodeB.node.nodeIndexes);
-              });
-            }
-          });
-          return mergedResult;
-        }
-        function nodeIndexSort() {
-          var nodeIndexesA = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : [];
-          var nodeIndexesB = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : [];
-          var length = Math.max(nodeIndexesA === null || nodeIndexesA === void 0 ? void 0 : nodeIndexesA.length, nodeIndexesB === null || nodeIndexesB === void 0 ? void 0 : nodeIndexesB.length);
-          for (var _i8 = 0; _i8 < length; _i8++) {
-            var indexA = nodeIndexesA === null || nodeIndexesA === void 0 ? void 0 : nodeIndexesA[_i8];
-            var indexB = nodeIndexesB === null || nodeIndexesB === void 0 ? void 0 : nodeIndexesB[_i8];
-            if (typeof indexA !== "number" || isNaN(indexA)) {
-              return _i8 === 0 ? 1 : -1;
-            }
-            if (typeof indexB !== "number" || isNaN(indexB)) {
-              return _i8 === 0 ? -1 : 1;
-            }
-            if (indexA !== indexB) {
-              return indexA - indexB;
-            }
-          }
-          return 0;
-        }
-        var merge_results_default = mergeResults;
-        function getFrameSpec(frameResult) {
-          if (frameResult.frameElement) {
-            return node_serializer_default.toSpec(frameResult.frameElement);
-          } else if (frameResult.frameSpec) {
-            return frameResult.frameSpec;
-          }
-          return null;
-        }
-        function _collectResultsFromFrames(parentContent, options2, command, parameter, resolve, reject) {
-          options2 = _extends({}, options2, {
-            elementRef: false
-          });
-          var q = queue_default();
-          var frames = parentContent.frames;
-          frames.forEach(function(_ref61) {
-            var frameElement = _ref61.node, context = _objectWithoutProperties(_ref61, _excluded11);
-            q.defer(function(res, rej) {
-              var params = {
-                options: options2,
-                command,
-                parameter,
-                context
-              };
-              function callback(results) {
-                if (!results) {
-                  return res(null);
-                }
-                return res({
-                  results,
-                  frameElement
-                });
-              }
-              _sendCommandToFrame(frameElement, params, callback, rej);
-            });
-          });
-          q.then(function(data) {
-            resolve(merge_results_default(data, options2));
-          })["catch"](reject);
-        }
-        function _contains(vNode, otherVNode) {
-          if (!vNode.shadowId && !otherVNode.shadowId && vNode.actualNode && typeof vNode.actualNode.contains === "function") {
-            return vNode.actualNode.contains(otherVNode.actualNode);
-          }
-          do {
-            if (vNode === otherVNode) {
-              return true;
-            } else if (otherVNode.nodeIndex < vNode.nodeIndex) {
-              return false;
-            }
-            otherVNode = otherVNode.parent;
-          } while (otherVNode);
-          return false;
-        }
-        function deepMerge() {
-          var target = {};
-          for (var _len6 = arguments.length, sources = new Array(_len6), _key8 = 0; _key8 < _len6; _key8++) {
-            sources[_key8] = arguments[_key8];
-          }
-          sources.forEach(function(source) {
-            if (!source || _typeof(source) !== "object" || Array.isArray(source)) {
-              return;
-            }
-            for (var _i9 = 0, _Object$keys2 = Object.keys(source); _i9 < _Object$keys2.length; _i9++) {
-              var _key9 = _Object$keys2[_i9];
-              if (!target.hasOwnProperty(_key9) || _typeof(source[_key9]) !== "object" || Array.isArray(target[_key9])) {
-                target[_key9] = source[_key9];
-              } else {
-                target[_key9] = deepMerge(target[_key9], source[_key9]);
-              }
-            }
-          });
-          return target;
-        }
-        var deep_merge_default = deepMerge;
-        function extendMetaData(to2, from) {
-          Object.assign(to2, from);
-          Object.keys(from).filter(function(prop) {
-            return typeof from[prop] === "function";
-          }).forEach(function(prop) {
-            to2[prop] = null;
-            try {
-              to2[prop] = from[prop](to2);
-            } catch (_unused4) {
-            }
-          });
-        }
-        var extend_meta_data_default = extendMetaData;
-        var possibleShadowRoots = ["article", "aside", "blockquote", "body", "div", "footer", "h1", "h2", "h3", "h4", "h5", "h6", "header", "main", "nav", "p", "section", "span"];
-        function isShadowRoot(node) {
-          if (node.shadowRoot) {
-            var nodeName2 = node.nodeName.toLowerCase();
-            if (possibleShadowRoots.includes(nodeName2) || /^[a-z][a-z0-9_.-]*-[a-z0-9_.-]*$/.test(nodeName2)) {
-              return true;
-            }
-          }
-          return false;
-        }
-        var is_shadow_root_default = isShadowRoot;
         function tokenList(str2) {
           return (str2 || "").trim().replace(/\s{2,}/g, " ").split(" ");
         }
@@ -22614,8 +22874,8 @@ var require_axe = __commonJS({
             return;
           }
           var shadowId = domTree[0].shadowId;
-          for (var _i0 = 0; _i0 < expressions.length; _i0++) {
-            if (expressions[_i0].length > 1 && expressions[_i0].some(function(expression) {
+          for (var _i14 = 0; _i14 < expressions.length; _i14++) {
+            if (expressions[_i14].length > 1 && expressions[_i14].some(function(expression) {
               return isGlobalSelector(expression);
             })) {
               return;
@@ -22676,9 +22936,9 @@ var require_axe = __commonJS({
               nodes = nodes ? getSharedValues(_cachedNodes, nodes) : _cachedNodes;
             }
             if (exp.attributes) {
-              for (var _i1 = 0; _i1 < exp.attributes.length; _i1++) {
+              for (var _i15 = 0; _i15 < exp.attributes.length; _i15++) {
                 var _selectorMap;
-                var attr = exp.attributes[_i1];
+                var attr = exp.attributes[_i15];
                 if (attr.type === "attrValue") {
                   isComplexSelector = true;
                 }
@@ -23024,7 +23284,7 @@ var require_axe = __commonJS({
             return {};
           }
           var navigator = win.navigator, innerHeight = win.innerHeight, innerWidth = win.innerWidth;
-          var _ref62 = getOrientation(win) || {}, angle = _ref62.angle, type2 = _ref62.type;
+          var _ref67 = getOrientation(win) || {}, angle = _ref67.angle, type2 = _ref67.type;
           return {
             userAgent: navigator.userAgent,
             windowWidth: innerWidth,
@@ -23033,12 +23293,12 @@ var require_axe = __commonJS({
             orientationType: type2
           };
         }
-        function getOrientation(_ref63) {
-          var screen = _ref63.screen;
+        function getOrientation(_ref68) {
+          var screen = _ref68.screen;
           return screen.orientation || screen.msOrientation || screen.mozOrientation;
         }
-        function createFrameContext(frame, _ref64) {
-          var focusable = _ref64.focusable, page = _ref64.page;
+        function createFrameContext(frame, _ref69) {
+          var focusable = _ref69.focusable, page = _ref69.page;
           return {
             node: frame,
             include: [],
@@ -23098,8 +23358,8 @@ var require_axe = __commonJS({
           if (!_isArrayLike(selectorList)) {
             selectorList = [selectorList];
           }
-          for (var _i10 = 0; _i10 < selectorList.length; _i10++) {
-            var normalizedSelector = normalizeContextSelector(selectorList[_i10]);
+          for (var _i16 = 0; _i16 < selectorList.length; _i16++) {
+            var normalizedSelector = normalizeContextSelector(selectorList[_i16]);
             if (normalizedSelector) {
               normalizedList.push(normalizedSelector);
             }
@@ -23126,10 +23386,10 @@ var require_axe = __commonJS({
             return;
           }
           var normalizedSelectors = [];
-          var _iterator11 = _createForOfIteratorHelper(frameSelectors), _step11;
+          var _iterator10 = _createForOfIteratorHelper(frameSelectors), _step10;
           try {
-            for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
-              var selector = _step11.value;
+            for (_iterator10.s(); !(_step10 = _iterator10.n()).done; ) {
+              var selector = _step10.value;
               if (_isLabelledShadowDomSelector(selector)) {
                 assertLabelledShadowDomSelector(selector);
                 selector = selector.fromShadowDom;
@@ -23140,9 +23400,9 @@ var require_axe = __commonJS({
               normalizedSelectors.push(selector);
             }
           } catch (err2) {
-            _iterator11.e(err2);
+            _iterator10.e(err2);
           } finally {
-            _iterator11.f();
+            _iterator10.f();
           }
           return normalizedSelectors;
         }
@@ -23172,8 +23432,8 @@ var require_axe = __commonJS({
         }
         function parseSelectorArray(context, type2) {
           var result = [];
-          for (var _i11 = 0, l = context[type2].length; _i11 < l; _i11++) {
-            var item = context[type2][_i11];
+          for (var _i17 = 0, l = context[type2].length; _i17 < l; _i17++) {
+            var item = context[type2][_i17];
             if (item instanceof window2.Node) {
               if (item.documentElement instanceof window2.Node) {
                 result.push(context.flatTree[0]);
@@ -23252,8 +23512,8 @@ var require_axe = __commonJS({
           }
           context.frames.push(createFrameContext(frame, context));
         }
-        function isPageContext(_ref65) {
-          var include = _ref65.include;
+        function isPageContext(_ref70) {
+          var include = _ref70.include;
           return include.length === 1 && include[0].actualNode === document2.documentElement;
         }
         function validateContext(context) {
@@ -23262,11 +23522,11 @@ var require_axe = __commonJS({
             throw new Error("No elements found for include in " + env + " Context");
           }
         }
-        function getRootNode2(_ref66) {
-          var include = _ref66.include, exclude = _ref66.exclude;
+        function getRootNode2(_ref71) {
+          var include = _ref71.include, exclude = _ref71.exclude;
           var selectors = Array.from(include).concat(Array.from(exclude));
-          for (var _i12 = 0; _i12 < selectors.length; _i12++) {
-            var item = selectors[_i12];
+          for (var _i18 = 0; _i18 < selectors.length; _i18++) {
+            var item = selectors[_i18];
             if (item instanceof window2.Element) {
               return item.ownerDocument.documentElement;
             }
@@ -23282,8 +23542,8 @@ var require_axe = __commonJS({
             return [];
           }
           var _Context = new Context(context), frames = _Context.frames;
-          return frames.map(function(_ref67) {
-            var node = _ref67.node, frameContext = _objectWithoutProperties(_ref67, _excluded12);
+          return frames.map(function(_ref72) {
+            var node = _ref72.node, frameContext = _objectWithoutProperties(_ref72, _excluded12);
             frameContext.initiator = false;
             var frameSelector = _getAncestry(node);
             return {
@@ -23293,8 +23553,8 @@ var require_axe = __commonJS({
           });
         }
         function _getRule(ruleId) {
-          var rule = axe2._audit.rules.find(function(_ref68) {
-            var id2 = _ref68.id;
+          var rule = axe2._audit.rules.find(function(_ref73) {
+            var id2 = _ref73.id;
             return id2 === ruleId;
           });
           if (!rule) {
@@ -23376,6 +23636,75 @@ var require_axe = __commonJS({
           };
         }
         var get_stylesheet_factory_default = getStyleSheetFactory;
+        var propNames = ["_internals", "internals", "internals_"];
+        var symbolNames = ["internals", "privateInternals"];
+        function _getElementInternals(node) {
+          var _globalThis$_elementI;
+          if (!_isValidCustomElementName(node.nodeName.toLowerCase())) {
+            return;
+          }
+          var mapInternals = (_globalThis$_elementI = globalThis._elementInternals) === null || _globalThis$_elementI === void 0 ? void 0 : _globalThis$_elementI.get(node);
+          if (mapInternals) {
+            return mapInternals;
+          }
+          if (!("ElementInternals" in window2)) {
+            return;
+          }
+          var _iterator11 = _createForOfIteratorHelper(propNames), _step11;
+          try {
+            for (_iterator11.s(); !(_step11 = _iterator11.n()).done; ) {
+              var _Object$getOwnPropert;
+              var propName = _step11.value;
+              if ((_Object$getOwnPropert = Object.getOwnPropertyDescriptor(node, propName)) !== null && _Object$getOwnPropert !== void 0 && _Object$getOwnPropert.get) {
+                continue;
+              }
+              if (node[propName] instanceof window2.ElementInternals) {
+                return node[propName];
+              }
+            }
+          } catch (err2) {
+            _iterator11.e(err2);
+          } finally {
+            _iterator11.f();
+          }
+          var ownSymbols = Object.getOwnPropertySymbols(node);
+          if (!ownSymbols.length) {
+            return;
+          }
+          var _iterator12 = _createForOfIteratorHelper(symbolNames), _step12;
+          try {
+            var _loop8 = function _loop82() {
+              var symbolName = _step12.value;
+              var symbol = ownSymbols.find(function(s) {
+                return s.description === symbolName;
+              });
+              if (symbol) {
+                var _Object$getOwnPropert2;
+                if ((_Object$getOwnPropert2 = Object.getOwnPropertyDescriptor(node, symbol)) !== null && _Object$getOwnPropert2 !== void 0 && _Object$getOwnPropert2.get) {
+                  return 0;
+                }
+                if (node[symbol] instanceof window2.ElementInternals) {
+                  return {
+                    v: node[symbol]
+                  };
+                }
+              }
+            }, _ret4;
+            for (_iterator12.s(); !(_step12 = _iterator12.n()).done; ) {
+              _ret4 = _loop8();
+              if (_ret4 === 0) {
+                continue;
+              }
+              if (_ret4) {
+                return _ret4.v;
+              }
+            }
+          } catch (err2) {
+            _iterator12.e(err2);
+          } finally {
+            _iterator12.f();
+          }
+        }
         var styleSheet;
         function injectStyle(style) {
           if (styleSheet && styleSheet.parentNode) {
@@ -23450,7 +23779,7 @@ var require_axe = __commonJS({
           return hidden;
         }
         var is_hidden_default = isHidden;
-        function isHtmlElement(node) {
+        function _isHtmlElement(node) {
           var _node$props$nodeName, _node$props;
           var nodeName2 = (_node$props$nodeName = (_node$props = node.props) === null || _node$props === void 0 ? void 0 : _node$props.nodeName) !== null && _node$props$nodeName !== void 0 ? _node$props$nodeName : node.nodeName.toLowerCase();
           if (node.namespaceURI === "http://www.w3.org/2000/svg") {
@@ -23458,9 +23787,8 @@ var require_axe = __commonJS({
           }
           return !!standards_default.htmlElms[nodeName2];
         }
-        var is_html_element_default = isHtmlElement;
-        function _isNodeInContext(node, _ref69) {
-          var _ref69$include = _ref69.include, include = _ref69$include === void 0 ? [] : _ref69$include, _ref69$exclude = _ref69.exclude, exclude = _ref69$exclude === void 0 ? [] : _ref69$exclude;
+        function _isNodeInContext(node, _ref74) {
+          var _ref74$include = _ref74.include, include = _ref74$include === void 0 ? [] : _ref74$include, _ref74$exclude = _ref74.exclude, exclude = _ref74$exclude === void 0 ? [] : _ref74$exclude;
           var filterInclude = include.filter(function(candidate) {
             return _contains(candidate, node);
           });
@@ -23479,18 +23807,18 @@ var require_axe = __commonJS({
         }
         function getDeepest(collection) {
           var deepest;
-          var _iterator12 = _createForOfIteratorHelper(collection), _step12;
+          var _iterator13 = _createForOfIteratorHelper(collection), _step13;
           try {
-            for (_iterator12.s(); !(_step12 = _iterator12.n()).done; ) {
-              var node = _step12.value;
+            for (_iterator13.s(); !(_step13 = _iterator13.n()).done; ) {
+              var node = _step13.value;
               if (!deepest || !_contains(node, deepest)) {
                 deepest = node;
               }
             }
           } catch (err2) {
-            _iterator12.e(err2);
+            _iterator13.e(err2);
           } finally {
-            _iterator12.f();
+            _iterator13.f();
           }
           return deepest;
         }
@@ -23605,6 +23933,9 @@ var require_axe = __commonJS({
         }
         var parse_stylesheet_default = parseStylesheet;
         function parseCrossOriginStylesheet(url, options2, priority, importedUrls, isCrossOrigin) {
+          if (url === null || url === void 0) {
+            return Promise.resolve();
+          }
           importedUrls.push(url);
           return new Promise(function(resolve, reject) {
             var request = new window2.XMLHttpRequest();
@@ -23715,8 +24046,8 @@ var require_axe = __commonJS({
               var measures = window2.performance.getEntriesByType("measure").filter(function(measure) {
                 return measure.startTime >= axeStart.startTime;
               });
-              for (var _i13 = 0; _i13 < measures.length; ++_i13) {
-                var req = measures[_i13];
+              for (var _i19 = 0; _i19 < measures.length; ++_i19) {
+                var req = measures[_i19];
                 if (req.name === measureName) {
                   logMeasure(req);
                   return;
@@ -23737,8 +24068,8 @@ var require_axe = __commonJS({
               for (var _len7 = arguments.length, markNames = new Array(_len7), _key0 = 0; _key0 < _len7; _key0++) {
                 markNames[_key0] = arguments[_key0];
               }
-              for (var _i14 = 0, _markNames = markNames; _i14 < _markNames.length; _i14++) {
-                var markName = _markNames[_i14];
+              for (var _i20 = 0, _markNames = markNames; _i20 < _markNames.length; _i20++) {
+                var markName = _markNames[_i20];
                 window2.performance.clearMarks(markName);
               }
             },
@@ -23746,7 +24077,7 @@ var require_axe = __commonJS({
               axeStartTime = now();
             },
             _log: function _log(message) {
-              log_default(message);
+              log(message);
             }
           };
         })();
@@ -23824,9 +24155,9 @@ var require_axe = __commonJS({
             var childAny = null;
             var combinedLength = (((_currentLevel$anyLeve = currentLevel.anyLevel) === null || _currentLevel$anyLeve === void 0 ? void 0 : _currentLevel$anyLeve.length) || 0) + (((_currentLevel$thisLev = currentLevel.thisLevel) === null || _currentLevel$thisLev === void 0 ? void 0 : _currentLevel$thisLev.length) || 0);
             var added = false;
-            for (var _i15 = 0; _i15 < combinedLength; _i15++) {
+            for (var _i21 = 0; _i21 < combinedLength; _i21++) {
               var _currentLevel$anyLeve2, _currentLevel$anyLeve3, _currentLevel$anyLeve4;
-              var exp = _i15 < (((_currentLevel$anyLeve2 = currentLevel.anyLevel) === null || _currentLevel$anyLeve2 === void 0 ? void 0 : _currentLevel$anyLeve2.length) || 0) ? currentLevel.anyLevel[_i15] : currentLevel.thisLevel[_i15 - (((_currentLevel$anyLeve3 = currentLevel.anyLevel) === null || _currentLevel$anyLeve3 === void 0 ? void 0 : _currentLevel$anyLeve3.length) || 0)];
+              var exp = _i21 < (((_currentLevel$anyLeve2 = currentLevel.anyLevel) === null || _currentLevel$anyLeve2 === void 0 ? void 0 : _currentLevel$anyLeve2.length) || 0) ? currentLevel.anyLevel[_i21] : currentLevel.thisLevel[_i21 - (((_currentLevel$anyLeve3 = currentLevel.anyLevel) === null || _currentLevel$anyLeve3 === void 0 ? void 0 : _currentLevel$anyLeve3.length) || 0)];
               if ((!exp[0].id || vNode.shadowId === currentLevel.parentShadowId) && _matchesExpression(vNode, exp[0])) {
                 if (exp.length === 1) {
                   if (!added && (!filter || filter(vNode))) {
@@ -23870,8 +24201,8 @@ var require_axe = __commonJS({
           return matchExpressions(domTree, expressions, filter);
         }
         var query_selector_all_filter_default = querySelectorAllFilter;
-        function preloadCssom(_ref70) {
-          var _ref70$treeRoot = _ref70.treeRoot, treeRoot = _ref70$treeRoot === void 0 ? axe2._tree[0] : _ref70$treeRoot;
+        function preloadCssom(_ref75) {
+          var _ref75$treeRoot = _ref75.treeRoot, treeRoot = _ref75$treeRoot === void 0 ? axe2._tree[0] : _ref75$treeRoot;
           var rootNodes = getAllRootNodesInTree(treeRoot);
           if (!rootNodes.length) {
             return Promise.resolve();
@@ -23901,8 +24232,8 @@ var require_axe = __commonJS({
         }
         function getCssomForAllRootNodes(rootNodes, convertDataToStylesheet) {
           var promises = [];
-          rootNodes.forEach(function(_ref71, index) {
-            var rootNode = _ref71.rootNode, shadowId = _ref71.shadowId;
+          rootNodes.forEach(function(_ref76, index) {
+            var rootNode = _ref76.rootNode, shadowId = _ref76.shadowId;
             var sheets = getStylesheetsOfRootNode(rootNode, shadowId, convertDataToStylesheet);
             if (!sheets) {
               return Promise.all(promises);
@@ -23988,10 +24319,10 @@ var require_axe = __commonJS({
             return true;
           });
         }
-        function preloadMedia(_ref72) {
-          var _ref72$treeRoot = _ref72.treeRoot, treeRoot = _ref72$treeRoot === void 0 ? axe2._tree[0] : _ref72$treeRoot;
-          var mediaVirtualNodes = query_selector_all_filter_default(treeRoot, "video[autoplay], audio[autoplay]", function(_ref73) {
-            var actualNode = _ref73.actualNode;
+        function preloadMedia(_ref77) {
+          var _ref77$treeRoot = _ref77.treeRoot, treeRoot = _ref77$treeRoot === void 0 ? axe2._tree[0] : _ref77$treeRoot;
+          var mediaVirtualNodes = query_selector_all_filter_default(treeRoot, "video[autoplay], audio[autoplay]", function(_ref78) {
+            var actualNode = _ref78.actualNode;
             if (actualNode.preload === "none" && actualNode.readyState === 0 && actualNode.networkState !== actualNode.NETWORK_LOADING) {
               return false;
             }
@@ -24009,8 +24340,8 @@ var require_axe = __commonJS({
             }
             return true;
           });
-          return Promise.all(mediaVirtualNodes.map(function(_ref74) {
-            var actualNode = _ref74.actualNode;
+          return Promise.all(mediaVirtualNodes.map(function(_ref79) {
+            var actualNode = _ref79.actualNode;
             return isMediaElementReady(actualNode);
           }));
         }
@@ -24259,8 +24590,8 @@ var require_axe = __commonJS({
           }
           var outerIncludes = getOuterIncludes(context.include);
           var isInContext = getContextFilter(context);
-          for (var _i16 = 0; _i16 < outerIncludes.length; _i16++) {
-            candidate = outerIncludes[_i16];
+          for (var _i22 = 0; _i22 < outerIncludes.length; _i22++) {
+            candidate = outerIncludes[_i22];
             var nodes = query_selector_all_filter_default(candidate, selector, isInContext);
             result = mergeArrayUniques(result, nodes);
           }
@@ -24297,9 +24628,9 @@ var require_axe = __commonJS({
             arr1 = arr2;
             arr2 = temp;
           }
-          for (var _i17 = 0, l = arr2.length; _i17 < l; _i17++) {
-            if (!arr1.includes(arr2[_i17])) {
-              arr1.push(arr2[_i17]);
+          for (var _i23 = 0, l = arr2.length; _i23 < l; _i23++) {
+            if (!arr1.includes(arr2[_i23])) {
+              arr1.push(arr2[_i23]);
             }
           }
           return arr1;
@@ -24312,18 +24643,18 @@ var require_axe = __commonJS({
             };
           }
           var serial = {};
-          var _iterator13 = _createForOfIteratorHelper(constants_default.serializableErrorProps), _step13;
+          var _iterator14 = _createForOfIteratorHelper(constants_default.serializableErrorProps), _step14;
           try {
-            for (_iterator13.s(); !(_step13 = _iterator13.n()).done; ) {
-              var prop = _step13.value;
+            for (_iterator14.s(); !(_step14 = _iterator14.n()).done; ) {
+              var prop = _step14.value;
               if (["string", "number", "boolean"].includes(_typeof(err2[prop]))) {
                 serial[prop] = err2[prop];
               }
             }
           } catch (err3) {
-            _iterator13.e(err3);
+            _iterator14.e(err3);
           } finally {
-            _iterator13.f();
+            _iterator14.f();
           }
           if (err2.cause) {
             serial.cause = iteration < 10 ? _serializeError(err2.cause, iteration + 1) : "...";
@@ -24331,10 +24662,10 @@ var require_axe = __commonJS({
           return serial;
         }
         var RuleError = (function(_Error) {
-          function RuleError2(_ref76) {
+          function RuleError2(_ref81) {
             var _error$name;
             var _this7;
-            var error = _ref76.error, ruleId = _ref76.ruleId, method = _ref76.method, errorNode = _ref76.errorNode;
+            var error = _ref81.error, ruleId = _ref81.ruleId, method = _ref81.method, errorNode = _ref81.errorNode;
             _classCallCheck(this, RuleError2);
             _this7 = _callSuper(this, RuleError2);
             _this7.name = (_error$name = error.name) !== null && _error$name !== void 0 ? _error$name : "RuleError";
@@ -24368,8 +24699,8 @@ var require_axe = __commonJS({
           }
         }
         function setScrollState(scrollState) {
-          scrollState.forEach(function(_ref77) {
-            var elm = _ref77.elm, top = _ref77.top, left = _ref77.left;
+          scrollState.forEach(function(_ref82) {
+            var elm = _ref82.elm, top = _ref82.top, left = _ref82.left;
             return setScroll(elm, top, left);
           });
         }
@@ -24397,25 +24728,25 @@ var require_axe = __commonJS({
           }
           return selectAllRecursive(selectorArr, doc);
         }
-        function selectAllRecursive(_ref78, doc) {
-          var _ref79 = _toArray(_ref78), selectorStr = _ref79[0], restSelector = _arrayLikeToArray(_ref79).slice(1);
+        function selectAllRecursive(_ref83, doc) {
+          var _ref84 = _toArray(_ref83), selectorStr = _ref84[0], restSelector = _arrayLikeToArray(_ref84).slice(1);
           var elms = doc.querySelectorAll(selectorStr);
           if (restSelector.length === 0) {
             return Array.from(elms);
           }
           var selected = [];
-          var _iterator14 = _createForOfIteratorHelper(elms), _step14;
+          var _iterator15 = _createForOfIteratorHelper(elms), _step15;
           try {
-            for (_iterator14.s(); !(_step14 = _iterator14.n()).done; ) {
-              var elm = _step14.value;
+            for (_iterator15.s(); !(_step15 = _iterator15.n()).done; ) {
+              var elm = _step15.value;
               if (elm !== null && elm !== void 0 && elm.shadowRoot) {
                 selected.push.apply(selected, _toConsumableArray(selectAllRecursive(restSelector, elm.shadowRoot)));
               }
             }
           } catch (err2) {
-            _iterator14.e(err2);
+            _iterator15.e(err2);
           } finally {
-            _iterator14.f();
+            _iterator15.f();
           }
           return selected;
         }
@@ -24429,8 +24760,8 @@ var require_axe = __commonJS({
           while (lang.length < 3) {
             lang += "`";
           }
-          for (var _i18 = 0; _i18 <= lang.length - 1; _i18++) {
-            var index = lang.charCodeAt(_i18) - 96;
+          for (var _i24 = 0; _i24 <= lang.length - 1; _i24++) {
+            var index = lang.charCodeAt(_i24) - 96;
             array = array[index];
             if (!array) {
               return false;
@@ -24454,6 +24785,80 @@ var require_axe = __commonJS({
           return codes;
         }
         var valid_langs_default = isValidLang;
+        function _normalizeRunOptions() {
+          var options2 = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+          var tags = [];
+          var ruleIds = [];
+          axe2._audit.rules.forEach(function(rule) {
+            ruleIds.push(rule.id);
+            rule.tags.forEach(function(tag2) {
+              if (!tags.includes(tag2)) {
+                tags.push(tag2);
+              }
+            });
+          });
+          if (["object", "string"].includes(_typeof(options2.runOnly))) {
+            if (typeof options2.runOnly === "string") {
+              options2.runOnly = [options2.runOnly];
+            }
+            if (Array.isArray(options2.runOnly)) {
+              var hasTag = options2.runOnly.find(function(value) {
+                return tags.includes(value);
+              });
+              var hasRule = options2.runOnly.find(function(value) {
+                return ruleIds.includes(value);
+              });
+              if (hasTag && hasRule) {
+                throw new Error("runOnly cannot be both rules and tags");
+              }
+              if (hasRule) {
+                options2.runOnly = {
+                  type: "rule",
+                  values: options2.runOnly
+                };
+              } else {
+                options2.runOnly = {
+                  type: "tag",
+                  values: options2.runOnly
+                };
+              }
+            }
+            var only = options2.runOnly;
+            if (only.value && !only.values) {
+              only.values = only.value;
+              delete only.value;
+            }
+            if (!Array.isArray(only.values) || only.values.length === 0) {
+              throw new Error("runOnly.values must be a non-empty array");
+            }
+            if (["rule", "rules"].includes(only.type)) {
+              only.type = "rule";
+              only.values.forEach(function(ruleId) {
+                if (!ruleIds.includes(ruleId)) {
+                  throw new Error("unknown rule `" + ruleId + "` in options.runOnly");
+                }
+              });
+            } else if (["tag", "tags", void 0].includes(only.type)) {
+              only.type = "tag";
+              var unmatchedTags = only.values.filter(function(tag2) {
+                return !tags.includes(tag2) && !/wcag2[1-3]a{1,3}/.test(tag2);
+              });
+              if (unmatchedTags.length !== 0) {
+                axe2.log("Could not find tags `" + unmatchedTags.join("`, `") + "`");
+              }
+            } else {
+              throw new Error("Unknown runOnly type '".concat(only.type, "'"));
+            }
+          }
+          if (_typeof(options2.rules) === "object") {
+            Object.keys(options2.rules).forEach(function(ruleId) {
+              if (!ruleIds.includes(ruleId)) {
+                throw new Error("unknown rule `" + ruleId + "` in options.rules");
+              }
+            });
+          }
+          return options2;
+        }
         var SerialVirtualNode = (function(_abstract_virtual_nod2) {
           function SerialVirtualNode2(serialNode) {
             var _this8;
@@ -24500,9 +24905,9 @@ var require_axe = __commonJS({
           nodeTypeToName[nodeNamesToTypes[nodeName2]] = nodeName2;
         });
         function normaliseProps(serialNode) {
-          var _serialNode$nodeName, _ref80, _serialNode$nodeType;
+          var _serialNode$nodeName, _ref85, _serialNode$nodeType;
           var nodeName2 = (_serialNode$nodeName = serialNode.nodeName) !== null && _serialNode$nodeName !== void 0 ? _serialNode$nodeName : nodeTypeToName[serialNode.nodeType];
-          var nodeType = (_ref80 = (_serialNode$nodeType = serialNode.nodeType) !== null && _serialNode$nodeType !== void 0 ? _serialNode$nodeType : nodeNamesToTypes[serialNode.nodeName]) !== null && _ref80 !== void 0 ? _ref80 : 1;
+          var nodeType = (_ref85 = (_serialNode$nodeType = serialNode.nodeType) !== null && _serialNode$nodeType !== void 0 ? _serialNode$nodeType : nodeNamesToTypes[serialNode.nodeName]) !== null && _ref85 !== void 0 ? _ref85 : 1;
           assert_default(typeof nodeType === "number", "nodeType has to be a number, got '".concat(nodeType, "'"));
           assert_default(typeof nodeName2 === "string", "nodeName has to be a string, got '".concat(nodeName2, "'"));
           nodeName2 = nodeName2.toLowerCase();
@@ -24523,8 +24928,8 @@ var require_axe = __commonJS({
           delete props.attributes;
           return Object.freeze(props);
         }
-        function normaliseAttrs(_ref81) {
-          var _ref81$attributes = _ref81.attributes, attributes2 = _ref81$attributes === void 0 ? {} : _ref81$attributes;
+        function normaliseAttrs(_ref86) {
+          var _ref86$attributes = _ref86.attributes, attributes2 = _ref86$attributes === void 0 ? {} : _ref86$attributes;
           var attrMap = {
             htmlFor: "for",
             className: "class"
@@ -24651,10 +25056,13 @@ var require_axe = __commonJS({
               }
             });
           }
+          var previousHelpUrlSettings = {
+            brand: audit.brand,
+            application: audit.application,
+            lang: audit.lang
+          };
           if (typeof spec.branding !== "undefined") {
             audit.setBranding(spec.branding);
-          } else {
-            audit._constructHelpUrls();
           }
           if (spec.tagExclude) {
             audit.tagExclude = spec.tagExclude;
@@ -24662,6 +25070,7 @@ var require_axe = __commonJS({
           if (spec.locale) {
             audit.applyLocale(spec.locale);
           }
+          audit._constructHelpUrls(previousHelpUrlSettings);
           if (spec.standards) {
             configureStandards(spec.standards);
           }
@@ -24679,17 +25088,211 @@ var require_axe = __commonJS({
           }
         }
         var configure_default = configure;
+        var ELEMENT_INTERNALS_DEFAULT_TIMEOUT = 1e3;
+        var getElementInternals2;
+        var elementInternalsTimeout;
+        function externalAPIs() {
+          var _ref87 = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, internalsTimeout = _ref87.elementInternalsTimeout, getInternals = _ref87.getElementInternals;
+          if (isNotNullOrUndefined(internalsTimeout)) {
+            assert_default(typeof internalsTimeout === "number", "elementInternalsTimeout must be a number");
+            elementInternalsTimeout = internalsTimeout;
+          } else if (internalsTimeout === null) {
+            elementInternalsTimeout = ELEMENT_INTERNALS_DEFAULT_TIMEOUT;
+          }
+          if (isNotNullOrUndefined(getInternals)) {
+            assert_default(typeof getInternals === "function", "getElementInternals must be a function that returns a Promise");
+            getElementInternals2 = getInternals;
+          } else if (getInternals === null) {
+            getElementInternals2 = null;
+          }
+        }
+        function isNotNullOrUndefined(val) {
+          return val !== void 0 && val !== null;
+        }
+        function asyncTimeout(_x) {
+          return _asyncTimeout.apply(this, arguments);
+        }
+        function _asyncTimeout() {
+          _asyncTimeout = _asyncToGenerator(_regenerator().m(function _callee(ms) {
+            return _regenerator().w(function(_context2) {
+              while (1) {
+                switch (_context2.n) {
+                  case 0:
+                    return _context2.a(2, new Promise(function(res) {
+                      return setTimeout(res, ms, "timeout");
+                    }));
+                }
+              }
+            }, _callee);
+          }));
+          return _asyncTimeout.apply(this, arguments);
+        }
+        function loadElementInternals() {
+          return _loadElementInternals.apply(this, arguments);
+        }
+        function _loadElementInternals() {
+          _loadElementInternals = _asyncToGenerator(_regenerator().m(function _callee2() {
+            var logger2, promiseValue, internalsMap, _i43, _internalsMap$_i, internals, ancestry, node, vNode, _i44, _Object$entries, _Object$entries$_i, _key12, val, type2, value, _args2 = arguments;
+            return _regenerator().w(function(_context3) {
+              while (1) {
+                switch (_context3.n) {
+                  case 0:
+                    logger2 = _args2.length > 0 && _args2[0] !== void 0 ? _args2[0] : log;
+                    if (getElementInternals2) {
+                      _context3.n = 1;
+                      break;
+                    }
+                    return _context3.a(2);
+                  case 1:
+                    _context3.n = 2;
+                    return Promise.race([asyncTimeout(elementInternalsTimeout), getElementInternals2()]);
+                  case 2:
+                    promiseValue = _context3.v;
+                    assert_default(promiseValue !== "timeout", "Timeout called for elementInternals");
+                    internalsMap = clone22(promiseValue);
+                    if (!(!internalsMap || !Array.isArray(internalsMap))) {
+                      _context3.n = 3;
+                      break;
+                    }
+                    logger2("externalAPIs.getElementInternals() did not return an array");
+                    return _context3.a(2);
+                  case 3:
+                    _i43 = 0;
+                  case 4:
+                    if (!(_i43 < internalsMap.length)) {
+                      _context3.n = 14;
+                      break;
+                    }
+                    if (!(!internalsMap[_i43] || _typeof(internalsMap[_i43]) !== "object")) {
+                      _context3.n = 5;
+                      break;
+                    }
+                    logger2("externalAPIs.getElementInternals()[".concat(_i43, "] is not an object"));
+                    return _context3.a(3, 13);
+                  case 5:
+                    _internalsMap$_i = internalsMap[_i43], internals = _internalsMap$_i.internals, ancestry = _internalsMap$_i.ancestry;
+                    if (!(!internals || _typeof(internals) !== "object")) {
+                      _context3.n = 6;
+                      break;
+                    }
+                    logger2("externalAPIs.getElementInternals()[".concat(_i43, "].internals is not an object"));
+                    return _context3.a(3, 13);
+                  case 6:
+                    if (!(!ancestry || !(Array.isArray(ancestry) || typeof ancestry === "string"))) {
+                      _context3.n = 7;
+                      break;
+                    }
+                    logger2("externalAPIs.getElementInternals()[".concat(_i43, "].ancestry is not a string or an array of strings"));
+                    return _context3.a(3, 13);
+                  case 7:
+                    node = _shadowSelect(ancestry);
+                    vNode = get_node_from_tree_default(node);
+                    if (vNode) {
+                      _context3.n = 8;
+                      break;
+                    }
+                    logger2("Unable to locate node using selector ".concat(ancestry, " from externalAPIs.getElementInternals()[").concat(_i43, "]"));
+                    return _context3.a(3, 13);
+                  case 8:
+                    _i44 = 0, _Object$entries = Object.entries(internals);
+                  case 9:
+                    if (!(_i44 < _Object$entries.length)) {
+                      _context3.n = 12;
+                      break;
+                    }
+                    _Object$entries$_i = _slicedToArray(_Object$entries[_i44], 2), _key12 = _Object$entries$_i[0], val = _Object$entries$_i[1];
+                    if (!(typeof val === "string")) {
+                      _context3.n = 10;
+                      break;
+                    }
+                    return _context3.a(3, 11);
+                  case 10:
+                    type2 = val.type, value = val.value;
+                    if (!type2) {
+                      logger2("externalAPIs.getElementInternals()[".concat(_i43, "].internals.").concat(_key12, ' is an object but has no "type" property'));
+                    }
+                    if (!value) {
+                      logger2("externalAPIs.getElementInternals()[".concat(_i43, "].internals.").concat(_key12, ' is an object but has no "value" property'));
+                    }
+                    if (type2 === "HTMLElement") {
+                      setHTMLElement(internals, _key12, value);
+                    } else if (type2 === "NodeList") {
+                      setNodeList(internals, _key12, value);
+                    }
+                  case 11:
+                    _i44++;
+                    _context3.n = 9;
+                    break;
+                  case 12:
+                    vNode.elementInternals = internals;
+                  case 13:
+                    _i43++;
+                    _context3.n = 4;
+                    break;
+                  case 14:
+                    return _context3.a(2);
+                }
+              }
+            }, _callee2);
+          }));
+          return _loadElementInternals.apply(this, arguments);
+        }
+        var external = {
+          loadElementInternals
+        };
+        function setHTMLElement(internals, key2, value) {
+          var node = _shadowSelect(value);
+          if (node) {
+            internals[key2] = node;
+          } else {
+            Object.defineProperty(internals, key2, {
+              get: function get2() {
+                throw new Error("Unable to locate node using selector: ".concat(value));
+              }
+            });
+          }
+        }
+        function setNodeList(internals, key2, value) {
+          var nodes = [];
+          var errorSelectors = [];
+          var _iterator16 = _createForOfIteratorHelper(value), _step16;
+          try {
+            for (_iterator16.s(); !(_step16 = _iterator16.n()).done; ) {
+              var selector = _step16.value;
+              var node = _shadowSelect(selector);
+              if (node) {
+                nodes.push(node);
+              } else {
+                errorSelectors.push(selector);
+              }
+            }
+          } catch (err2) {
+            _iterator16.e(err2);
+          } finally {
+            _iterator16.f();
+          }
+          if (errorSelectors.length === 0) {
+            internals[key2] = nodes;
+          } else {
+            Object.defineProperty(internals, key2, {
+              get: function get2() {
+                throw new Error("Unable to locate nodes using selectors: ".concat(errorSelectors.join(",")));
+              }
+            });
+          }
+        }
         function frameMessenger2(frameHandler) {
           _respondable.updateMessenger(frameHandler);
         }
         function getRules(tags) {
           tags = tags || [];
-          var matchingRules = !tags.length ? axe2._audit.rules : axe2._audit.rules.filter(function(item) {
+          var _axe$_audit = axe2._audit, rules = _axe$_audit.rules, data = _axe$_audit.data, tagExclude = _axe$_audit.tagExclude;
+          var matchingRules = !tags.length ? rules : rules.filter(function(item) {
             return !!tags.filter(function(tag2) {
               return item.tags.indexOf(tag2) !== -1;
             }).length;
           });
-          var ruleData = axe2._audit.data.rules || {};
+          var ruleData = data.rules || {};
           return matchingRules.map(function(matchingRule) {
             var rd = ruleData[matchingRule.id] || {};
             return {
@@ -24698,7 +25301,10 @@ var require_axe = __commonJS({
               help: rd.help,
               helpUrl: rd.helpUrl,
               tags: matchingRule.tags,
-              actIds: matchingRule.actIds
+              actIds: matchingRule.actIds,
+              enabled: matchingRule.enabled && !matchingRule.tags.some(function(tag2) {
+                return tagExclude.includes(tag2);
+              })
             };
           });
         }
@@ -25120,16 +25726,16 @@ var require_axe = __commonJS({
                 idRefs.get(_id5).push(node);
               }
             }
-            for (var _i19 = 0; _i19 < refAttrs.length; ++_i19) {
-              var attr = refAttrs[_i19];
+            for (var _i25 = 0; _i25 < refAttrs.length; ++_i25) {
+              var attr = refAttrs[_i25];
               var attrValue = sanitize_default(node.getAttribute(attr) || "");
               if (!attrValue) {
                 continue;
               }
-              var _iterator15 = _createForOfIteratorHelper(token_list_default(attrValue)), _step15;
+              var _iterator17 = _createForOfIteratorHelper(token_list_default(attrValue)), _step17;
               try {
-                for (_iterator15.s(); !(_step15 = _iterator15.n()).done; ) {
-                  var token = _step15.value;
+                for (_iterator17.s(); !(_step17 = _iterator17.n()).done; ) {
+                  var token = _step17.value;
                   if (!idRefs.has(token)) {
                     idRefs.set(token, [node]);
                   } else {
@@ -25137,15 +25743,15 @@ var require_axe = __commonJS({
                   }
                 }
               } catch (err2) {
-                _iterator15.e(err2);
+                _iterator17.e(err2);
               } finally {
-                _iterator15.f();
+                _iterator17.f();
               }
             }
           }
-          for (var _i20 = 0; _i20 < node.childNodes.length; _i20++) {
-            if (node.childNodes[_i20].nodeType === 1) {
-              cacheIdRefs(node.childNodes[_i20], idRefs, refAttrs);
+          for (var _i26 = 0; _i26 < node.childNodes.length; _i26++) {
+            if (node.childNodes[_i26].nodeType === 1) {
+              cacheIdRefs(node.childNodes[_i26], idRefs, refAttrs);
             }
           }
         }
@@ -25203,8 +25809,8 @@ var require_axe = __commonJS({
         }
         function getElementUnallowedRoles(node) {
           var allowImplicit = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
-          var _nodeLookup20 = _nodeLookup(node), vNode = _nodeLookup20.vNode;
-          if (!is_html_element_default(vNode)) {
+          var _nodeLookup24 = _nodeLookup(node), vNode = _nodeLookup24.vNode;
+          if (!_isHtmlElement(vNode)) {
             return [];
           }
           var nodeName2 = vNode.props.nodeName;
@@ -26993,8 +27599,8 @@ var require_axe = __commonJS({
           nodeName: ["abbr", "address", "canvas", "div", "p", "pre", "blockquote", "ins", "del", "output", "span", "table", "tbody", "thead", "tfoot", "td", "em", "strong", "small", "s", "cite", "q", "dfn", "abbr", "time", "code", "var", "samp", "kbd", "sub", "sup", "i", "b", "u", "mark", "ruby", "rt", "rp", "bdi", "bdo", "br", "wbr", "th", "tr"]
         }];
         lookupTable.evaluateRoleForElement = {
-          A: function A(_ref82) {
-            var node = _ref82.node, out = _ref82.out;
+          A: function A(_ref88) {
+            var node = _ref88.node, out = _ref88.out;
             if (node.namespaceURI === "http://www.w3.org/2000/svg") {
               return true;
             }
@@ -27003,19 +27609,19 @@ var require_axe = __commonJS({
             }
             return true;
           },
-          AREA: function AREA(_ref83) {
-            var node = _ref83.node;
+          AREA: function AREA(_ref89) {
+            var node = _ref89.node;
             return !node.href;
           },
-          BUTTON: function BUTTON(_ref84) {
-            var node = _ref84.node, role = _ref84.role, out = _ref84.out;
+          BUTTON: function BUTTON(_ref90) {
+            var node = _ref90.node, role = _ref90.role, out = _ref90.out;
             if (node.getAttribute("type") === "menu") {
               return role === "menuitem";
             }
             return out;
           },
-          IMG: function IMG(_ref85) {
-            var node = _ref85.node, role = _ref85.role, out = _ref85.out;
+          IMG: function IMG(_ref91) {
+            var node = _ref91.node, role = _ref91.role, out = _ref91.out;
             switch (node.alt) {
               case null:
                 return out;
@@ -27025,8 +27631,8 @@ var require_axe = __commonJS({
                 return role !== "presentation" && role !== "none";
             }
           },
-          INPUT: function INPUT(_ref86) {
-            var node = _ref86.node, role = _ref86.role, out = _ref86.out;
+          INPUT: function INPUT(_ref92) {
+            var node = _ref92.node, role = _ref92.role, out = _ref92.out;
             switch (node.type) {
               case "button":
               case "image":
@@ -27050,32 +27656,32 @@ var require_axe = __commonJS({
                 return false;
             }
           },
-          LI: function LI(_ref87) {
-            var node = _ref87.node, out = _ref87.out;
+          LI: function LI(_ref93) {
+            var node = _ref93.node, out = _ref93.out;
             var hasImplicitListitemRole = axe2.utils.matchesSelector(node, "ol li, ul li");
             if (hasImplicitListitemRole) {
               return out;
             }
             return true;
           },
-          MENU: function MENU(_ref88) {
-            var node = _ref88.node;
+          MENU: function MENU(_ref94) {
+            var node = _ref94.node;
             if (node.getAttribute("type") === "context") {
               return false;
             }
             return true;
           },
-          OPTION: function OPTION(_ref89) {
-            var node = _ref89.node;
+          OPTION: function OPTION(_ref95) {
+            var node = _ref95.node;
             var withinOptionList = axe2.utils.matchesSelector(node, "select > option, datalist > option, optgroup > option");
             return !withinOptionList;
           },
-          SELECT: function SELECT(_ref90) {
-            var node = _ref90.node, role = _ref90.role;
+          SELECT: function SELECT(_ref96) {
+            var node = _ref96.node, role = _ref96.role;
             return !node.multiple && node.size <= 1 && role === "menu";
           },
-          SVG: function SVG(_ref91) {
-            var node = _ref91.node, out = _ref91.out;
+          SVG: function SVG(_ref97) {
+            var node = _ref97.node, out = _ref97.out;
             if (node.parentNode && node.parentNode.namespaceURI === "http://www.w3.org/2000/svg") {
               return true;
             }
@@ -27100,7 +27706,7 @@ var require_axe = __commonJS({
         }
         var is_accessible_ref_default = isAccessibleRef;
         function _isComboboxPopup(virtualNode) {
-          var _ref92 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, popupRoles = _ref92.popupRoles;
+          var _ref98 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, popupRoles = _ref98.popupRoles;
           var role = get_role_default(virtualNode);
           popupRoles !== null && popupRoles !== void 0 ? popupRoles : popupRoles = aria_attrs_default["aria-haspopup"].values;
           if (!popupRoles.includes(role)) {
@@ -27296,10 +27902,10 @@ var require_axe = __commonJS({
               }
             });
           });
-          var _iterator16 = _createForOfIteratorHelper(messageKeys), _step16;
+          var _iterator18 = _createForOfIteratorHelper(messageKeys), _step18;
           try {
-            for (_iterator16.s(); !(_step16 = _iterator16.n()).done; ) {
-              var messageKey = _step16.value;
+            for (_iterator18.s(); !(_step18 = _iterator18.n()).done; ) {
+              var messageKey = _step18.value;
               if (badCells[messageKey].size > 0) {
                 this.relatedNodes(_toConsumableArray(badCells[messageKey]));
                 if (messageKey === emptyHdrs) {
@@ -27312,9 +27918,9 @@ var require_axe = __commonJS({
               }
             }
           } catch (err2) {
-            _iterator16.e(err2);
+            _iterator18.e(err2);
           } finally {
-            _iterator16.f();
+            _iterator18.f();
           }
           return true;
         }
@@ -27382,8 +27988,8 @@ var require_axe = __commonJS({
           if (!virtualNode.children) {
             return void 0;
           }
-          var titleNode = virtualNode.children.find(function(_ref93) {
-            var props = _ref93.props;
+          var titleNode = virtualNode.children.find(function(_ref99) {
+            var props = _ref99.props;
             return props.nodeName === "title";
           });
           if (!titleNode) {
@@ -27520,8 +28126,8 @@ var require_axe = __commonJS({
           }
           return false;
         }
-        function getNumberValue(domNode, _ref94) {
-          var cssProperty = _ref94.cssProperty, absoluteValues = _ref94.absoluteValues, normalValue = _ref94.normalValue;
+        function getNumberValue(domNode, _ref100) {
+          var cssProperty = _ref100.cssProperty, absoluteValues = _ref100.absoluteValues, normalValue = _ref100.normalValue;
           var computedStyle = window2.getComputedStyle(domNode);
           var cssPropValue = computedStyle.getPropertyValue(cssProperty);
           if (cssPropValue === "normal") {
@@ -27668,8 +28274,8 @@ var require_axe = __commonJS({
           } else if (node !== document2.body && has_content_default(node, true) && !isShallowlyHidden(virtualNode)) {
             return [virtualNode];
           } else {
-            return virtualNode.children.filter(function(_ref95) {
-              var actualNode = _ref95.actualNode;
+            return virtualNode.children.filter(function(_ref101) {
+              var actualNode = _ref101.actualNode;
               return actualNode.nodeType === 1;
             }).map(function(vNode2) {
               return findRegionlessElms(vNode2, options2);
@@ -27706,19 +28312,19 @@ var require_axe = __commonJS({
               return;
             }
             var frameAncestry = r.node.ancestry.slice(0, -1);
-            var _iterator17 = _createForOfIteratorHelper(iframeResults), _step17;
+            var _iterator19 = _createForOfIteratorHelper(iframeResults), _step19;
             try {
-              for (_iterator17.s(); !(_step17 = _iterator17.n()).done; ) {
-                var iframeResult = _step17.value;
+              for (_iterator19.s(); !(_step19 = _iterator19.n()).done; ) {
+                var iframeResult = _step19.value;
                 if (_matchAncestry(frameAncestry, iframeResult.node.ancestry)) {
                   r.result = iframeResult.result;
                   break;
                 }
               }
             } catch (err2) {
-              _iterator17.e(err2);
+              _iterator19.e(err2);
             } finally {
-              _iterator17.f();
+              _iterator19.f();
             }
           });
           iframeResults.forEach(function(r) {
@@ -27748,16 +28354,16 @@ var require_axe = __commonJS({
           var outerText = elm.textContent.trim();
           var innerText = outerText;
           while (innerText === outerText && nextNode !== void 0) {
-            var _i21 = -1;
+            var _i27 = -1;
             elm = nextNode;
             if (elm.children.length === 0) {
               return elm;
             }
             do {
-              _i21++;
-              innerText = elm.children[_i21].textContent.trim();
-            } while (innerText === "" && _i21 + 1 < elm.children.length);
-            nextNode = elm.children[_i21];
+              _i27++;
+              innerText = elm.children[_i27].textContent.trim();
+            } while (innerText === "" && _i27 + 1 < elm.children.length);
+            nextNode = elm.children[_i27];
           }
           return elm;
         }
@@ -27814,7 +28420,7 @@ var require_axe = __commonJS({
         var separatorRegex = /[;,\s]/;
         var validRedirectNumRegex = /^[0-9.]+$/;
         function metaRefreshEvaluate(node, options2, virtualNode) {
-          var _ref96 = options2 || {}, minDelay = _ref96.minDelay, maxDelay = _ref96.maxDelay;
+          var _ref102 = options2 || {}, minDelay = _ref102.minDelay, maxDelay = _ref102.maxDelay;
           var content = (virtualNode.attr("content") || "").trim();
           var _content$split = content.split(separatorRegex), _content$split2 = _slicedToArray(_content$split, 1), redirectStr = _content$split2[0];
           if (!redirectStr.match(validRedirectNumRegex)) {
@@ -28165,8 +28771,8 @@ var require_axe = __commonJS({
           if (a2.length !== b2.length) {
             return false;
           }
-          for (var _i22 = 0; _i22 < a2.length; ++_i22) {
-            if (a2[_i22] !== b2[_i22]) {
+          for (var _i28 = 0; _i28 < a2.length; ++_i28) {
+            if (a2[_i28] !== b2[_i28]) {
               return false;
             }
           }
@@ -28177,10 +28783,10 @@ var require_axe = __commonJS({
         var OPAQUE_STROKE_OFFSET_MIN_PX = 1.5;
         var edges = ["top", "right", "bottom", "left"];
         function _getStrokeColorsFromShadows(parsedShadows) {
-          var _ref97 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, _ref97$ignoreEdgeCoun = _ref97.ignoreEdgeCount, ignoreEdgeCount = _ref97$ignoreEdgeCoun === void 0 ? false : _ref97$ignoreEdgeCoun;
+          var _ref103 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, _ref103$ignoreEdgeCou = _ref103.ignoreEdgeCount, ignoreEdgeCount = _ref103$ignoreEdgeCou === void 0 ? false : _ref103$ignoreEdgeCou;
           var shadowMap = getShadowColorsMap(parsedShadows);
-          var shadowsByColor = Object.entries(shadowMap).map(function(_ref98) {
-            var _ref99 = _slicedToArray(_ref98, 2), colorStr = _ref99[0], sides = _ref99[1];
+          var shadowsByColor = Object.entries(shadowMap).map(function(_ref104) {
+            var _ref105 = _slicedToArray(_ref104, 2), colorStr = _ref105[0], sides = _ref105[1];
             var edgeCount = edges.filter(function(side) {
               return sides[side].length !== 0;
             }).length;
@@ -28190,8 +28796,8 @@ var require_axe = __commonJS({
               edgeCount
             };
           });
-          if (!ignoreEdgeCount && shadowsByColor.some(function(_ref100) {
-            var edgeCount = _ref100.edgeCount;
+          if (!ignoreEdgeCount && shadowsByColor.some(function(_ref106) {
+            var edgeCount = _ref106.edgeCount;
             return edgeCount > 1 && edgeCount < 4;
           })) {
             return null;
@@ -28202,11 +28808,11 @@ var require_axe = __commonJS({
         }
         function getShadowColorsMap(parsedShadows) {
           var colorMap = {};
-          var _iterator18 = _createForOfIteratorHelper(parsedShadows), _step18;
+          var _iterator20 = _createForOfIteratorHelper(parsedShadows), _step20;
           try {
-            for (_iterator18.s(); !(_step18 = _iterator18.n()).done; ) {
+            for (_iterator20.s(); !(_step20 = _iterator20.n()).done; ) {
               var _colorMap$colorStr;
-              var _step18$value = _step18.value, colorStr = _step18$value.colorStr, pixels = _step18$value.pixels;
+              var _step20$value = _step20.value, colorStr = _step20$value.colorStr, pixels = _step20$value.pixels;
               (_colorMap$colorStr = colorMap[colorStr]) !== null && _colorMap$colorStr !== void 0 ? _colorMap$colorStr : colorMap[colorStr] = {
                 top: [],
                 right: [],
@@ -28227,14 +28833,14 @@ var require_axe = __commonJS({
               }
             }
           } catch (err2) {
-            _iterator18.e(err2);
+            _iterator20.e(err2);
           } finally {
-            _iterator18.f();
+            _iterator20.f();
           }
           return colorMap;
         }
-        function shadowGroupToColor(_ref101) {
-          var colorStr = _ref101.colorStr, sides = _ref101.sides, edgeCount = _ref101.edgeCount;
+        function shadowGroupToColor(_ref107) {
+          var colorStr = _ref107.colorStr, sides = _ref107.sides, edgeCount = _ref107.edgeCount;
           if (edgeCount !== 4) {
             return null;
           }
@@ -28285,8 +28891,8 @@ var require_axe = __commonJS({
               throw new Error("Unable to process text-shadows: ".concat(str2));
             }
           }
-          shadows.forEach(function(_ref102) {
-            var pixels = _ref102.pixels;
+          shadows.forEach(function(_ref108) {
+            var pixels = _ref108.pixels;
             if (pixels.length === 2) {
               pixels.push(0);
             }
@@ -28294,7 +28900,7 @@ var require_axe = __commonJS({
           return shadows;
         }
         function _getTextShadowColors(node) {
-          var _ref103 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, minRatio = _ref103.minRatio, maxRatio = _ref103.maxRatio, ignoreEdgeCount = _ref103.ignoreEdgeCount;
+          var _ref109 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, minRatio = _ref109.minRatio, maxRatio = _ref109.maxRatio, ignoreEdgeCount = _ref109.ignoreEdgeCount;
           var shadowColors = [];
           var style = window2.getComputedStyle(node);
           var textShadow = style.getPropertyValue("text-shadow");
@@ -28306,10 +28912,10 @@ var require_axe = __commonJS({
           assert_default(isNaN(fontSize) === false, "Unable to determine font-size value ".concat(fontSizeStr));
           var thinShadows = [];
           var shadows = _parseTextShadows(textShadow);
-          var _iterator19 = _createForOfIteratorHelper(shadows), _step19;
+          var _iterator21 = _createForOfIteratorHelper(shadows), _step21;
           try {
-            for (_iterator19.s(); !(_step19 = _iterator19.n()).done; ) {
-              var shadow = _step19.value;
+            for (_iterator21.s(); !(_step21 = _iterator21.n()).done; ) {
+              var shadow = _step21.value;
               var colorStr = shadow.colorStr || style.getPropertyValue("color");
               var _shadow$pixels = _slicedToArray(shadow.pixels, 3), offsetX = _shadow$pixels[0], offsetY = _shadow$pixels[1], _shadow$pixels$ = _shadow$pixels[2], blurRadius = _shadow$pixels$ === void 0 ? 0 : _shadow$pixels$;
               if (maxRatio && blurRadius >= fontSize * maxRatio) {
@@ -28342,9 +28948,9 @@ var require_axe = __commonJS({
               shadowColors.push(_color3);
             }
           } catch (err2) {
-            _iterator19.e(err2);
+            _iterator21.e(err2);
           } finally {
-            _iterator19.f();
+            _iterator21.f();
           }
           if (thinShadows.length > 0) {
             var strokeColors = _getStrokeColorsFromShadows(thinShadows, {
@@ -28357,8 +28963,8 @@ var require_axe = __commonJS({
           }
           return shadowColors;
         }
-        function textShadowColor(_ref104) {
-          var colorStr = _ref104.colorStr, offsetX = _ref104.offsetX, offsetY = _ref104.offsetY, blurRadius = _ref104.blurRadius, fontSize = _ref104.fontSize;
+        function textShadowColor(_ref110) {
+          var colorStr = _ref110.colorStr, offsetX = _ref110.offsetX, offsetY = _ref110.offsetY, blurRadius = _ref110.blurRadius, fontSize = _ref110.fontSize;
           if (offsetX > blurRadius || offsetY > blurRadius) {
             return new color_default(0, 0, 0, 0);
           }
@@ -28386,13 +28992,13 @@ var require_axe = __commonJS({
             var _stackingOrder2;
             var bgVNode = get_node_from_tree_default(bgElm);
             var bgColor = getOwnBackgroundColor2(bgVNode);
-            var stackingOrder = bgVNode._stackingOrder.filter(function(_ref105) {
-              var vNode = _ref105.vNode;
+            var stackingOrder = bgVNode._stackingOrder.filter(function(_ref111) {
+              var vNode = _ref111.vNode;
               return !!vNode;
             });
-            stackingOrder.forEach(function(_ref106, index) {
+            stackingOrder.forEach(function(_ref112, index) {
               var _stackingOrder;
-              var vNode = _ref106.vNode;
+              var vNode = _ref112.vNode;
               var ancestorVNode2 = (_stackingOrder = stackingOrder[index - 1]) === null || _stackingOrder === void 0 ? void 0 : _stackingOrder.vNode;
               var context2 = addToStackingContext(contextMap, vNode, ancestorVNode2);
               if (index === 0 && !contextMap.get(vNode)) {
@@ -28500,8 +29106,8 @@ var require_axe = __commonJS({
               color: bgColors.reduce(_flattenShadowColors)
             }];
           }
-          for (var _i23 = 0; _i23 < elmStack.length; _i23++) {
-            var bgElm = elmStack[_i23];
+          for (var _i29 = 0; _i29 < elmStack.length; _i29++) {
+            var bgElm = elmStack[_i29];
             var bgElmStyle = window2.getComputedStyle(bgElm);
             if (element_has_image_default(bgElm, bgElmStyle)) {
               bgElms.push(bgElm);
@@ -28613,8 +29219,8 @@ var require_axe = __commonJS({
           }];
           var fgColors = [];
           try {
-            for (var _i24 = 0, _colorStack = colorStack; _i24 < _colorStack.length; _i24++) {
-              var colorFn = _colorStack[_i24];
+            for (var _i30 = 0, _colorStack = colorStack; _i30 < _colorStack.length; _i30++) {
+              var colorFn = _colorStack[_i30];
               var _color4 = colorFn();
               if (!_color4) {
                 continue;
@@ -28646,8 +29252,8 @@ var require_axe = __commonJS({
         function getTextColor(nodeStyle) {
           return new color_default().parseString(nodeStyle.getPropertyValue("-webkit-text-fill-color") || nodeStyle.getPropertyValue("color"));
         }
-        function getStrokeColor(nodeStyle, _ref107) {
-          var _ref107$textStrokeEmM = _ref107.textStrokeEmMin, textStrokeEmMin = _ref107$textStrokeEmM === void 0 ? 0 : _ref107$textStrokeEmM;
+        function getStrokeColor(nodeStyle, _ref113) {
+          var _ref113$textStrokeEmM = _ref113.textStrokeEmMin, textStrokeEmMin = _ref113$textStrokeEmM === void 0 ? 0 : _ref113$textStrokeEmM;
           var strokeWidth = parseFloat(nodeStyle.getPropertyValue("-webkit-text-stroke-width"));
           if (strokeWidth === 0) {
             return null;
@@ -28689,11 +29295,11 @@ var require_axe = __commonJS({
           return fgColor;
         }
         function findNodeInContexts(contexts, node) {
-          var _iterator20 = _createForOfIteratorHelper(contexts), _step20;
+          var _iterator22 = _createForOfIteratorHelper(contexts), _step22;
           try {
-            for (_iterator20.s(); !(_step20 = _iterator20.n()).done; ) {
+            for (_iterator22.s(); !(_step22 = _iterator22.n()).done; ) {
               var _context$vNode;
-              var context = _step20.value;
+              var context = _step22.value;
               if (((_context$vNode = context.vNode) === null || _context$vNode === void 0 ? void 0 : _context$vNode.actualNode) === node) {
                 return context;
               }
@@ -28703,9 +29309,9 @@ var require_axe = __commonJS({
               }
             }
           } catch (err2) {
-            _iterator20.e(err2);
+            _iterator22.e(err2);
           } finally {
-            _iterator20.f();
+            _iterator22.f();
           }
         }
         function hasValidContrastRatio(bg, fg, fontSize, isBold) {
@@ -28809,25 +29415,25 @@ var require_axe = __commonJS({
           if (results.length < 2) {
             return results;
           }
-          var incompleteResults = results.filter(function(_ref108) {
-            var result = _ref108.result;
+          var incompleteResults = results.filter(function(_ref114) {
+            var result = _ref114.result;
             return result !== void 0;
           });
           var uniqueResults = [];
           var nameMap = {};
-          var _loop8 = function _loop82(index2) {
+          var _loop9 = function _loop92(index2) {
             var _currentResult$relate;
             var currentResult = incompleteResults[index2];
             var _currentResult$data = currentResult.data, name = _currentResult$data.name, urlProps = _currentResult$data.urlProps;
             if (nameMap[name]) {
               return 1;
             }
-            var sameNameResults = incompleteResults.filter(function(_ref109, resultNum) {
-              var data = _ref109.data;
+            var sameNameResults = incompleteResults.filter(function(_ref115, resultNum) {
+              var data = _ref115.data;
               return data.name === name && resultNum !== index2;
             });
-            var isSameUrl = sameNameResults.every(function(_ref110) {
-              var data = _ref110.data;
+            var isSameUrl = sameNameResults.every(function(_ref116) {
+              var data = _ref116.data;
               return isIdenticalObject(data.urlProps, urlProps);
             });
             if (sameNameResults.length && !isSameUrl) {
@@ -28841,7 +29447,7 @@ var require_axe = __commonJS({
             uniqueResults.push(currentResult);
           };
           for (var index = 0; index < incompleteResults.length; index++) {
-            if (_loop8(index)) {
+            if (_loop9(index)) {
               continue;
             }
           }
@@ -28853,7 +29459,7 @@ var require_axe = __commonJS({
           var headingRole = role && role.includes("heading");
           var ariaHeadingLevel = vNode.attr("aria-level");
           var ariaLevel = parseInt(ariaHeadingLevel, 10);
-          var _ref111 = vNode.props.nodeName.match(/h(\d)/) || [], _ref112 = _slicedToArray(_ref111, 2), headingLevel = _ref112[1];
+          var _ref117 = vNode.props.nodeName.match(/h(\d)/) || [], _ref118 = _slicedToArray(_ref117, 2), headingLevel = _ref118[1];
           if (!headingRole) {
             return -1;
           }
@@ -28913,14 +29519,14 @@ var require_axe = __commonJS({
         }
         function getHeadingOrder(results) {
           results = _toConsumableArray(results);
-          results.sort(function(_ref113, _ref114) {
-            var nodeA = _ref113.node;
-            var nodeB = _ref114.node;
+          results.sort(function(_ref119, _ref120) {
+            var nodeA = _ref119.node;
+            var nodeB = _ref120.node;
             return nodeA.ancestry.length - nodeB.ancestry.length;
           });
           var headingOrder = results.reduce(mergeHeadingOrder, []);
-          return headingOrder.filter(function(_ref115) {
-            var level = _ref115.level;
+          return headingOrder.filter(function(_ref121) {
+            var level = _ref121.level;
             return level !== -1;
           });
         }
@@ -29009,7 +29615,7 @@ var require_axe = __commonJS({
             }, toDecimalSize(nodeRect)));
             return true;
           }
-          var largestInnerRect = getLargestUnobscuredArea(vNode, obscuredWidgets);
+          var largestInnerRect = getLargestUnobscuredArea(vNode, obscuredWidgets, minSize);
           if (!largestInnerRect) {
             this.data({
               minSize,
@@ -29049,10 +29655,10 @@ var require_axe = __commonJS({
         function filterByElmsOverlap(vNode, nearbyElms) {
           var fullyObscuringElms = [];
           var partialObscuringElms = [];
-          var _iterator21 = _createForOfIteratorHelper(nearbyElms), _step21;
+          var _iterator23 = _createForOfIteratorHelper(nearbyElms), _step23;
           try {
-            for (_iterator21.s(); !(_step21 = _iterator21.n()).done; ) {
-              var vNeighbor = _step21.value;
+            for (_iterator23.s(); !(_step23 = _iterator23.n()).done; ) {
+              var vNeighbor = _step23.value;
               if (!isDescendantNotInTabOrder2(vNode, vNeighbor) && _hasVisualOverlap(vNode, vNeighbor) && getCssPointerEvents(vNeighbor) !== "none") {
                 if (isEnclosedRect2(vNode, vNeighbor)) {
                   fullyObscuringElms.push(vNeighbor);
@@ -29062,28 +29668,28 @@ var require_axe = __commonJS({
               }
             }
           } catch (err2) {
-            _iterator21.e(err2);
+            _iterator23.e(err2);
           } finally {
-            _iterator21.f();
+            _iterator23.f();
           }
           return {
             fullyObscuringElms,
             partialObscuringElms
           };
         }
-        function getLargestUnobscuredArea(vNode, obscuredNodes) {
+        function getLargestUnobscuredArea(vNode, obscuredNodes, minSize) {
           var nodeRect = vNode.boundingClientRect;
-          var obscuringRects = obscuredNodes.map(function(_ref116) {
-            var rect = _ref116.boundingClientRect;
-            return rect;
-          });
+          var obscuringRects = obscuredNodes.map(function(obscuredNode) {
+            var display2 = obscuredNode.getComputedStylePropertyValue("display");
+            return display2 === "inline" ? obscuredNode.clientRects : obscuredNode.boundingClientRect;
+          }).flat(Infinity);
           var unobscuredRects;
           try {
             unobscuredRects = _splitRects(nodeRect, obscuringRects);
           } catch (_unused9) {
             return null;
           }
-          return getLargestRect2(unobscuredRects);
+          return getLargestRect2(unobscuredRects, minSize);
         }
         function getLargestRect2(rects, minSize) {
           return rects.reduce(function(rectA, rectB) {
@@ -29120,8 +29726,8 @@ var require_axe = __commonJS({
           return _contains(vAncestor, vNode) && !_isInTabOrder(vNode);
         }
         function mapActualNodes(vNodes) {
-          return vNodes.map(function(_ref117) {
-            var actualNode = _ref117.actualNode;
+          return vNodes.map(function(_ref122) {
+            var actualNode = _ref122.actualNode;
             return actualNode;
           });
         }
@@ -29137,10 +29743,10 @@ var require_axe = __commonJS({
           }
           var closeNeighbors = [];
           var closestOffset = minOffset;
-          var _iterator22 = _createForOfIteratorHelper(_findNearbyElms(vNode, minOffset)), _step22;
+          var _iterator24 = _createForOfIteratorHelper(_findNearbyElms(vNode, minOffset)), _step24;
           try {
-            for (_iterator22.s(); !(_step22 = _iterator22.n()).done; ) {
-              var vNeighbor = _step22.value;
+            for (_iterator24.s(); !(_step24 = _iterator24.n()).done; ) {
+              var vNeighbor = _step24.value;
               if (get_role_type_default(vNeighbor) !== "widget" || !_isFocusable(vNeighbor)) {
                 continue;
               }
@@ -29169,9 +29775,9 @@ var require_axe = __commonJS({
               closeNeighbors.push(vNeighbor);
             }
           } catch (err2) {
-            _iterator22.e(err2);
+            _iterator24.e(err2);
           } finally {
-            _iterator22.f();
+            _iterator24.f();
           }
           if (closeNeighbors.length === 0) {
             this.data({
@@ -29180,8 +29786,8 @@ var require_axe = __commonJS({
             });
             return true;
           }
-          this.relatedNodes(closeNeighbors.map(function(_ref118) {
-            var actualNode = _ref118.actualNode;
+          this.relatedNodes(closeNeighbors.map(function(_ref123) {
+            var actualNode = _ref123.actualNode;
             return actualNode;
           }));
           if (!closeNeighbors.some(_isInTabOrder)) {
@@ -29202,7 +29808,7 @@ var require_axe = __commonJS({
           return Math.round(num * 10) / 10;
         }
         function metaViewportScaleEvaluate(node, options2, virtualNode) {
-          var _ref119 = options2 || {}, _ref119$scaleMinimum = _ref119.scaleMinimum, scaleMinimum = _ref119$scaleMinimum === void 0 ? 2 : _ref119$scaleMinimum, _ref119$lowerBound = _ref119.lowerBound, lowerBound = _ref119$lowerBound === void 0 ? false : _ref119$lowerBound;
+          var _ref124 = options2 || {}, _ref124$scaleMinimum = _ref124.scaleMinimum, scaleMinimum = _ref124$scaleMinimum === void 0 ? 2 : _ref124$scaleMinimum, _ref124$lowerBound = _ref124.lowerBound, lowerBound = _ref124$lowerBound === void 0 ? false : _ref124$lowerBound;
           var content = virtualNode.attr("content") || "";
           if (!content) {
             return true;
@@ -29247,23 +29853,23 @@ var require_axe = __commonJS({
         }
         var meta_viewport_scale_evaluate_default = metaViewportScaleEvaluate;
         function cssOrientationLockEvaluate(node, options2, virtualNode, context) {
-          var _ref120 = context || {}, _ref120$cssom = _ref120.cssom, cssom = _ref120$cssom === void 0 ? void 0 : _ref120$cssom;
-          var _ref121 = options2 || {}, _ref121$degreeThresho = _ref121.degreeThreshold, degreeThreshold = _ref121$degreeThresho === void 0 ? 0 : _ref121$degreeThresho;
+          var _ref125 = context || {}, _ref125$cssom = _ref125.cssom, cssom = _ref125$cssom === void 0 ? void 0 : _ref125$cssom;
+          var _ref126 = options2 || {}, _ref126$degreeThresho = _ref126.degreeThreshold, degreeThreshold = _ref126$degreeThresho === void 0 ? 0 : _ref126$degreeThresho;
           if (!cssom || !cssom.length) {
             return void 0;
           }
           var isLocked = false;
           var relatedElements = [];
           var rulesGroupByDocumentFragment = groupCssomByDocument(cssom);
-          var _loop9 = function _loop92() {
-            var key2 = _Object$keys3[_i25];
+          var _loop0 = function _loop02() {
+            var key2 = _Object$keys3[_i31];
             var _rulesGroupByDocument = rulesGroupByDocumentFragment[key2], root = _rulesGroupByDocument.root, rules = _rulesGroupByDocument.rules;
             var orientationRules = rules.filter(isMediaRuleWithOrientation);
             if (!orientationRules.length) {
               return 1;
             }
-            orientationRules.forEach(function(_ref122) {
-              var cssRules = _ref122.cssRules;
+            orientationRules.forEach(function(_ref127) {
+              var cssRules = _ref127.cssRules;
               Array.from(cssRules).forEach(function(cssRule) {
                 var locked = getIsOrientationLocked(cssRule);
                 if (locked && cssRule.selectorText.toUpperCase() !== "HTML") {
@@ -29274,8 +29880,8 @@ var require_axe = __commonJS({
               });
             });
           };
-          for (var _i25 = 0, _Object$keys3 = Object.keys(rulesGroupByDocumentFragment); _i25 < _Object$keys3.length; _i25++) {
-            if (_loop9()) {
+          for (var _i31 = 0, _Object$keys3 = Object.keys(rulesGroupByDocumentFragment); _i31 < _Object$keys3.length; _i31++) {
+            if (_loop0()) {
               continue;
             }
           }
@@ -29287,8 +29893,8 @@ var require_axe = __commonJS({
           }
           return false;
           function groupCssomByDocument(cssObjectModel) {
-            return cssObjectModel.reduce(function(out, _ref123) {
-              var sheet = _ref123.sheet, root = _ref123.root, shadowId = _ref123.shadowId;
+            return cssObjectModel.reduce(function(out, _ref128) {
+              var sheet = _ref128.sheet, root = _ref128.root, shadowId = _ref128.shadowId;
               var key2 = shadowId ? shadowId : "topDocument";
               if (!out[key2]) {
                 out[key2] = {
@@ -29304,15 +29910,15 @@ var require_axe = __commonJS({
               return out;
             }, {});
           }
-          function isMediaRuleWithOrientation(_ref124) {
-            var type2 = _ref124.type, cssText = _ref124.cssText;
+          function isMediaRuleWithOrientation(_ref129) {
+            var type2 = _ref129.type, cssText = _ref129.cssText;
             if (type2 !== 4) {
               return false;
             }
             return /orientation:\s*landscape/i.test(cssText) || /orientation:\s*portrait/i.test(cssText);
           }
-          function getIsOrientationLocked(_ref125) {
-            var selectorText = _ref125.selectorText, style = _ref125.style;
+          function getIsOrientationLocked(_ref130) {
+            var selectorText = _ref130.selectorText, style = _ref130.style;
             if (!selectorText || style.length <= 0) {
               return false;
             }
@@ -29364,7 +29970,7 @@ var require_axe = __commonJS({
             }
           }
           function getAngleInDegrees(angleWithUnit) {
-            var _ref126 = angleWithUnit.match(/(deg|grad|rad|turn)/) || [], _ref127 = _slicedToArray(_ref126, 1), unit = _ref127[0];
+            var _ref131 = angleWithUnit.match(/(deg|grad|rad|turn)/) || [], _ref132 = _slicedToArray(_ref131, 1), unit = _ref132[0];
             if (!unit) {
               return 0;
             }
@@ -29502,8 +30108,8 @@ var require_axe = __commonJS({
             return false;
           }
           var hasDt = false, hasDd = false, nodeName2;
-          for (var _i26 = 0; _i26 < children.length; _i26++) {
-            nodeName2 = children[_i26].props.nodeName.toUpperCase();
+          for (var _i32 = 0; _i32 < children.length; _i32++) {
+            nodeName2 = children[_i32].props.nodeName.toUpperCase();
             if (nodeName2 === "DT") {
               hasDt = true;
             }
@@ -29603,18 +30209,17 @@ var require_axe = __commonJS({
           if (!parent) {
             return void 0;
           }
-          var parentNodeName = parent.props.nodeName;
-          var parentRole = get_explicit_role_default(parent);
+          var parentExplicitRole = get_explicit_role_default(parent);
+          var parentRole = get_role_default(parent);
           if (["presentation", "none", "list"].includes(parentRole)) {
             return true;
           }
-          if (parentRole && is_valid_role_default(parentRole)) {
+          if (parentExplicitRole && is_valid_role_default(parentExplicitRole)) {
             this.data({
               messageKey: "roleNotValid"
             });
-            return false;
           }
-          return ["ul", "ol", "menu"].includes(parentNodeName);
+          return false;
         }
         function invalidChildrenEvaluate(node) {
           var options2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
@@ -29656,8 +30261,8 @@ var require_axe = __commonJS({
           this.relatedNodes(relatedNodes);
           return true;
         }
-        function getInvalidSelector(vChild, nested, _ref128) {
-          var _ref128$validRoles = _ref128.validRoles, validRoles = _ref128$validRoles === void 0 ? [] : _ref128$validRoles, _ref128$validNodeName = _ref128.validNodeNames, validNodeNames = _ref128$validNodeName === void 0 ? [] : _ref128$validNodeName;
+        function getInvalidSelector(vChild, nested, _ref133) {
+          var _ref133$validRoles = _ref133.validRoles, validRoles = _ref133$validRoles === void 0 ? [] : _ref133$validRoles, _ref133$validNodeName = _ref133.validNodeNames, validNodeNames = _ref133$validNodeName === void 0 ? [] : _ref133$validNodeName;
           var _vChild$props = vChild.props, nodeName2 = _vChild$props.nodeName, nodeType = _vChild$props.nodeType, nodeValue = _vChild$props.nodeValue;
           var selector = nested ? "div > " : "";
           if (nodeType === 3 && nodeValue.trim() !== "") {
@@ -29666,11 +30271,12 @@ var require_axe = __commonJS({
           if (nodeType !== 1 || !_isVisibleToScreenReaders(vChild)) {
             return false;
           }
-          var role = get_explicit_role_default(vChild);
-          if (role) {
-            return validRoles.includes(role) ? false : selector + "[role=".concat(role, "]");
+          var explicitRole2 = get_explicit_role_default(vChild);
+          var role = get_role_default(vChild);
+          if (explicitRole2) {
+            return validRoles.includes(explicitRole2) ? false : selector + "[role=".concat(role, "]");
           } else {
-            return validNodeNames.includes(nodeName2) ? false : selector + nodeName2;
+            return validNodeNames.includes(nodeName2) || validRoles.includes(role) ? false : selector + nodeName2;
           }
         }
         function isDivGroup(vNode) {
@@ -29844,12 +30450,11 @@ var require_axe = __commonJS({
           var pixelThreshold = options2 === null || options2 === void 0 ? void 0 : options2.pixelThreshold;
           var occurrenceThreshold = (_options$occurrenceTh = options2 === null || options2 === void 0 ? void 0 : options2.occurrenceThreshold) !== null && _options$occurrenceTh !== void 0 ? _options$occurrenceTh : options2 === null || options2 === void 0 ? void 0 : options2.occuranceThreshold;
           var accText = accessible_text_default(node).toLowerCase();
-          var visibleText = sanitize_default(subtree_text_default(virtualNode, {
-            subtreeDescendant: true,
+          var visibleText = visible_virtual_default(virtualNode, false, false, {
             ignoreIconLigature: true,
             pixelThreshold,
             occurrenceThreshold
-          })).toLowerCase();
+          }).toLowerCase();
           if (!visibleText) {
             return true;
           }
@@ -30107,8 +30712,8 @@ var require_axe = __commonJS({
         }
         var focusable_no_name_evaluate_default = focusableNoNameEvaluate;
         function focusableModalOpenEvaluate(node, options2, virtualNode) {
-          var tabbableElements = virtualNode.tabbableElements.map(function(_ref129) {
-            var actualNode = _ref129.actualNode;
+          var tabbableElements = virtualNode.tabbableElements.map(function(_ref134) {
+            var actualNode = _ref134.actualNode;
             return actualNode;
           });
           if (!tabbableElements || !tabbableElements.length) {
@@ -30396,8 +31001,8 @@ var require_axe = __commonJS({
           return blockLike2.indexOf(display2) !== -1 || display2.substr(0, 6) === "table-";
         }
         function hasPseudoContent(node) {
-          for (var _i27 = 0, _arr3 = ["before", "after"]; _i27 < _arr3.length; _i27++) {
-            var pseudo = _arr3[_i27];
+          for (var _i33 = 0, _arr3 = ["before", "after"]; _i33 < _arr3.length; _i33++) {
+            var pseudo = _arr3[_i33];
             var style = window2.getComputedStyle(node, ":".concat(pseudo));
             var content = style.getPropertyValue("content");
             if (content !== "none") {
@@ -30503,7 +31108,7 @@ var require_axe = __commonJS({
           var bold = parseFloat(fontWeight) >= boldValue || fontWeight === "bold";
           var ptSize = Math.ceil(fontSize * 72) / 96;
           var isSmallFont = bold && ptSize < boldTextPt || !bold && ptSize < largeTextPt;
-          var _ref130 = isSmallFont ? contrastRatio.normal : contrastRatio.large, expected = _ref130.expected, minThreshold = _ref130.minThreshold, maxThreshold = _ref130.maxThreshold;
+          var _ref135 = isSmallFont ? contrastRatio.normal : contrastRatio.large, expected = _ref135.expected, minThreshold = _ref135.minThreshold, maxThreshold = _ref135.maxThreshold;
           var pseudoElm = findPseudoElement(virtualNode, {
             ignorePseudo,
             pseudoSizeThreshold
@@ -30599,8 +31204,8 @@ var require_axe = __commonJS({
           }
           return isValid;
         }
-        function findPseudoElement(vNode, _ref131) {
-          var _ref131$pseudoSizeThr = _ref131.pseudoSizeThreshold, pseudoSizeThreshold = _ref131$pseudoSizeThr === void 0 ? 0.25 : _ref131$pseudoSizeThr, _ref131$ignorePseudo = _ref131.ignorePseudo, ignorePseudo = _ref131$ignorePseudo === void 0 ? false : _ref131$ignorePseudo;
+        function findPseudoElement(vNode, _ref136) {
+          var _ref136$pseudoSizeThr = _ref136.pseudoSizeThreshold, pseudoSizeThreshold = _ref136$pseudoSizeThr === void 0 ? 0.25 : _ref136$pseudoSizeThr, _ref136$ignorePseudo = _ref136.ignorePseudo, ignorePseudo = _ref136$ignorePseudo === void 0 ? false : _ref136$ignorePseudo;
           if (ignorePseudo) {
             return;
           }
@@ -30642,7 +31247,7 @@ var require_axe = __commonJS({
         }
         function parseUnit(str2) {
           var unitRegex = /^([0-9.]+)([a-z]+)$/i;
-          var _ref132 = str2.match(unitRegex) || [], _ref133 = _slicedToArray(_ref132, 3), _ref133$ = _ref133[1], value = _ref133$ === void 0 ? "" : _ref133$, _ref133$2 = _ref133[2], unit = _ref133$2 === void 0 ? "" : _ref133$2;
+          var _ref137 = str2.match(unitRegex) || [], _ref138 = _slicedToArray(_ref137, 3), _ref138$ = _ref138[1], value = _ref138$ === void 0 ? "" : _ref138$, _ref138$2 = _ref138[2], unit = _ref138$2 === void 0 ? "" : _ref138$2;
           return {
             value: parseFloat(value),
             unit: unit.toLowerCase()
@@ -31000,8 +31605,8 @@ var require_axe = __commonJS({
           }
           var owners = getAriaOwners(node);
           if (owners) {
-            for (var _i28 = 0, l = owners.length; _i28 < l; _i28++) {
-              missingParents = getMissingContext(get_node_from_tree_default(owners[_i28]), ownGroupRoles, missingParents, true);
+            for (var _i34 = 0, l = owners.length; _i34 < l; _i34++) {
+              missingParents = getMissingContext(get_node_from_tree_default(owners[_i34]), ownGroupRoles, missingParents, true);
               if (!missingParents) {
                 return true;
               }
@@ -31021,19 +31626,20 @@ var require_axe = __commonJS({
             return true;
           }
           var ownedRoles = getOwnedRoles(virtualNode, required);
-          var unallowed = ownedRoles.filter(function(_ref134) {
-            var role = _ref134.role, vNode = _ref134.vNode;
+          var unallowed = ownedRoles.filter(function(_ref139) {
+            var role = _ref139.role, vNode = _ref139.vNode;
             return vNode.props.nodeType === 1 && !required.includes(role);
           });
           if (unallowed.length) {
-            this.relatedNodes(unallowed.map(function(_ref135) {
-              var vNode = _ref135.vNode;
+            this.relatedNodes(unallowed.map(function(_ref140) {
+              var vNode = _ref140.vNode;
               return vNode;
             }));
+            var messageKey = virtualNode.attr("aria-busy") === "true" ? "aria-busy-fail" : "unallowed";
             this.data({
-              messageKey: "unallowed",
-              values: unallowed.map(function(_ref136) {
-                var vNode = _ref136.vNode, attr = _ref136.attr;
+              messageKey,
+              values: unallowed.map(function(_ref141) {
+                var vNode = _ref141.vNode, attr = _ref141.attr;
                 return getUnallowedSelector(vNode, attr);
               }).filter(function(selector, index, array) {
                 return array.indexOf(selector) === index;
@@ -31060,7 +31666,7 @@ var require_axe = __commonJS({
           var vNode;
           var ownedRoles = [];
           var ownedVirtual = get_owned_virtual_default(virtualNode);
-          var _loop0 = function _loop02() {
+          var _loop1 = function _loop12() {
             if (vNode.props.nodeType === 3) {
               ownedRoles.push({
                 vNode,
@@ -31080,7 +31686,7 @@ var require_axe = __commonJS({
             })) {
               ownedVirtual.push.apply(ownedVirtual, _toConsumableArray(vNode.children));
             } else if (role || hasGlobalAriaOrFocusable) {
-              var attr = globalAriaAttr || "tabindex";
+              var attr = globalAriaAttr || (vNode.hasAttr("tabindex") ? "tabindex" : void 0);
               ownedRoles.push({
                 role,
                 attr,
@@ -31089,15 +31695,15 @@ var require_axe = __commonJS({
             }
           };
           while (vNode = ownedVirtual.shift()) {
-            if (_loop0()) {
+            if (_loop1()) {
               continue;
             }
           }
           return ownedRoles;
         }
         function hasRequiredChildren(required, ownedRoles) {
-          return ownedRoles.some(function(_ref137) {
-            var role = _ref137.role;
+          return ownedRoles.some(function(_ref142) {
+            var role = _ref142.role;
             return role && required.includes(role);
           });
         }
@@ -31122,8 +31728,8 @@ var require_axe = __commonJS({
           }
           return nodeName2;
         }
-        function isContent(_ref138) {
-          var vNode = _ref138.vNode;
+        function isContent(_ref143) {
+          var vNode = _ref143.vNode;
           if (vNode.props.nodeType === 3) {
             return vNode.props.nodeValue.trim().length > 0;
           }
@@ -31252,13 +31858,21 @@ var require_axe = __commonJS({
             if (attr.trim() === "") {
               return standards_default.ariaAttrs["aria-errormessage"].allowEmpty;
             }
+            var errormessageTokens = token_list_default(attr);
+            if (errormessageTokens.length > 1) {
+              this.data({
+                messageKey: "unsupported",
+                values: errormessageTokens
+              });
+              return false;
+            }
             var idref;
             try {
               idref = attr && idrefs_default(virtualNode, "aria-errormessage")[0];
             } catch (_unused18) {
               this.data({
                 messageKey: "idrefs",
-                values: token_list_default(attr)
+                values: errormessageTokens
               });
               return void 0;
             }
@@ -31266,11 +31880,14 @@ var require_axe = __commonJS({
               if (!_isVisibleToScreenReaders(idref)) {
                 this.data({
                   messageKey: "hidden",
-                  values: token_list_default(attr)
+                  values: errormessageTokens
                 });
                 return false;
               }
-              return get_explicit_role_default(idref) === "alert" || idref.getAttribute("aria-live") === "assertive" || idref.getAttribute("aria-live") === "polite" || token_list_default(virtualNode.attr("aria-describedby")).indexOf(attr) > -1;
+              var describedbyTokens = token_list_default(virtualNode.attr("aria-describedby"));
+              return get_explicit_role_default(idref) === "alert" || idref.getAttribute("aria-live") === "assertive" || idref.getAttribute("aria-live") === "polite" || errormessageTokens.some(function(token) {
+                return describedbyTokens.includes(token);
+              });
             }
             return;
           }
@@ -31282,7 +31899,7 @@ var require_axe = __commonJS({
         }
         function ariaConditionalRowAttr(node) {
           var _invalidTableRowAttrs, _invalidTableRowAttrs2;
-          var _ref139 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, invalidTableRowAttrs = _ref139.invalidTableRowAttrs;
+          var _ref144 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, invalidTableRowAttrs = _ref144.invalidTableRowAttrs;
           var virtualNode = arguments.length > 2 ? arguments[2] : void 0;
           var invalidAttrs = (_invalidTableRowAttrs = invalidTableRowAttrs === null || invalidTableRowAttrs === void 0 || (_invalidTableRowAttrs2 = invalidTableRowAttrs.filter) === null || _invalidTableRowAttrs2 === void 0 ? void 0 : _invalidTableRowAttrs2.call(invalidTableRowAttrs, function(invalidAttr) {
             return virtualNode.hasAttr(invalidAttr);
@@ -31310,13 +31927,42 @@ var require_axe = __commonJS({
           var rowOwnerQuery = 'table:not([role]), [role~="treegrid"], [role~="table"], [role~="grid"]';
           return closest_default(virtualNode, rowOwnerQuery);
         }
-        function ariaConditionalCheckboxAttr(node, options2, virtualNode) {
+        function ariaConditionalRadioAttr(node, options2, virtualNode) {
           var _virtualNode$props = virtualNode.props, nodeName2 = _virtualNode$props.nodeName, type2 = _virtualNode$props.type;
           var ariaChecked = normalizeAriaChecked(virtualNode.attr("aria-checked"));
-          if (nodeName2 !== "input" || type2 !== "checkbox" || !ariaChecked) {
+          if (nodeName2 !== "input" || type2 !== "radio" || !ariaChecked) {
             return true;
           }
           var checkState = getCheckState(virtualNode);
+          if (ariaChecked === checkState) {
+            return true;
+          }
+          this.data({
+            messageKey: "radio",
+            checkState
+          });
+          return false;
+        }
+        function getCheckState(vNode) {
+          return vNode.props.checked ? "true" : "false";
+        }
+        function normalizeAriaChecked(ariaCheckedVal) {
+          if (!ariaCheckedVal) {
+            return "";
+          }
+          ariaCheckedVal = ariaCheckedVal.toLowerCase();
+          if (ariaCheckedVal === "true") {
+            return ariaCheckedVal;
+          }
+          return "false";
+        }
+        function ariaConditionalCheckboxAttr(node, options2, virtualNode) {
+          var _virtualNode$props2 = virtualNode.props, nodeName2 = _virtualNode$props2.nodeName, type2 = _virtualNode$props2.type;
+          var ariaChecked = normalizeAriaChecked2(virtualNode.attr("aria-checked"));
+          if (nodeName2 !== "input" || type2 !== "checkbox" || !ariaChecked) {
+            return true;
+          }
+          var checkState = getCheckState2(virtualNode);
           if (ariaChecked === checkState) {
             return true;
           }
@@ -31326,13 +31972,13 @@ var require_axe = __commonJS({
           });
           return false;
         }
-        function getCheckState(vNode) {
+        function getCheckState2(vNode) {
           if (vNode.props.indeterminate) {
             return "mixed";
           }
           return vNode.props.checked ? "true" : "false";
         }
-        function normalizeAriaChecked(ariaCheckedVal) {
+        function normalizeAriaChecked2(ariaCheckedVal) {
           if (!ariaCheckedVal) {
             return "";
           }
@@ -31344,7 +31990,8 @@ var require_axe = __commonJS({
         }
         var conditionalRoleMap = {
           row: ariaConditionalRowAttr,
-          checkbox: ariaConditionalCheckboxAttr
+          checkbox: ariaConditionalCheckboxAttr,
+          radio: ariaConditionalRadioAttr
         };
         function ariaConditionalAttrEvaluate(node, options2, virtualNode) {
           var role = get_role_default(virtualNode);
@@ -31384,18 +32031,18 @@ var require_axe = __commonJS({
           if (Array.isArray(options2[role])) {
             allowed = unique_array_default(options2[role].concat(allowed));
           }
-          var _iterator23 = _createForOfIteratorHelper(virtualNode.attrNames), _step23;
+          var _iterator25 = _createForOfIteratorHelper(virtualNode.attrNames), _step25;
           try {
-            for (_iterator23.s(); !(_step23 = _iterator23.n()).done; ) {
-              var attrName = _step23.value;
+            for (_iterator25.s(); !(_step25 = _iterator25.n()).done; ) {
+              var attrName = _step25.value;
               if (validate_attr_default(attrName) && !allowed.includes(attrName) && !ignoredAttrs(attrName, virtualNode.attr(attrName), virtualNode)) {
                 invalid.push(attrName);
               }
             }
           } catch (err2) {
-            _iterator23.e(err2);
+            _iterator25.e(err2);
           } finally {
-            _iterator23.f();
+            _iterator25.f();
           }
           if (!invalid.length) {
             return true;
@@ -31403,7 +32050,7 @@ var require_axe = __commonJS({
           this.data(invalid.map(function(attrName2) {
             return attrName2 + '="' + virtualNode.attr(attrName2) + '"';
           }));
-          if (!role && !is_html_element_default(virtualNode) && !_isFocusable(virtualNode)) {
+          if (!role && !_isHtmlElement(virtualNode) && !_isFocusable(virtualNode)) {
             return void 0;
           }
           return false;
@@ -31415,6 +32062,44 @@ var require_axe = __commonJS({
           if (attrName === "aria-multiline" && attrValue === "false" && vNode.hasAttr("contenteditable")) {
             return true;
           }
+          return false;
+        }
+        function ariaAllowedAttrElmEvaluate(node, options2, virtualNode) {
+          var elmSpec = get_element_spec_default(virtualNode);
+          if (!elmSpec.allowedAriaAttrs) {
+            return true;
+          }
+          var explicitRole2 = get_explicit_role_default(virtualNode);
+          if (explicitRole2) {
+            return true;
+          }
+          var allowedAriaAttrs = elmSpec.allowedAriaAttrs;
+          var globalAriaAttrs = get_global_aria_attrs_default();
+          var invalid = [];
+          var _iterator26 = _createForOfIteratorHelper(virtualNode.attrNames), _step26;
+          try {
+            for (_iterator26.s(); !(_step26 = _iterator26.n()).done; ) {
+              var attrName = _step26.value;
+              if (globalAriaAttrs.includes(attrName) && !allowedAriaAttrs.includes(attrName)) {
+                invalid.push(attrName);
+              }
+            }
+          } catch (err2) {
+            _iterator26.e(err2);
+          } finally {
+            _iterator26.f();
+          }
+          if (!invalid.length) {
+            return true;
+          }
+          var messageKey = invalid.length > 1 ? "plural" : "singular";
+          this.data({
+            messageKey,
+            nodeName: virtualNode.props.nodeName,
+            values: invalid.map(function(attrName2) {
+              return attrName2 + '="' + virtualNode.attr(attrName2) + '"';
+            }).join(", ")
+          });
           return false;
         }
         function abstractroleEvaluate(node, options2, virtualNode) {
@@ -31467,7 +32152,8 @@ var require_axe = __commonJS({
           return _isInTabOrder(vNode) || !hasWidgetAncestorInTabOrder(vNode);
         }, function(node) {
           return !is_in_text_block_default(node, {
-            noLengthCompare: true
+            noLengthCompare: true,
+            includeInlineBlock: true
           });
         }];
         function isWidgetType(vNode) {
@@ -31512,12 +32198,30 @@ var require_axe = __commonJS({
         }
         var skip_link_matches_default = skipLinkMatches;
         function scrollableRegionFocusableMatches(node, virtualNode) {
-          return get_scroll_default(node, 13) !== void 0 && _isComboboxPopup(virtualNode) === false && isNoneEmptyElement(virtualNode);
+          return get_scroll_default(node, 13) !== void 0 && _isComboboxPopup(virtualNode) === false && isNonEmptyElementOutsideViewableRect(virtualNode);
         }
-        function isNoneEmptyElement(vNode) {
+        function isNonEmptyElementOutsideViewableRect(vNode) {
+          var boundingRect = vNode.boundingClientRect;
           return query_selector_all_default(vNode, "*").some(function(elm) {
-            return has_content_virtual_default(elm, true, true);
+            if (!has_content_virtual_default(elm, true, true)) {
+              return false;
+            }
+            var rects = [];
+            if (hasChildTextNodes(elm)) {
+              var _rects;
+              (_rects = rects).push.apply(_rects, _toConsumableArray(getContentRects2(elm)));
+            } else {
+              rects = [elm.boundingClientRect];
+            }
+            return rects.some(function(rect) {
+              return rect.left < boundingRect.left || rect.right > boundingRect.right || rect.top < boundingRect.top || rect.bottom > boundingRect.bottom;
+            });
           });
+        }
+        function getContentRects2(vNode) {
+          var range2 = document2.createRange();
+          range2.selectNodeContents(vNode.actualNode);
+          return Array.from(range2.getClientRects());
         }
         function presentationRoleConflictMatches(node, virtualNode) {
           return implicit_role_default(virtualNode, {
@@ -31543,7 +32247,7 @@ var require_axe = __commonJS({
           if (!role || ["none", "presentation"].includes(role)) {
             return true;
           }
-          var _ref140 = aria_roles_default[role] || {}, accessibleNameRequired = _ref140.accessibleNameRequired;
+          var _ref145 = aria_roles_default[role] || {}, accessibleNameRequired = _ref145.accessibleNameRequired;
           if (accessibleNameRequired || _isFocusable(virtualNode)) {
             return true;
           }
@@ -31775,7 +32479,7 @@ var require_axe = __commonJS({
         }
         var data_table_large_matches_default = dataTableLargeMatches;
         function colorContrastMatches(node, virtualNode) {
-          var _virtualNode$props2 = virtualNode.props, nodeName2 = _virtualNode$props2.nodeName, inputType = _virtualNode$props2.type;
+          var _virtualNode$props3 = virtualNode.props, nodeName2 = _virtualNode$props3.nodeName, inputType = _virtualNode$props3.type;
           if (nodeName2 === "option") {
             return false;
           }
@@ -31968,8 +32672,8 @@ var require_axe = __commonJS({
           var aria = /^aria-/;
           var attrs = virtualNode.attrNames;
           if (attrs.length) {
-            for (var _i29 = 0, l = attrs.length; _i29 < l; _i29++) {
-              if (aria.test(attrs[_i29])) {
+            for (var _i35 = 0, l = attrs.length; _i35 < l; _i35++) {
+              if (aria.test(attrs[_i35])) {
                 return true;
               }
             }
@@ -31982,6 +32686,7 @@ var require_axe = __commonJS({
           "accesskeys-after": accesskeys_after_default,
           "accesskeys-evaluate": accesskeys_evaluate_default,
           "alt-space-value-evaluate": alt_space_value_evaluate_default,
+          "aria-allowed-attr-elm-evaluate": ariaAllowedAttrElmEvaluate,
           "aria-allowed-attr-evaluate": ariaAllowedAttrEvaluate,
           "aria-allowed-attr-matches": aria_allowed_attr_matches_default,
           "aria-allowed-role-evaluate": aria_allowed_role_evaluate_default,
@@ -31989,6 +32694,7 @@ var require_axe = __commonJS({
           "aria-busy-evaluate": ariaBusyEvaluate,
           "aria-conditional-attr-evaluate": ariaConditionalAttrEvaluate,
           "aria-conditional-checkbox-attr-evaluate": ariaConditionalCheckboxAttr,
+          "aria-conditional-radio-attr-evaluate": ariaConditionalRadioAttr,
           "aria-conditional-row-attr-evaluate": ariaConditionalRowAttr,
           "aria-errormessage-evaluate": ariaErrormessageEvaluate,
           "aria-has-attr-matches": aria_has_attr_matches_default,
@@ -32476,7 +33182,7 @@ var require_axe = __commonJS({
           this._markChecksEnd = "mark_runchecks_end_" + this.id;
         };
         Rule.prototype._logGatherPerformance = function _logGatherPerformance(nodes) {
-          log_default("gather for ".concat(this.id, " (").concat(nodes.length, " nodes): ").concat(performance_timer_default.timeElapsed(), "ms"));
+          log("gather for ".concat(this.id, " (").concat(nodes.length, " nodes): ").concat(performance_timer_default.timeElapsed(), "ms"));
           performance_timer_default.mark(this._markChecksStart);
         };
         Rule.prototype._logRulePerformance = function _logRulePerformance() {
@@ -32676,8 +33382,8 @@ var require_axe = __commonJS({
                 lang: this.lang
               };
               var checkIDs = Object.keys(this.data.checks);
-              for (var _i30 = 0; _i30 < checkIDs.length; _i30++) {
-                var _id8 = checkIDs[_i30];
+              for (var _i36 = 0; _i36 < checkIDs.length; _i36++) {
+                var _id8 = checkIDs[_i36];
                 var check = this.data.checks[_id8];
                 var _check$messages = check.messages, pass = _check$messages.pass, fail = _check$messages.fail, incomplete = _check$messages.incomplete;
                 locale.checks[_id8] = {
@@ -32687,8 +33393,8 @@ var require_axe = __commonJS({
                 };
               }
               var ruleIDs = Object.keys(this.data.rules);
-              for (var _i31 = 0; _i31 < ruleIDs.length; _i31++) {
-                var _id9 = ruleIDs[_i31];
+              for (var _i37 = 0; _i37 < ruleIDs.length; _i37++) {
+                var _id9 = ruleIDs[_i37];
                 var rule = this.data.rules[_id9];
                 var description = rule.description, help = rule.help;
                 locale.rules[_id9] = {
@@ -32697,8 +33403,8 @@ var require_axe = __commonJS({
                 };
               }
               var failureSummaries = Object.keys(this.data.failureSummaries);
-              for (var _i32 = 0; _i32 < failureSummaries.length; _i32++) {
-                var type2 = failureSummaries[_i32];
+              for (var _i38 = 0; _i38 < failureSummaries.length; _i38++) {
+                var type2 = failureSummaries[_i38];
                 var failureSummary2 = this.data.failureSummaries[type2];
                 var failureMessage = failureSummary2.failureMessage;
                 locale.failureSummaries[type2] = {
@@ -32721,8 +33427,8 @@ var require_axe = __commonJS({
             key: "_applyCheckLocale",
             value: function _applyCheckLocale(checks) {
               var keys = Object.keys(checks);
-              for (var _i33 = 0; _i33 < keys.length; _i33++) {
-                var _id0 = keys[_i33];
+              for (var _i39 = 0; _i39 < keys.length; _i39++) {
+                var _id0 = keys[_i39];
                 if (!this.data.checks[_id0]) {
                   throw new Error('Locale provided for unknown check: "'.concat(_id0, '"'));
                 }
@@ -32733,8 +33439,8 @@ var require_axe = __commonJS({
             key: "_applyRuleLocale",
             value: function _applyRuleLocale(rules) {
               var keys = Object.keys(rules);
-              for (var _i34 = 0; _i34 < keys.length; _i34++) {
-                var _id1 = keys[_i34];
+              for (var _i40 = 0; _i40 < keys.length; _i40++) {
+                var _id1 = keys[_i40];
                 if (!this.data.rules[_id1]) {
                   throw new Error('Locale provided for unknown rule: "'.concat(_id1, '"'));
                 }
@@ -32745,8 +33451,8 @@ var require_axe = __commonJS({
             key: "_applyFailureSummaries",
             value: function _applyFailureSummaries(messages) {
               var keys = Object.keys(messages);
-              for (var _i35 = 0; _i35 < keys.length; _i35++) {
-                var _key1 = keys[_i35];
+              for (var _i41 = 0; _i41 < keys.length; _i41++) {
+                var _key1 = keys[_i41];
                 if (!this.data.failureSummaries[_key1]) {
                   throw new Error('Locale provided for unknown failureMessage: "'.concat(_key1, '"'));
                 }
@@ -32778,10 +33484,10 @@ var require_axe = __commonJS({
             value: function setAllowedOrigins(allowedOrigins) {
               var defaultOrigin = getDefaultOrigin();
               this.allowedOrigins = [];
-              var _iterator24 = _createForOfIteratorHelper(allowedOrigins), _step24;
+              var _iterator27 = _createForOfIteratorHelper(allowedOrigins), _step27;
               try {
-                for (_iterator24.s(); !(_step24 = _iterator24.n()).done; ) {
-                  var origin = _step24.value;
+                for (_iterator27.s(); !(_step27 = _iterator27.n()).done; ) {
+                  var origin = _step27.value;
                   if (origin === constants_default.allOrigins) {
                     this.allowedOrigins = ["*"];
                     return;
@@ -32792,9 +33498,9 @@ var require_axe = __commonJS({
                   }
                 }
               } catch (err2) {
-                _iterator24.e(err2);
+                _iterator27.e(err2);
               } finally {
-                _iterator24.f();
+                _iterator27.f();
               }
             }
           }, {
@@ -32863,56 +33569,61 @@ var require_axe = __commonJS({
           }, {
             key: "run",
             value: function run(context, options2, resolve, reject) {
-              this.normalizeOptions(options2);
+              var _this13 = this;
+              _normalizeRunOptions(options2);
               dq_element_default.setRunOptions(options2);
-              axe2._selectCache = [];
-              var allRulesToRun = getRulesToRun(this.rules, context, options2);
-              var runNowRules = allRulesToRun.now;
-              var runLaterRules = allRulesToRun.later;
-              var nowRulesQueue = queue_default();
-              runNowRules.forEach(function(rule) {
-                nowRulesQueue.defer(getDefferedRule(rule, context, options2));
-              });
-              var preloaderQueue = queue_default();
-              if (runLaterRules.length) {
-                preloaderQueue.defer(function(res) {
-                  _preload(options2).then(function(assets) {
-                    return res(assets);
-                  })["catch"](function(err2) {
-                    console.warn("Couldn't load preload assets: ", err2);
-                    res(void 0);
+              var internalsQueue = queue_default();
+              internalsQueue.defer(external.loadElementInternals());
+              internalsQueue.then(function() {
+                axe2._selectCache = [];
+                var allRulesToRun = getRulesToRun(_this13.rules, context, options2);
+                var runNowRules = allRulesToRun.now;
+                var runLaterRules = allRulesToRun.later;
+                var nowRulesQueue = queue_default();
+                runNowRules.forEach(function(rule) {
+                  nowRulesQueue.defer(getDefferedRule(rule, context, options2));
+                });
+                var preloaderQueue = queue_default();
+                if (runLaterRules.length) {
+                  preloaderQueue.defer(function(res) {
+                    _preload(options2).then(function(assets) {
+                      return res(assets);
+                    })["catch"](function(err2) {
+                      console.warn("Couldn't load preload assets: ", err2);
+                      res(void 0);
+                    });
                   });
-                });
-              }
-              var queueForNowRulesAndPreloader = queue_default();
-              queueForNowRulesAndPreloader.defer(nowRulesQueue);
-              queueForNowRulesAndPreloader.defer(preloaderQueue);
-              queueForNowRulesAndPreloader.then(function(nowRulesAndPreloaderResults) {
-                var assetsFromQueue = nowRulesAndPreloaderResults.pop();
-                if (assetsFromQueue && assetsFromQueue.length) {
-                  var assets = assetsFromQueue[0];
-                  if (assets) {
-                    context = _extends({}, context, assets);
+                }
+                var queueForNowRulesAndPreloader = queue_default();
+                queueForNowRulesAndPreloader.defer(nowRulesQueue);
+                queueForNowRulesAndPreloader.defer(preloaderQueue);
+                queueForNowRulesAndPreloader.then(function(nowRulesAndPreloaderResults) {
+                  var assetsFromQueue = nowRulesAndPreloaderResults.pop();
+                  if (assetsFromQueue && assetsFromQueue.length) {
+                    var assets = assetsFromQueue[0];
+                    if (assets) {
+                      context = _extends({}, context, assets);
+                    }
                   }
-                }
-                var nowRulesResults = nowRulesAndPreloaderResults[0];
-                if (!runLaterRules.length) {
-                  axe2._selectCache = void 0;
-                  resolve(nowRulesResults.filter(function(result) {
-                    return !!result;
-                  }));
-                  return;
-                }
-                var laterRulesQueue = queue_default();
-                runLaterRules.forEach(function(rule) {
-                  var deferredRule = getDefferedRule(rule, context, options2);
-                  laterRulesQueue.defer(deferredRule);
-                });
-                laterRulesQueue.then(function(laterRuleResults) {
-                  axe2._selectCache = void 0;
-                  resolve(nowRulesResults.concat(laterRuleResults).filter(function(result) {
-                    return !!result;
-                  }));
+                  var nowRulesResults = nowRulesAndPreloaderResults[0];
+                  if (!runLaterRules.length) {
+                    axe2._selectCache = void 0;
+                    resolve(nowRulesResults.filter(function(result) {
+                      return !!result;
+                    }));
+                    return;
+                  }
+                  var laterRulesQueue = queue_default();
+                  runLaterRules.forEach(function(rule) {
+                    var deferredRule = getDefferedRule(rule, context, options2);
+                    laterRulesQueue.defer(deferredRule);
+                  });
+                  laterRulesQueue.then(function(laterRuleResults) {
+                    axe2._selectCache = void 0;
+                    resolve(nowRulesResults.concat(laterRuleResults).filter(function(result) {
+                      return !!result;
+                    }));
+                  })["catch"](reject);
                 })["catch"](reject);
               })["catch"](reject);
             }
@@ -32946,88 +33657,8 @@ var require_axe = __commonJS({
               });
             }
           }, {
-            key: "normalizeOptions",
-            value: function normalizeOptions2(options2) {
-              var audit = this;
-              var tags = [];
-              var ruleIds = [];
-              audit.rules.forEach(function(rule) {
-                ruleIds.push(rule.id);
-                rule.tags.forEach(function(tag2) {
-                  if (!tags.includes(tag2)) {
-                    tags.push(tag2);
-                  }
-                });
-              });
-              if (["object", "string"].includes(_typeof(options2.runOnly))) {
-                if (typeof options2.runOnly === "string") {
-                  options2.runOnly = [options2.runOnly];
-                }
-                if (Array.isArray(options2.runOnly)) {
-                  var hasTag = options2.runOnly.find(function(value) {
-                    return tags.includes(value);
-                  });
-                  var hasRule = options2.runOnly.find(function(value) {
-                    return ruleIds.includes(value);
-                  });
-                  if (hasTag && hasRule) {
-                    throw new Error("runOnly cannot be both rules and tags");
-                  }
-                  if (hasRule) {
-                    options2.runOnly = {
-                      type: "rule",
-                      values: options2.runOnly
-                    };
-                  } else {
-                    options2.runOnly = {
-                      type: "tag",
-                      values: options2.runOnly
-                    };
-                  }
-                }
-                var only = options2.runOnly;
-                if (only.value && !only.values) {
-                  only.values = only.value;
-                  delete only.value;
-                }
-                if (!Array.isArray(only.values) || only.values.length === 0) {
-                  throw new Error("runOnly.values must be a non-empty array");
-                }
-                if (["rule", "rules"].includes(only.type)) {
-                  only.type = "rule";
-                  only.values.forEach(function(ruleId) {
-                    if (!ruleIds.includes(ruleId)) {
-                      throw new Error("unknown rule `" + ruleId + "` in options.runOnly");
-                    }
-                  });
-                } else if (["tag", "tags", void 0].includes(only.type)) {
-                  only.type = "tag";
-                  var unmatchedTags = only.values.filter(function(tag2) {
-                    return !tags.includes(tag2) && !/wcag2[1-3]a{1,3}/.test(tag2);
-                  });
-                  if (unmatchedTags.length !== 0) {
-                    axe2.log("Could not find tags `" + unmatchedTags.join("`, `") + "`");
-                  }
-                } else {
-                  throw new Error("Unknown runOnly type '".concat(only.type, "'"));
-                }
-              }
-              if (_typeof(options2.rules) === "object") {
-                Object.keys(options2.rules).forEach(function(ruleId) {
-                  if (!ruleIds.includes(ruleId)) {
-                    throw new Error("unknown rule `" + ruleId + "` in options.rules");
-                  }
-                });
-              }
-              return options2;
-            }
-          }, {
             key: "setBranding",
             value: function setBranding(branding) {
-              var previous = {
-                brand: this.brand,
-                application: this.application
-              };
               if (typeof branding === "string") {
                 this.application = branding;
               }
@@ -33037,21 +33668,20 @@ var require_axe = __commonJS({
               if (branding && branding.hasOwnProperty("application") && branding.application && typeof branding.application === "string") {
                 this.application = branding.application;
               }
-              this._constructHelpUrls(previous);
             }
           }, {
             key: "_constructHelpUrls",
             value: function _constructHelpUrls() {
-              var _this13 = this;
+              var _this14 = this;
               var previous = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null;
               var version = (axe2.version.match(/^[1-9][0-9]*\.[0-9]+/) || ["x.y"])[0];
               this.rules.forEach(function(rule) {
-                if (!_this13.data.rules[rule.id]) {
-                  _this13.data.rules[rule.id] = {};
+                if (!_this14.data.rules[rule.id]) {
+                  _this14.data.rules[rule.id] = {};
                 }
-                var metaData = _this13.data.rules[rule.id];
+                var metaData = _this14.data.rules[rule.id];
                 if (typeof metaData.helpUrl !== "string" || previous && metaData.helpUrl === getHelpUrl(previous, rule.id, version)) {
-                  metaData.helpUrl = getHelpUrl(_this13, rule.id, version);
+                  metaData.helpUrl = getHelpUrl(_this14, rule.id, version);
                 }
               });
             }
@@ -33199,8 +33829,8 @@ var require_axe = __commonJS({
             }]
           });
         }
-        function getHelpUrl(_ref141, ruleId, version) {
-          var brand = _ref141.brand, application = _ref141.application, lang = _ref141.lang;
+        function getHelpUrl(_ref146, ruleId, version) {
+          var brand = _ref146.brand, application = _ref146.application, lang = _ref146.lang;
           return constants_default.helpUrlBase + brand + "/" + (version || axe2.version.substring(0, axe2.version.lastIndexOf("."))) + "/" + ruleId + "?application=" + encodeURIComponent(application) + (lang && lang !== "en" ? "&lang=" + encodeURIComponent(lang) : "");
         }
         function setupGlobals(context) {
@@ -33291,7 +33921,7 @@ var require_axe = __commonJS({
                 resolve(results, teardown_default);
               } catch (e) {
                 teardown_default();
-                log_default(e);
+                log(e);
               }
             } catch (e) {
               teardown_default();
@@ -33381,6 +34011,14 @@ var require_axe = __commonJS({
           resetStandards();
         }
         var reset_default = reset;
+        function resetLocale() {
+          var audit = axe2._audit;
+          if (!audit) {
+            throw new Error("No audit configured");
+          }
+          audit._resetLocale();
+        }
+        var reset_locale_default = resetLocale;
         function runVirtualRule(ruleId, vNode) {
           var options2 = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
           options2.reporter = options2.reporter || axe2._audit.reporter || "v1";
@@ -33420,9 +34058,9 @@ var require_axe = __commonJS({
             toolOptions: options2
           });
         }
-        function normalizeRunParams(_ref142) {
-          var _ref144, _options$reporter, _axe$_audit;
-          var _ref143 = _slicedToArray(_ref142, 3), context = _ref143[0], options2 = _ref143[1], callback = _ref143[2];
+        function normalizeRunParams(_ref147) {
+          var _ref149, _options$reporter, _axe$_audit2;
+          var _ref148 = _slicedToArray(_ref147, 3), context = _ref148[0], options2 = _ref148[1], callback = _ref148[2];
           var typeErr = new TypeError("axe.run arguments are invalid");
           if (!_isContextSpec(context)) {
             if (callback !== void 0) {
@@ -33443,7 +34081,7 @@ var require_axe = __commonJS({
             throw typeErr;
           }
           options2 = clone22(options2);
-          options2.reporter = (_ref144 = (_options$reporter = options2.reporter) !== null && _options$reporter !== void 0 ? _options$reporter : (_axe$_audit = axe2._audit) === null || _axe$_audit === void 0 ? void 0 : _axe$_audit.reporter) !== null && _ref144 !== void 0 ? _ref144 : "v1";
+          options2.reporter = (_ref149 = (_options$reporter = options2.reporter) !== null && _options$reporter !== void 0 ? _options$reporter : (_axe$_audit2 = axe2._audit) === null || _axe$_audit2 === void 0 ? void 0 : _axe$_audit2.reporter) !== null && _ref149 !== void 0 ? _ref149 : "v1";
           return {
             context,
             options: options2,
@@ -33562,11 +34200,17 @@ var require_axe = __commonJS({
           axe2._running = true;
           options2.elementRef = false;
           return new Promise(function(res, rej) {
+            if (options2.performanceTimer) {
+              performance_timer_default.auditStart();
+            }
             axe2._audit.run(contextObj, options2, res, rej);
           }).then(function(results) {
+            if (options2.performanceTimer) {
+              performance_timer_default.auditEnd();
+            }
             results = node_serializer_default.mapRawResults(results);
-            var frames = contextObj.frames.map(function(_ref145) {
-              var node = _ref145.node;
+            var frames = contextObj.frames.map(function(_ref150) {
+              var node = _ref150.node;
               return node_serializer_default.toSpec(node);
             });
             var environmentData;
@@ -33587,14 +34231,14 @@ var require_axe = __commonJS({
           });
         }
         function finishRun(partialResults) {
-          var _ref147, _options$reporter2, _axe$_audit2;
+          var _ref152, _options$reporter2, _axe$_audit3;
           var options2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
           options2 = clone22(options2);
-          var _ref146 = partialResults.find(function(r) {
+          var _ref151 = partialResults.find(function(r) {
             return r.environmentData;
-          }) || {}, environmentData = _ref146.environmentData;
-          axe2._audit.normalizeOptions(options2);
-          options2.reporter = (_ref147 = (_options$reporter2 = options2.reporter) !== null && _options$reporter2 !== void 0 ? _options$reporter2 : (_axe$_audit2 = axe2._audit) === null || _axe$_audit2 === void 0 ? void 0 : _axe$_audit2.reporter) !== null && _ref147 !== void 0 ? _ref147 : "v1";
+          }) || {}, environmentData = _ref151.environmentData;
+          _normalizeRunOptions(options2);
+          options2.reporter = (_ref152 = (_options$reporter2 = options2.reporter) !== null && _options$reporter2 !== void 0 ? _options$reporter2 : (_axe$_audit3 = axe2._audit) === null || _axe$_audit3 === void 0 ? void 0 : _axe$_audit3.reporter) !== null && _ref152 !== void 0 ? _ref152 : "v1";
           setFrameSpec(partialResults);
           var results = merge_results_default(partialResults);
           results = axe2._audit.after(results, options2);
@@ -33606,10 +34250,10 @@ var require_axe = __commonJS({
         }
         function setFrameSpec(partialResults) {
           var frameStack = [];
-          var _iterator25 = _createForOfIteratorHelper(partialResults), _step25;
+          var _iterator28 = _createForOfIteratorHelper(partialResults), _step28;
           try {
-            for (_iterator25.s(); !(_step25 = _iterator25.n()).done; ) {
-              var partialResult = _step25.value;
+            for (_iterator28.s(); !(_step28 = _iterator28.n()).done; ) {
+              var partialResult = _step28.value;
               var frameSpec = frameStack.shift();
               if (!partialResult) {
                 continue;
@@ -33619,13 +34263,13 @@ var require_axe = __commonJS({
               frameStack.unshift.apply(frameStack, _toConsumableArray(frameSpecs));
             }
           } catch (err2) {
-            _iterator25.e(err2);
+            _iterator28.e(err2);
           } finally {
-            _iterator25.f();
+            _iterator28.f();
           }
         }
-        function getMergedFrameSpecs(_ref148) {
-          var childFrameSpecs = _ref148.frames, parentFrameSpec = _ref148.frameSpec;
+        function getMergedFrameSpecs(_ref153) {
+          var childFrameSpecs = _ref153.frames, parentFrameSpec = _ref153.frameSpec;
           if (!parentFrameSpec) {
             return childFrameSpecs;
           }
@@ -33689,8 +34333,8 @@ var require_axe = __commonJS({
           var transformedResults = results.map(function(result) {
             var transformedResult = _extends({}, result);
             var types = ["passes", "violations", "incomplete", "inapplicable"];
-            for (var _i36 = 0, _types = types; _i36 < _types.length; _i36++) {
-              var type2 = _types[_i36];
+            for (var _i42 = 0, _types = types; _i42 < _types.length; _i42++) {
+              var type2 = _types[_i42];
               transformedResult[type2] = node_serializer_default.mapRawNodeResults(transformedResult[type2]);
             }
             return transformedResult;
@@ -33755,7 +34399,8 @@ var require_axe = __commonJS({
             metadataFunctionMap: metadata_function_map_default
           },
           public: {
-            reporters
+            reporters,
+            external
           },
           helpers: {
             failureSummary: failure_summary_default,
@@ -33787,7 +34432,8 @@ var require_axe = __commonJS({
         var exposed_for_testing_default = _thisWillBeDeletedDoNotUse;
         axe2._thisWillBeDeletedDoNotUse = exposed_for_testing_default;
         axe2.constants = constants_default;
-        axe2.log = log_default;
+        axe2.log = log;
+        axe2._setLogger = setLogger;
         axe2.AbstractVirtualNode = abstract_virtual_node_default;
         axe2.SerialVirtualNode = serial_virtual_node_default;
         axe2.VirtualNode = virtual_node_default;
@@ -33795,6 +34441,7 @@ var require_axe = __commonJS({
         axe2.imports = imports_exports;
         axe2.cleanup = cleanup_default;
         axe2.configure = configure_default;
+        axe2.externalAPIs = externalAPIs;
         axe2.frameMessenger = frameMessenger2;
         axe2.getRules = get_rules_default;
         axe2._load = load;
@@ -33804,6 +34451,7 @@ var require_axe = __commonJS({
         axe2.getReporter = getReporter;
         axe2.addReporter = addReporter;
         axe2.reset = reset_default;
+        axe2.resetLocale = reset_locale_default;
         axe2._runRules = runRules;
         axe2.runVirtualRule = runVirtualRule;
         axe2.run = run4;
@@ -33904,6 +34552,10 @@ var require_axe = __commonJS({
             "aria-roles": {
               description: "Ensure all elements with a role attribute use a valid value",
               help: "ARIA roles used must conform to valid values"
+            },
+            "aria-tab-name": {
+              description: "Ensure every ARIA tab node has an accessible name",
+              help: "ARIA tab nodes must have an accessible name"
             },
             "aria-text": {
               description: 'Ensure role="text" is used on elements with no focusable descendants',
@@ -34182,7 +34834,7 @@ var require_axe = __commonJS({
               help: "scope attribute should be used correctly"
             },
             "scrollable-region-focusable": {
-              description: "Ensure elements that have scrollable content are accessible by keyboard",
+              description: "Ensure elements that have scrollable content are accessible by keyboard in Safari",
               help: "Scrollable region must have keyboard access"
             },
             "select-name": {
@@ -34253,6 +34905,15 @@ var require_axe = __commonJS({
                 }
               }
             },
+            "aria-allowed-attr-elm": {
+              messages: {
+                pass: "ARIA attributes are allowed for this element",
+                fail: {
+                  singular: "ARIA attribute is not allowed on ${data.nodeName} elements: ${data.values}",
+                  plural: "ARIA attributes are not allowed on ${data.nodeName} elements: ${data.values}"
+                }
+              }
+            },
             "aria-allowed-attr": {
               impact: "critical",
               messages: {
@@ -34291,6 +34952,7 @@ var require_axe = __commonJS({
                 pass: "ARIA attribute is allowed",
                 fail: {
                   checkbox: 'Remove aria-checked, or set it to "${data.checkState}" to match the real checkbox state',
+                  radio: 'Remove aria-checked, or set it to "${data.checkState}" to match the real radio state',
                   rowSingular: "This attribute is supported with treegrid rows, but not ${data.ownerRole}: ${data.invalidAttrs}",
                   rowPlural: "These attributes are supported with treegrid rows, but not ${data.ownerRole}: ${data.invalidAttrs}"
                 }
@@ -34303,6 +34965,7 @@ var require_axe = __commonJS({
                 fail: {
                   singular: "aria-errormessage value `${data.values}` must use a technique to announce the message (e.g., aria-live, aria-describedby, role=alert, etc.)",
                   plural: "aria-errormessage values `${data.values}` must use a technique to announce the message (e.g., aria-live, aria-describedby, role=alert, etc.)",
+                  unsupported: "Multiple IDs in aria-errormessage is not widely supported in assistive technologies",
                   hidden: "aria-errormessage value `${data.values}` cannot reference a hidden element"
                 },
                 incomplete: {
@@ -34364,7 +35027,8 @@ var require_axe = __commonJS({
                 fail: {
                   singular: "Required ARIA child role not present: ${data.values}",
                   plural: "Required ARIA children role not present: ${data.values}",
-                  unallowed: "Element has children which are not allowed: ${data.values}"
+                  unallowed: "Element has children which are not allowed: ${data.values}",
+                  "aria-busy-fail": 'Element has children which are not allowed: ${data.values}; Having aria-busy="true" does not allow children with roles that are not allowed'
                 },
                 incomplete: {
                   singular: "Expecting ARIA child role to be added: ${data.values}",
@@ -35373,7 +36037,7 @@ var require_axe = __commonJS({
               validTreeRowAttrs: ["aria-posinset", "aria-setsize", "aria-expanded", "aria-level"]
             },
             id: "aria-allowed-attr"
-          }],
+          }, "aria-allowed-attr-elm"],
           any: [],
           none: ["aria-unsupported-attr"]
         }, {
@@ -35595,6 +36259,20 @@ var require_axe = __commonJS({
           all: [],
           any: [],
           none: ["invalidrole", "abstractrole", "unsupportedrole"]
+        }, {
+          id: "aria-tab-name",
+          impact: "serious",
+          selector: '[role="tab"]',
+          matches: "no-naming-method-matches",
+          tags: ["cat.aria", "wcag2a", "wcag412", "TTv5", "TT5.c", "EN-301-549", "EN-9.4.1.2", "ACT", "RGAAv4", "RGAA-7.1.1"],
+          all: [],
+          any: ["has-visible-text", "aria-label", "aria-labelledby", {
+            options: {
+              attribute: "title"
+            },
+            id: "non-empty-title"
+          }],
+          none: []
         }, {
           id: "aria-text",
           impact: "serious",
@@ -36215,7 +36893,8 @@ var require_axe = __commonJS({
           id: "landmark-complementary-is-top-level",
           impact: "moderate",
           selector: "aside:not([role]), [role=complementary]",
-          tags: ["cat.semantics", "best-practice"],
+          tags: ["cat.semantics", "best-practice", "deprecated"],
+          enabled: false,
           all: [],
           any: ["landmark-is-top-level"],
           none: []
@@ -36733,6 +37412,9 @@ var require_axe = __commonJS({
         checks: [{
           id: "abstractrole",
           evaluate: "abstractrole-evaluate"
+        }, {
+          id: "aria-allowed-attr-elm",
+          evaluate: "aria-allowed-attr-elm-evaluate"
         }, {
           id: "aria-allowed-attr",
           evaluate: "aria-allowed-attr-evaluate",
@@ -41635,7 +42317,7 @@ function rawIpynbToGeneralCells(ipynbContent) {
 init_esm_shims();
 var import_axe_core = __toESM(require_axe());
 
-// ../core/node_modules/marked/lib/marked.esm.js
+// ../../node_modules/marked/lib/marked.esm.js
 init_esm_shims();
 function _getDefaults() {
   return {
@@ -44691,7 +45373,7 @@ ${group.length} ${group.length === 1 ? "violation" : "violations"} found for ${v
       );
       console.log(
         import_chalk.default.blue(
-          "\nLearn more about the issues? Check out issue descriptions at https://github.com/berkeley-dsep-infra/jupyterlab-a11y-checker/blob/main/doc/rules.md"
+          "\nLearn more about the issues? Check out issue descriptions at https://github.com/berkeley-cdss/jupyterlab-a11y-checker/blob/main/docs/components/rules.md"
         )
       );
       console.log(
@@ -44716,7 +45398,7 @@ program2.parse();
 /*! Bundled license information:
 
 axe-core/axe.js:
-  (*! axe v4.11.1
+  (*! axe v4.12.1
    * Copyright (c) 2015 - 2026 Deque Systems, Inc.
    *
    * Your use of this Source Code Form is subject to the terms of the Mozilla Public
