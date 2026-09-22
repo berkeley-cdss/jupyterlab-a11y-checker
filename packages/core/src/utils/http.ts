@@ -64,6 +64,37 @@ export async function post<T = any, R = AxiosResponse<T>>(
   return axios.post(url, data, config) as unknown as Promise<R>;
 }
 
+/**
+ * Turn a request failure into a short, user-facing string that preserves the
+ * information needed to tell causes apart: an expired key (401), a wrong
+ * endpoint path (404), and a model rejecting the request (400) otherwise all
+ * look identical to the user.
+ */
+export function describeRequestError(error: unknown): string {
+  if (axios.isAxiosError(error)) {
+    const status = error.response?.status;
+
+    if (status === undefined) {
+      // No response at all: DNS failure, connection refused, CORS, timeout.
+      return error.message || 'could not reach the endpoint';
+    }
+
+    const data = error.response?.data as
+      | { error?: { message?: string }; message?: string }
+      | string
+      | undefined;
+    const apiMessage =
+      typeof data === 'string'
+        ? data
+        : (data?.error?.message ?? data?.message);
+
+    const detail = apiMessage?.trim() || error.response?.statusText || '';
+    return detail ? `HTTP ${status}: ${detail}` : `HTTP ${status}`;
+  }
+
+  return error instanceof Error ? error.message : String(error);
+}
+
 export const http = { get, post };
 
 export type { IGuardedAxiosRequestConfig };

@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.7](https://github.com/berkeley-cdss/jupyterlab-a11y-checker/compare/cli-v0.1.6...cli-v0.1.7) (2026-08-02)
+
+
+### Bug Fixes
+
+* **action:** commit CLI bundle so the GitHub Action runs from a checkout ([413b418](https://github.com/berkeley-cdss/jupyterlab-a11y-checker/commit/413b418d626f2b768b5d9cddd8005da648fe8bb4))
+* **action:** commit CLI bundle so the GitHub Action runs from a checkout ([acd3b7a](https://github.com/berkeley-cdss/jupyterlab-a11y-checker/commit/acd3b7a2d9b985f8763ffc962ccf022bac041f5b)), closes [#71](https://github.com/berkeley-cdss/jupyterlab-a11y-checker/issues/71)
+* **ci:** adjust docs rules path ([6457e5e](https://github.com/berkeley-cdss/jupyterlab-a11y-checker/commit/6457e5e47fd8918e3227c8f1cc58ff145c2891d8))
+* **ci:** adjust docs rules path ([630d813](https://github.com/berkeley-cdss/jupyterlab-a11y-checker/commit/630d81315af762edd2028ffa51f5543c867f8e8d))
+* **cli:** rebuild dist so the Action stops linking a 404 ([acd5c20](https://github.com/berkeley-cdss/jupyterlab-a11y-checker/commit/acd5c20df97b40aabd69d4c8f1f39044f7665f9b))
+* **cli:** rebuild dist so the Action stops linking a 404 ([fbb38f8](https://github.com/berkeley-cdss/jupyterlab-a11y-checker/commit/fbb38f85934b9fa9d67360b80b97d4a02e0ccb83)), closes [#89](https://github.com/berkeley-cdss/jupyterlab-a11y-checker/issues/89)
+* **cli:** rebuild dist with hoisted marked resolution ([bf7cb40](https://github.com/berkeley-cdss/jupyterlab-a11y-checker/commit/bf7cb40a9c725986126bdf0677ebbb8554de4cb6))
+
 ## [0.1.6](https://github.com/berkeley-dsep-infra/jupyterlab-a11y-checker/compare/cli-v0.1.5...cli-v0.1.6) (2026-06-08)
 
 

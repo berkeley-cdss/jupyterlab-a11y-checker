@@ -136,22 +136,21 @@ export class ImageAltFixWidget extends TextFieldFixWidget {
     altTextInput.placeholder = ''; // Clear placeholder while showing loading overlay
 
     try {
-      const suggestion = await getImageAltSuggestion(
+      const result = await getImageAltSuggestion(
         this.issue,
         this.cell.node.querySelector('img')?.src || '',
         this.visionSettings
       );
-      if (suggestion !== 'Error') {
+      if (result.ok) {
         // Extract alt text from the suggestion, handling both single and double quotes
-        const altMatch = suggestion.match(/alt=['"]([^'"]*)['"]/);
+        const altMatch = result.text.match(/alt=['"]([^'"]*)['"]/);
         if (altMatch && altMatch[1]) {
           altTextInput.value = altMatch[1];
         } else {
-          altTextInput.value = suggestion; // Fallback to full suggestion if no alt text found
+          altTextInput.value = result.text; // Fallback to full suggestion if no alt text found
         }
       } else {
-        altTextInput.placeholder =
-          'Error getting suggestions. Please try again.';
+        altTextInput.placeholder = result.text;
       }
     } catch (error) {
       console.error(error);
@@ -268,15 +267,14 @@ export class TableCaptionFixWidget extends TextFieldFixWidget {
     captionInput.placeholder = '';
 
     try {
-      const suggestion = await getTableCaptionSuggestion(
+      const result = await getTableCaptionSuggestion(
         this.issue,
         this.languageSettings
       );
-      if (suggestion !== 'Error') {
-        captionInput.value = suggestion;
+      if (result.ok) {
+        captionInput.value = result.text;
       } else {
-        captionInput.placeholder =
-          'Error getting suggestions. Please try again.';
+        captionInput.placeholder = result.text;
       }
     } catch (error) {
       console.error(error);
@@ -406,6 +404,19 @@ export class LinkTextFixWidget extends TextFieldFixWidget {
     return 'Update the link text or aria-label:';
   }
 
+  constructor(issue: ICellIssue, cell: Cell<ICellModel>, aiEnabled: boolean) {
+    super(issue, cell, aiEnabled);
+
+    // AI suggestion is not implemented for links yet, so remove the button
+    // rather than leaving it visible but inert.
+    const suggestButton = this.node.querySelector(
+      '.suggest-button'
+    ) as HTMLButtonElement;
+    if (suggestButton) {
+      suggestButton.remove();
+    }
+  }
+
   applyTextToCell(providedText: string): void {
     if (providedText === '') {
       return;
@@ -482,7 +493,7 @@ export class LinkTextFixWidget extends TextFieldFixWidget {
   }
 
   async displayAISuggestions(): Promise<void> {
-    // Not implemented for links today
+    // Unreachable: the suggest button is removed in the constructor.
     return;
   }
 }

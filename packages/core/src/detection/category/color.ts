@@ -4,6 +4,8 @@ import {
   findMarkdownImages,
   findImgTags,
   extractImageUrl,
+  getNotebookDirectory,
+  joinNotebookPath,
 } from "../../utils/image-utils.js";
 
 function hexToRgb(hex: string): { r: number; g: number; b: number } {
@@ -70,10 +72,14 @@ async function getColorContrastInImage(
     }
     imageSource = dataUrl;
   } else {
-    // Regular image path (local or remote)
+    // Regular image path (local or remote). Relative paths resolve against the
+    // notebook's folder, not the notebook file itself.
     imageSource = imagePath.startsWith("http")
       ? imagePath
-      : `${baseUrl}files/${currentDirectoryPath}/${imagePath}`;
+      : `${baseUrl}files/${joinNotebookPath(
+          getNotebookDirectory(currentDirectoryPath),
+          imagePath,
+        )}`;
   }
 
   // Create canvas and load image

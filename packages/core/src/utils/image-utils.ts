@@ -97,3 +97,33 @@ export function extractImageUrl(imageStr: string): string | null {
   }
   return null;
 }
+
+/**
+ * Resolve the directory that a notebook's relative image paths are relative to.
+ *
+ * Callers hand us the notebook's own path (e.g. JupyterLab's
+ * `NotebookPanel.context.path`), which points at the `.ipynb` file, not the
+ * folder holding it. Interpolating that directly produced URLs like
+ * `files/PS0/intro.ipynb/diagram.png`, which always 404.
+ *
+ * Returns "" for a notebook at the root, so callers join to `files/diagram.png`
+ * rather than `files//diagram.png`.
+ */
+export function getNotebookDirectory(notebookPath: string): string {
+  if (!notebookPath) {
+    return "";
+  }
+  const lastSlash = notebookPath.lastIndexOf("/");
+  return lastSlash === -1 ? "" : notebookPath.slice(0, lastSlash);
+}
+
+/**
+ * Join a notebook-relative directory and an image path without producing an
+ * empty segment when the directory is "" (notebook at the root).
+ */
+export function joinNotebookPath(
+  directory: string,
+  imagePath: string,
+): string {
+  return directory ? `${directory}/${imagePath}` : imagePath;
+}

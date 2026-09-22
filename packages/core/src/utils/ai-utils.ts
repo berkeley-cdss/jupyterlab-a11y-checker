@@ -1,10 +1,15 @@
-import { http } from './http.js';
+import { http, describeRequestError } from './http.js';
 import { ICellIssue } from '../types.js';
 
 export interface IModelSettings {
   baseUrl: string;
   apiKey: string;
   model: string;
+}
+
+export interface IAISuggestionResponse {
+  ok: boolean;
+  text: string;
 }
 
 async function fetchImageAsBase64(imageUrl: string): Promise<string> {
@@ -63,7 +68,7 @@ export async function getImageAltSuggestion(
   issue: ICellIssue,
   imageData: string,
   visionSettings: IModelSettings
-): Promise<string> {
+): Promise<IAISuggestionResponse> {
   let prompt =
     'Read the provided image and respond with a short description of the image, without any explanation. Avoid using the word "image" in the description.';
   prompt += `Content: \n${issue.issueContentRaw}\n\n`;
@@ -98,7 +103,7 @@ export async function getImageAltSuggestion(
           ]
         }
       ],
-      max_tokens: 150
+      max_tokens: 1024
     });
 
     const response = await http.post(visionSettings.baseUrl, body, {
@@ -114,22 +119,36 @@ export async function getImageAltSuggestion(
       response.data.choices[0] &&
       response.data.choices[0].message
     ) {
+      const choice = response.data.choices[0];
+      // New check for token truncation
+      if (choice.finish_reason === 'length') {
+        return {
+          ok: false,
+          text: 'Output limit reached before completing alt text. Please increase token allowance or lower reasoning settings.'
+        };
+      }
+
       const responseText = response.data.choices[0].message.content;
-      return responseText ? responseText.trim() : 'No content in response';
+      return responseText
+        ? { ok: true, text: responseText.trim() }
+        : { ok: false, text: 'No content in response' };
     } else {
       console.error('Unexpected response structure:', response.data);
-      return 'Error parsing response';
+      return { ok: false, text: 'Error parsing response' };
     }
   } catch (error) {
     console.error('Error getting suggestions:', error);
-    return 'Error';
+    return {
+      ok: false,
+      text: `Alt text request failed — ${describeRequestError(error)}`
+    };
   }
 }
 
 export async function getTableCaptionSuggestion(
   issue: ICellIssue,
   languageSettings: IModelSettings
-): Promise<string> {
+): Promise<IAISuggestionResponse> {
   const prompt = `Given this HTML table, please provide a caption for the table to be served as a title or heading for the table. Avoid using the word "table" in the caption. Here's the table:
     ${issue.issueContentRaw}`;
 
@@ -148,7 +167,7 @@ export async function getTableCaptionSuggestion(
           content: prompt
         }
       ],
-      max_tokens: 150
+      max_tokens: 1024
     });
 
     const response = await http.post(languageSettings.baseUrl, body, {
@@ -164,15 +183,29 @@ export async function getTableCaptionSuggestion(
       response.data.choices[0] &&
       response.data.choices[0].message
     ) {
+      const choice = response.data.choices[0];
+
+      if (choice.finish_reason === 'length') {
+        return {
+          ok: false,
+          text: 'Output limit reached before completing caption. Please increase token allowance or lower reasoning settings.'
+        };
+      }
+
       const responseText = response.data.choices[0].message.content;
-      return responseText ? responseText.trim() : 'No content in response';
+      return responseText
+        ? { ok: true, text: responseText.trim() }
+        : { ok: false, text: 'No content in response' };
     } else {
       console.error('Unexpected response structure:', response.data);
-      return 'Error parsing response';
+      return { ok: false, text: 'Error parsing response' };
     }
   } catch (error) {
     console.error('Error getting suggestions:', error);
-    return 'Error';
+    return {
+      ok: false,
+      text: `Caption request failed — ${describeRequestError(error)}`
+    };
   }
 }
 
@@ -180,7 +213,7 @@ export async function sendLLMRequest(
   prompt: string,
   settings: IModelSettings,
   systemMessage: string = 'You are a helpful assistant.'
-): Promise<string> {
+): Promise<IAISuggestionResponse> {
   try {
     const body = JSON.stringify({
       model: settings.model,
@@ -209,14 +242,27 @@ export async function sendLLMRequest(
       response.data.choices[0] &&
       response.data.choices[0].message
     ) {
+      const choice = response.data.choices[0];
+      if (choice.finish_reason === 'length') {
+        return {
+          ok: false,
+          text: 'Output limit reached before completing request.'
+        };
+      }
+
       const responseText = response.data.choices[0].message.content;
-      return responseText ? responseText.trim() : 'No content in response';
+      return responseText
+        ? { ok: true, text: responseText.trim() }
+        : { ok: false, text: 'No content in response' };
     } else {
       console.error('Unexpected response structure:', response.data);
-      return 'Error parsing response';
+      return { ok: false, text: 'Error parsing response' };
     }
   } catch (error) {
     console.error('Error sending LLM request:', error);
-    return 'Error';
+    return {
+      ok: false,
+      text: `Request failed — ${describeRequestError(error)}`
+    };
   }
 }

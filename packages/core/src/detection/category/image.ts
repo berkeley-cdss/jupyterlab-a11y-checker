@@ -4,6 +4,8 @@ import {
   findImgTags,
   findMarkdownImages,
   extractImageUrl,
+  getNotebookDirectory,
+  joinNotebookPath,
 } from "../../utils/image-utils.js";
 
 async function getTextInImage(
@@ -43,11 +45,14 @@ async function getTextInImage(
       }
       imageSource = dataUrl;
     } else {
+      // Relative paths resolve against the notebook's folder, not the
+      // notebook file itself.
+      const notebookDir = getNotebookDirectory(currentDirectoryPath);
       imageSource = imagePath.startsWith("http")
         ? imagePath
         : baseUrl
-          ? `${baseUrl}files/${currentDirectoryPath}/${imagePath}`
-          : `${currentDirectoryPath}/${imagePath}`; // Simple join for CLI
+          ? `${baseUrl}files/${joinNotebookPath(notebookDir, imagePath)}`
+          : joinNotebookPath(notebookDir, imagePath); // Simple join for CLI
     }
 
     // Load image using the processor (handles Browser vs Node differences)

@@ -55,6 +55,34 @@ jobs:
           jlpm install
           jlpm build
 
+      # The release workflow publishes from build:prod, which enables webpack
+      # plugins the dev build skips. `python -m build` below cannot cover this:
+      # skip-if-exists in pyproject.toml sees the dev output and skips the
+      # production build entirely. Run it explicitly so a prod-only failure
+      # fails CI instead of silently breaking the next release.
+      - name: Production build (matches the release path)
+        env:
+          YARN_ENABLE_IMMUTABLE_INSTALLS: 'false'
+          YARN_CHECKSUM_BEHAVIOR: update
+        run: |
+          set -eux
+          npm run build -w packages/core
+          npm run build:prod -w packages/extension
+
+      # action.yml runs the committed packages/cli/dist bundle straight from a
+      # checkout, so a dist that lags src ships stale behaviour to every
+      # `uses: berkeley-cdss/jupyterlab-a11y-checker@main` consumer. That drift
+      # has already caused #71 and #89. Rebuild and fail if the result differs.
+      - name: CLI dist is in sync with src
+        run: |
+          set -eux
+          npm run build -w packages/core
+          npm run build -w packages/cli
+          if ! git diff --exit-code -- packages/cli/dist; then
+            echo "::error::packages/cli/dist is stale. Run 'npm run build -w packages/cli' and commit the result."
+            exit 1
+          fi
+
       - name: Test extension loads
         working-directory: packages/extension
         run: |

@@ -16,16 +16,18 @@
     "dompurify": ">=3.4.1",
     "serialize-javascript": ">=7.0.5",
     "@tootallnate/once": ">=2.0.1",
-    "brace-expansion": ">=5.0.6",
+    "brace-expansion": ">=5.0.7",
     "fast-uri": ">=3.1.2",
     "flatted": ">=3.4.2",
     "lodash": ">=4.18.1",
     "lodash-es": ">=4.18.0",
     "mermaid": ">=11.15.0",
     "postcss": ">=8.5.10",
+    "sanitize-html": "^2.17.5",
     "uuid": ">=11.1.1",
     "vite": ">=7.3.2",
-    "ws": ">=8.20.1"
+    "ws": ">=8.20.1",
+    "webpack": "5.106.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.49.0",
