@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.10](https://github.com/berkeley-cdss/jupyterlab-a11y-checker/compare/extension-v0.2.9...extension-v0.2.10) (2026-11-05)
+
+
+### Bug Fixes
+
+* **deps:** resolve transitive security alerts Dependabot can't update ([20ea697](https://github.com/berkeley-cdss/jupyterlab-a11y-checker/commit/20ea6973fbafb020aec02ad91e53da5a2903484c))
+* **deps:** resolve transitive security alerts; run JupyterLite deploy on Node 24 ([5fbbd86](https://github.com/berkeley-cdss/jupyterlab-a11y-checker/commit/5fbbd86d49988a857b48a2f6a9a0006f9e53c16e))
+
 ## [0.2.9](https://github.com/berkeley-cdss/jupyterlab-a11y-checker/compare/extension-v0.2.8...extension-v0.2.9) (2026-08-02)
 
 
